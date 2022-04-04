@@ -1,5 +1,8 @@
 package fr.eni.encheres.bo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Utilisateurs {
 	private Integer id;
 	private String pseudo;
@@ -13,6 +16,7 @@ public class Utilisateurs {
 	private String mot_de_passe;
 	private Integer credit;
 	private boolean administrateur;
+	private List<Encheres> lstEncheres = new ArrayList<>();
 
 	public Utilisateurs() {
 		super();
@@ -128,6 +132,22 @@ public class Utilisateurs {
 
 	public void setAdministrateur(boolean administrateur) {
 		this.administrateur = administrateur;
+	}
+
+	public List<Encheres> getLstEncheres() {
+		return lstEncheres;
+	}
+
+	public void setLstEncheres(List<Encheres> lstEncheres) {
+		this.lstEncheres = lstEncheres;
+	}
+
+	@Override
+	public String toString() {
+		return "Utilisateurs [id=" + id + ", pseudo=" + pseudo + ", nom=" + nom + ", prenom=" + prenom + ", email="
+				+ email + ", telephone=" + telephone + ", rue=" + rue + ", code_postal=" + code_postal + ", ville="
+				+ ville + ", mot_de_passe=" + mot_de_passe + ", credit=" + credit + ", administrateur=" + administrateur
+				+ "]";
 	}
 
 }

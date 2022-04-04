@@ -5,7 +5,7 @@ public class UtilisateursManagerSing {
 	private static UtilisateursManager instance;
 	public static UtilisateursManager getInstance() {
 		if(instance==null) {
-			instance = new VotantManagerImpl();
+			instance = new UtilisateursManagerImpl();
 		}
 		return instance;
 	}
