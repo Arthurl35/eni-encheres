@@ -13,7 +13,9 @@ public class ArticleVendu {
 	private Integer prixVente;
 	private Integer etatVente;
 	
-	public ArticleVendu() {}
+	public ArticleVendu() {
+		
+	}
 
 	public ArticleVendu(Integer noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,
 			LocalDate dateFinEncheres, Integer miseAPrix, Integer prixVente, Integer etatVente) {
