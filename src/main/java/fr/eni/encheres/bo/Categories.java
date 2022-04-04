@@ -30,8 +30,4 @@ public class Categories {
 	public void setLibelle(String libelle) {
 		this.libelle = libelle;
 	}
-	
-	
-	
-
 }
