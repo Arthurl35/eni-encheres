@@ -56,6 +56,4 @@ public class Encheres {
 		return "Encheres [date_enchere=" + date_enchere + ", montant_enchere=" + montant_enchere + ", utilisateur="
 				+ utilisateur + "]";
 	}
-
-
 }
