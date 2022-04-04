@@ -51,4 +51,10 @@ public class Encheres {
 		this.article = article;
 	}
 
+	@Override
+	public String toString() {
+		return "Encheres [date_enchere=" + date_enchere + ", montant_enchere=" + montant_enchere + ", utilisateur="
+				+ utilisateur + "]";
+	}
+
 }
