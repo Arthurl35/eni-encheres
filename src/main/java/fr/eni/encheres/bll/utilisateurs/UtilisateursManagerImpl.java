@@ -1,4 +1,4 @@
-package fr.eni.encheres.bll;
+package fr.eni.encheres.bll.utilisateurs;
 
 import java.util.List;
 
