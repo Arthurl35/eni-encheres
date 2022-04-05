@@ -3,9 +3,13 @@ package fr.eni.encheres.bll;
 import java.util.List;
 
 import fr.eni.encheres.bo.Utilisateurs;
+import fr.eni.encheres.dal.DALException;
+import fr.eni.encheres.dal.DAOFact;
+import fr.eni.encheres.dal.utilisateur.UtilisateurDAO;
 
 public class UtilisateursManagerImpl implements UtilisateursManager {
-
+	private UtilisateurDAO dao = DAOFact.getUtilisateurDAO();
+	
 	@Override
 	public void addUtilisateurs(Utilisateurs utilisateur) throws UtilisateursException {
 		try {
