@@ -12,6 +12,9 @@
 	</head>
 	<body>
 		<h1>CONNECTION</h1>
+		<c:if test="${model.message != null}">
+			<p>${model.message}</p>
+		</c:if>
 		<a href="RegisterServlet">Pas encore inscrit ?</a>
 		<form action="LoginServlet" method="post">
 			<input type="text" name="pseudo"/>

@@ -45,21 +45,14 @@ public class UtilisateursManagerImpl implements UtilisateursManager {
 	}
 
 	@Override
-	public boolean connect(Utilisateurs utilisateur) throws UtilisateursException {
-		boolean res = false;
+	public Utilisateurs connect(String pseudo, String password) throws UtilisateursException {
+		Utilisateurs user = null;
 		try {
-			for (Utilisateurs u : dao.getAll()) {
-				if (utilisateur.getPseudo().equals(u.getPseudo())
-						&& utilisateur.getMot_de_passe().equals(u.getMot_de_passe())) {
-					res = true;
-				} else {
-					throw new UtilisateursException("Votre login et/ou mot de passe n'est pas bon.");
-				}
-			}
-			return res;
-		} catch (DALException e) {
-			throw new UtilisateursException("Problème à la selection");
+			user = dao.getConnection(pseudo, password);
+		} catch(DALException e) {
+			throw new UtilisateursException("Login et/ou password incorect !");
 		}
+		return user;
 	}
 
 	@Override

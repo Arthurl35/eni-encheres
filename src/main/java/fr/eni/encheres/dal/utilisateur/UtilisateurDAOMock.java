@@ -44,4 +44,10 @@ public class UtilisateurDAOMock implements UtilisateurDAO {
 		.toList().get(0);
 	}
 
+	@Override
+	public Utilisateurs getConnection(String pseudo, String password) throws DALException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
