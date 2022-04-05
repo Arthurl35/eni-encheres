@@ -98,11 +98,11 @@ public class RegisterModel {
 		this.mot_de_passe_confirm = mot_de_passe_confirm;
 	}
 	
-	public String getMess() {
+	public String getMessage() {
 		return mess;
 	}
 
-	public void setMess(String message) {
+	public void setMessage(String message) {
 		this.mess = message;
 	}
 }

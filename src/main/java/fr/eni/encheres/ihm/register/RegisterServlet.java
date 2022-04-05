@@ -72,20 +72,19 @@ public class RegisterServlet extends HttpServlet {
 					//inscription
 					try {
 						manager.addUtilisateur(user);
+						//connect user
+						request.getSession().setAttribute("user", request.getParameter("pseudo"));
+						//redirect home
+						next = "HomeServlet";
 					} catch (UtilisateursException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+						model.setMessage("erreur survenu");
 					}
-					//connect user
-					request.getSession().setAttribute("user", request.getParameter("pseudo"));
-					//redirect home
-					next = "HomeServlet";
 				}
 				else {
-					model.setMess("Les mots de passe différent !");
+					model.setMessage("Les mots de passe différent !");
 				}
 			}
-			else model.setMess("Champs manquant !");
+			else model.setMessage("Champs manquant !");
 		}
 		else if(request.getParameter("BT_ANNUL")!= null) {
 			next = "HomeServlet";

@@ -12,8 +12,8 @@
 	</head>
 	<body>
 		<h1>INSCRIPTION</h1>
-		<c:if test="${model.mess != null}">
-			<p>${model.mess}</p>
+		<c:if test="${model.message != null}">
+			<p>${model.message}</p>
 		</c:if>
 		<form action="RegisterServlet" method="post">
 			<label for="pseudo">Pseudo :</label>
