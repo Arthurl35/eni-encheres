@@ -18,7 +18,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 	private final String SELECT = "SELECT no_Utilisateur,pseudo,nom, prenom,email,telephone, rue, code_postal,ville, mot_de_passe, credit, administrateur FROM UTILISATEURS";
 	private final String UPDATE = "UPDATE UTILISATEURS SET pseudo = ?,nom = ?, prenom = ?,email = ?,telephone = ?, rue = ?, code_postal = ?,ville = ?, mot_de_passe = ?, credit = ?, administrateur = ? WHERE no_Utilisateur = ?";
 	private final String DELETE = "DELETE FROM UTILISATEURS WHERE no_Utilisateur=?";
-	private final String SELECTBYID = "SELECT no_Utilisateur, pseudo,nom, prenom,email,telephone, rue, code_postal,ville, mot_de_passe, credit, administrateur FROM UTILISATEURS WHERE no_Utilisateur=? ";
+	private final String SELECTBYPSEUDO = "SELECT pseudo,nom, prenom,email,telephone, rue, code_postal,ville, mot_de_passe, credit, administrateur FROM UTILISATEURS WHERE pseudo=? ";
 
 	@Override
 	public void insert(Utilisateurs utilisateur) throws DALException {
@@ -119,15 +119,14 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 
 	@SuppressWarnings("null")
 	@Override
-	public Utilisateurs getById(Integer id) throws DALException {
+	public Utilisateurs getByPseudo(String pseudo) throws DALException {
 		Utilisateurs utilisateur = null;
 		try (Connection connection = ConnectionProvider.getConnection()) {
-			PreparedStatement stmt = connection.prepareStatement(SELECTBYID);
-			stmt.setInt(1, id);
+			PreparedStatement stmt = connection.prepareStatement(SELECTBYPSEUDO);
+			stmt.setString(1, pseudo);
 			ResultSet rs = stmt.executeQuery();
 			if (rs.next()) {
 				utilisateur = new Utilisateurs();
-				utilisateur.setId(rs.getInt("no_Utilisateur"));
 				utilisateur.setPseudo(rs.getString("pseudo"));
 				utilisateur.setNom(rs.getString("nom"));
 				utilisateur.setPrenom(rs.getString("prenom"));
