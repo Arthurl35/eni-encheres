@@ -1,13 +1,17 @@
-package fr.eni.encheres.bll;
+package fr.eni.encheres.bll.utilisateurs;
 
 import java.util.List;
 
 import fr.eni.encheres.bo.Utilisateurs;
+import fr.eni.encheres.dal.DALException;
+import fr.eni.encheres.dal.DAOFact;
+import fr.eni.encheres.dal.utilisateur.UtilisateurDAO;
 
 public class UtilisateursManagerImpl implements UtilisateursManager {
-
+	private UtilisateurDAO dao = DAOFact.getUtilisateurDAO();
+	
 	@Override
-	public void addUtilisateurs(Utilisateurs utilisateur) throws UtilisateursException {
+	public void addUtilisateur(Utilisateurs utilisateur) throws UtilisateursException {
 		try {
 			for (Utilisateurs u : dao.getAll()) {
 				if (utilisateur.getEmail().equals(u.getEmail())) {

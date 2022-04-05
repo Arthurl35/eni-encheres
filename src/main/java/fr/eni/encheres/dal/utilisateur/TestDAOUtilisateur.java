@@ -5,7 +5,7 @@ import fr.eni.encheres.dal.DALException;
 import fr.eni.encheres.dal.DAOFact;
 
 public class TestDAOUtilisateur {
-	private static UtilisateurDAO dao = DAOFact.getUtilisateurtDAO();
+	private static UtilisateurDAO dao = DAOFact.getUtilisateurDAO();
 	
 	public static void main(String[] args) throws DALException {
 		System.out.println("INSERT");

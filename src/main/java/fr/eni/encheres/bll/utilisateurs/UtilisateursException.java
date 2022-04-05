@@ -1,4 +1,4 @@
-package fr.eni.encheres.bll;
+package fr.eni.encheres.bll.utilisateurs;
 
 public class UtilisateursException extends Exception {
 	
