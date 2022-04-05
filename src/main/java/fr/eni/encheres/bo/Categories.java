@@ -1,7 +1,7 @@
 package fr.eni.encheres.bo;
 
 public class Categories {
-	private Integer no_categorie;
+	private Integer id;
 	private String libelle;
 
 	public Categories() {
@@ -9,18 +9,18 @@ public class Categories {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Categories(Integer no_categorie, String libelle) {
+	public Categories(Integer id, String libelle) {
 		super();
-		this.no_categorie = no_categorie;
+		this.id = id;
 		this.libelle = libelle;
 	}
 
-	public Integer getNo_categorie() {
-		return no_categorie;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setNo_categorie(Integer no_categorie) {
-		this.no_categorie = no_categorie;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getLibelle() {
@@ -30,4 +30,6 @@ public class Categories {
 	public void setLibelle(String libelle) {
 		this.libelle = libelle;
 	}
+
+	
 }
