@@ -12,31 +12,32 @@
 	</head>
 	<body>
 		<h1>INSCRIPTION</h1>
-		<form action="LoginServlet" method="post">
+		
+		<form action="RegisterServlet" method="post">
 			<label for="pseudo">Pseudo :</label>
-			<input type="text" name="pseudo"/>
+			<input type="text" name="pseudo" value="${model.pseudo}"/>
 			<label for="name">Nom :</label>
-			<input type="text" name="name"/>
+			<input type="text" name="name" value="${model.nom}"/>
 			<label for="surname">Prénom :</label>
-			<input type="text" name="surname"/>
+			<input type="text" name="surname" value="${model.prenom}"/>
 			<label for="mail">Email :</label>
-			<input type="email" name="mail"/>
+			<input type="email" name="mail" value="${model.email}"/>
 			<label for="tel">Téléphone :</label>
-			<input type="tel" name="tel"/>
+			<input type="tel" name="tel" value="${model.telephone}"/>
 			<label for="street">Rue :</label>
-			<input type="text" name="street"/>
+			<input type="text" name="street" value="${model.rue}"/>
 			<label for="cp">Code postal :</label>
-			<input type="text" name="cp"/>
+			<input type="text" name="cp" value="${model.code_postal}"/>
 			<label for="city">Ville :</label>
-			<input type="text" name="city"/>
+			<input type="text" name="city" value="${model.ville}"/>
 			<label for="pass">Mot de passe :</label>
-			<input type="password" name="pass"/>
+			<input type="password" name="pass" value="${model.mot_de_passe}"/>
 			<label for="pass-confirm">Confirmation :</label>
-			<input type="password" name="pass-confirm"/>
+			<input type="password" name="pass-confirm" value="${model.mot_de_passe_confirm}"/>
 			
-			<button type="submit" name="BT_VALID" value="Créer"></button>
-			<button type="submit" name="BT_ANNUL" value="Annuler"></button>
+			<button type="submit" name="BT_VALID">Créer</button>
+			<button type="submit" name="BT_ANNUL">Annuler</button>
 		</form>
-		<p>Déjà inscrit ? <a href="LoginServlet">Se connecter</a></p>
+		
 	</body>
 </html>

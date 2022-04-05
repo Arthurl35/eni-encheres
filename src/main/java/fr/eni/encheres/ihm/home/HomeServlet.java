@@ -30,8 +30,15 @@ public class HomeServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HomeModel model = new HomeModel();
 		
+		//récupère la session
 		HttpSession session = request.getSession();
 		model.setPseudo((String)session.getValue("user"));
+		
+		//déconnection
+		if(request.getParameter("BT_LOGOUT")!= null && model.getPseudo() != null) {
+			session.invalidate();
+			model.setPseudo(null);
+		}
 		
 		request.setAttribute("model", model);
 		request.getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
