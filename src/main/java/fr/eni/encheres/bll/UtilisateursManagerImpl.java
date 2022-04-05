@@ -11,7 +11,7 @@ public class UtilisateursManagerImpl implements UtilisateursManager {
 	private UtilisateurDAO dao = DAOFact.getUtilisateurDAO();
 	
 	@Override
-	public void addUtilisateurs(Utilisateurs utilisateur) throws UtilisateursException {
+	public void addUtilisateur(Utilisateurs utilisateur) throws UtilisateursException {
 		try {
 			for (Utilisateurs u : dao.getAll()) {
 				if (utilisateur.getEmail().equals(u.getEmail())) {
