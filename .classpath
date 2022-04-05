@@ -9,7 +9,6 @@
 	<classpathentry kind="con" path="org.eclipse.datatools.connectivity.jdt.DRIVERLIBRARY/Other Driver Default"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="C:/Users/alevesque2021/Desktop/mssql-jdbc-9.4.1.jre16.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/mssql-jdbc-9.4.1.jre16.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/apache-tomcat-9.0.55"/>
 	<classpathentry kind="output" path="build/classes"/>
