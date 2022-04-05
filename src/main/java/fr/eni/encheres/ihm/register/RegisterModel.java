@@ -12,6 +12,7 @@ public class RegisterModel {
 	private String ville;
 	private String mot_de_passe;
 	private String mot_de_passe_confirm;
+	private String mess;
 	
 	public RegisterModel() {
 		// TODO Auto-generated constructor stub
@@ -96,5 +97,12 @@ public class RegisterModel {
 	public void setMot_de_passe_confirm(String mot_de_passe_confirm) {
 		this.mot_de_passe_confirm = mot_de_passe_confirm;
 	}
+	
+	public String getMess() {
+		return mess;
+	}
 
+	public void setMess(String message) {
+		this.mess = message;
+	}
 }
