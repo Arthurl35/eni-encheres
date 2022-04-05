@@ -22,9 +22,8 @@ public class Utilisateurs {
 		super();
 	}
 
-	public Utilisateurs(Integer id, String pseudo, String nom, String prenom, String email, String telephone,
+	public Utilisateurs(String pseudo, String nom, String prenom, String email, String telephone,
 			String rue, String code_postal, String ville, String mot_de_passe, Integer credit, boolean administrateur) {
-		this.id = id;
 		this.pseudo = pseudo;
 		this.nom = nom;
 		this.prenom = prenom;
