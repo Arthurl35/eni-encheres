@@ -1,7 +1,7 @@
 package fr.eni.encheres.ihm.register;
-import fr.eni.encheres.bll.UtilisateursException;
-import fr.eni.encheres.bll.UtilisateursManager;
-import fr.eni.encheres.bll.UtilisateursManagerSing;
+import fr.eni.encheres.bll.utilisateurs.UtilisateursException;
+import fr.eni.encheres.bll.utilisateurs.UtilisateursManager;
+import fr.eni.encheres.bll.utilisateurs.UtilisateursManagerSing;
 import fr.eni.encheres.bo.Utilisateurs;
 
 import java.io.IOException;
@@ -71,7 +71,7 @@ public class RegisterServlet extends HttpServlet {
 					Utilisateurs user = new Utilisateurs(model.getPseudo(), model.getNom(), model.getPrenom(), model.getEmail(), model.getTelephone(), model.getRue(), model.getCode_postal(), model.getVille(), model.getMot_de_passe(), 500, false);
 					//inscription
 					try {
-						manager.addUtilisateurs(user);
+						manager.addUtilisateur(user);
 					} catch (UtilisateursException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
