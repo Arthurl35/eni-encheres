@@ -12,7 +12,9 @@
 	</head>
 	<body>
 		<h1>INSCRIPTION</h1>
-		
+		<c:if test="${model.message != null}">
+			<p>${model.message}</p>
+		</c:if>
 		<form action="RegisterServlet" method="post">
 			<label for="pseudo">Pseudo :</label>
 			<input type="text" name="pseudo" value="${model.pseudo}"/>
@@ -38,6 +40,6 @@
 			<button type="submit" name="BT_VALID">Créer</button>
 			<button type="submit" name="BT_ANNUL">Annuler</button>
 		</form>
-		
+
 	</body>
 </html>
