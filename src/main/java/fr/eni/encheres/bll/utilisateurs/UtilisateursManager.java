@@ -10,4 +10,5 @@ public interface UtilisateursManager {
 	public List<Utilisateurs> getAllUtilisateurs() throws UtilisateursException;
 	public Utilisateurs connect(String pseudo, String password) throws UtilisateursException;
 	public void delUtilisateur(Utilisateurs utilisateur) throws UtilisateursException;
+	public Utilisateurs getByPseudo(String pseudo) throws UtilisateursException;
 }

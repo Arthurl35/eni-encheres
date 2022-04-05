@@ -23,9 +23,6 @@ public class UtilisateursManagerImpl implements UtilisateursManager {
 				if (utilisateur.getPseudo().equals(u.getPseudo())) {
 					throw new UtilisateursException("Pseudo déjà existant");
 				}
-				if (!utilisateur.getMot_de_passe().equals(u.getMot_de_passe())) {
-					throw new UtilisateursException("Votre mot de passe n'est pas identique");
-				}
 			}
 
 			dao.insert(utilisateur);
@@ -59,6 +56,25 @@ public class UtilisateursManagerImpl implements UtilisateursManager {
 	public void delUtilisateur(Utilisateurs utilisateur) throws UtilisateursException {
 		try {
 			dao.delete(utilisateur);
+		} catch(DALException e) {
+			throw new UtilisateursException("Problème à la selection");
+		}
+	}
+
+
+	@Override
+	public Utilisateurs getByPseudo(String pseudo) throws UtilisateursException {
+		try {
+			Utilisateurs res = null;
+			for (Utilisateurs u : dao.getAll()) {
+				if(u.getPseudo().equals(pseudo)) {
+					res = u;
+				}
+				else {
+					throw new UtilisateursException("Utilisateur non existant");
+				}
+			}
+			return res;
 		} catch(DALException e) {
 			throw new UtilisateursException("Problème à la selection");
 		}
