@@ -9,9 +9,9 @@ public class TestDAOUtilisateur {
 	
 	public static void main(String[] args) throws DALException {
 		System.out.println("INSERT");
-		Utilisateurs vincent = new Utilisateurs("titoune","Tim","Vincent","tim@tim.com","0626262626","10 rue de la rue","35000","rennes","mot",400,true);
+		Utilisateurs vincent = new Utilisateurs("titoune","Tim","Vincent","tim@tim.com","0626262626","10 rue de la rue","35000","rennes","mot",400,false);
 		dao.insert(vincent);
-		Utilisateurs v = new Utilisateurs("cece","Cérien","jean","jean@gmail.com","0626262626","10 rue de la rue","35000","rennes","mot",400,true);
+		Utilisateurs v = new Utilisateurs("cece","Cerien","jean","jean@gmail.com","0626262626","10 rue de la rue","35000","rennes","mot",400,true);
 		dao.insert(v);
 		dao.getAll().forEach(System.out::println);
 		

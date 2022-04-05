@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 
 public class BundleUtil {
 	private static Locale locale = Locale.ENGLISH;
-	private static ResourceBundle messages = ResourceBundle.getBundle("fr.formation.vote.messages.messages",locale);
+	private static ResourceBundle messages = ResourceBundle.getBundle("fr.eni.encheres.messages.messages",locale);
 
 	public static String getMessage(String key) {
 		return messages.getString(key);
