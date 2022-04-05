@@ -11,7 +11,7 @@ public interface UtilisateurDAO {
 	public List<Utilisateurs> getAll() throws DALException;
 	public void update(Utilisateurs utiisateur) throws DALException; 
 	public void delete(Utilisateurs utilisateur) throws DALException;
-	public Utilisateurs getById(Integer id) throws DALException;
+	public Utilisateurs getByPseudo(String pseudo) throws DALException;
 	
 	
 }

@@ -38,9 +38,9 @@ public class UtilisateurDAOMock implements UtilisateurDAO {
 	}
 
 	@Override
-	public Utilisateurs getById(Integer id) throws DALException {
+	public Utilisateurs getByPseudo(String pseudo) throws DALException {
 		return lstUtilisateus.stream()
-		.filter(u->u.getId()==id)
+		.filter(u->u.getPseudo().equals(pseudo))
 		.toList().get(0);
 	}
 
