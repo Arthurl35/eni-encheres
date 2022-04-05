@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.eni.encheres.bll.utilisateurs.UtilisateursManager;
+import fr.eni.encheres.bll.utilisateurs.UtilisateursManagerSing;
+import fr.eni.encheres.bo.Utilisateurs;
+
 /**
  * Servlet implementation class VoteServlet
  */
@@ -17,6 +21,8 @@ public class LoginServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
     
+	private UtilisateursManager manager = UtilisateursManagerSing.getInstance();
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -29,6 +35,7 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String next = "/WEB-INF/login.jsp";
+		LoginModel model = new LoginModel();
 		
 		//test si déjà connecté
 		HttpSession session = request.getSession();
@@ -36,15 +43,26 @@ public class LoginServlet extends HttpServlet {
 		
 		if(request.getParameter("BT_VALID")!=null) {
 			if(!request.getParameter("pseudo").equals("") && !request.getParameter("pass").equals("")) {
-				//test login
-				if(true) {
-					//connect user
-					request.getSession().setAttribute("user", request.getParameter("pseudo"));
-					//redirect home
-					next = "HomeServlet";
+				model.setPseudo(request.getParameter("pseudo"));
+				
+				try {
+					//test login
+					Utilisateurs user = manager.connect(model.getPseudo(), request.getParameter("pass"));
+					if(user != null) {
+						//connect user
+						request.getSession().setAttribute("user", user.getPseudo());
+						//redirect home
+						next = "HomeServlet";
+					}
+					else model.setMessage("Pseudo et/ou Mot de passe incorect !");
+				}
+				catch (Exception e) {
+					model.setMessage(e.getMessage());
 				}
 			}
+			else model.setMessage("Veuillez renseigner le pseudo et le mot de passe !");
 		}
+		request.setAttribute("model", model);
 		request.getRequestDispatcher(next).forward(request, response);
 	}
 

@@ -25,7 +25,7 @@ public class TestDAOUtilisateur {
 		dao.getAll().forEach(System.out::println);
 		
 		System.out.println("GETBYID");
-		System.out.println(dao.getById(vincent.getId()));
+		System.out.println(dao.getByPseudo(vincent.getPseudo()));
 		
 		dao.delete(vincent);
 	}

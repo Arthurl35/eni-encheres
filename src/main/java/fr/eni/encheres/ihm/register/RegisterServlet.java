@@ -1,4 +1,8 @@
 package fr.eni.encheres.ihm.register;
+import fr.eni.encheres.bll.utilisateurs.UtilisateursException;
+import fr.eni.encheres.bll.utilisateurs.UtilisateursManager;
+import fr.eni.encheres.bll.utilisateurs.UtilisateursManagerSing;
+import fr.eni.encheres.bo.Utilisateurs;
 
 import java.io.IOException;
 
@@ -16,6 +20,8 @@ import javax.servlet.http.HttpSession;
 public class RegisterServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
+	
+	private UtilisateursManager manager = UtilisateursManagerSing.getInstance();
     
     /**
      * @see HttpServlet#HttpServlet()
@@ -60,14 +66,24 @@ public class RegisterServlet extends HttpServlet {
 					&& !model.getMot_de_passe().equals("")
 					&& !model.getMot_de_passe_confirm().equals("")) {
 				
-				//test inscription
-				if(true) {
-					//connect user
-					request.getSession().setAttribute("user", request.getParameter("pseudo"));
-					//redirect home
-					next = "HomeServlet";
+				if(model.getMot_de_passe().equals(model.getMot_de_passe_confirm())){
+					Utilisateurs user = new Utilisateurs(model.getPseudo(), model.getNom(), model.getPrenom(), model.getEmail(), model.getTelephone(), model.getRue(), model.getCode_postal(), model.getVille(), model.getMot_de_passe(), 500, false);
+					//inscription
+					try {
+						manager.addUtilisateur(user);
+						//connect user
+						request.getSession().setAttribute("user", request.getParameter("pseudo"));
+						//redirect home
+						next = "HomeServlet";
+					} catch (UtilisateursException e) {
+						model.setMessage(e.getMessage());
+					}
+				}
+				else {
+					model.setMessage("Les mots de passe différent !");
 				}
 			}
+			else model.setMessage("Champs manquant !");
 		}
 		else if(request.getParameter("BT_ANNUL")!= null) {
 			next = "HomeServlet";

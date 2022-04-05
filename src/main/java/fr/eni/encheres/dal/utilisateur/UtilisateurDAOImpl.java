@@ -18,7 +18,8 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 	private final String SELECT = "SELECT no_Utilisateur,pseudo,nom, prenom,email,telephone, rue, code_postal,ville, mot_de_passe, credit, administrateur FROM UTILISATEURS";
 	private final String UPDATE = "UPDATE UTILISATEURS SET pseudo = ?,nom = ?, prenom = ?,email = ?,telephone = ?, rue = ?, code_postal = ?,ville = ?, mot_de_passe = ?, credit = ?, administrateur = ? WHERE no_Utilisateur = ?";
 	private final String DELETE = "DELETE FROM UTILISATEURS WHERE no_Utilisateur=?";
-	private final String SELECTBYID = "SELECT no_Utilisateur, pseudo,nom, prenom,email,telephone, rue, code_postal,ville, mot_de_passe, credit, administrateur FROM UTILISATEURS WHERE no_Utilisateur=? ";
+	private final String GETCONNECTION = "SELECT * FROM UTILISATEURS WHERE pseudo = ? AND mot_de_passe = ?";
+	private final String SELECTBYPSEUDO = "SELECT pseudo,nom, prenom,email,telephone, rue, code_postal,ville, mot_de_passe, credit, administrateur FROM UTILISATEURS WHERE pseudo=? ";
 
 	@Override
 	public void insert(Utilisateurs utilisateur) throws DALException {
@@ -116,18 +117,48 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 			throw new DALException(BundleUtil.getMessage("msg_pbdelete"));
 		}
 	}
+	
+	@Override
+	public Utilisateurs getConnection(String pseudo, String password) throws DALException {
+		Utilisateurs utilisateur = null;
+		
+		try (Connection connection = ConnectionProvider.getConnection()) {
+			PreparedStatement stmt = connection.prepareStatement(GETCONNECTION);
+			stmt.setString(1, pseudo);
+			stmt.setString(2, password);
+			ResultSet rs = stmt.executeQuery();
+			
+			if (rs.next()) {
+				utilisateur = new Utilisateurs();
+				utilisateur.setPseudo(rs.getString("pseudo"));
+				utilisateur.setNom(rs.getString("nom"));
+				utilisateur.setPrenom(rs.getString("prenom"));
+				utilisateur.setEmail(rs.getString("email"));
+				utilisateur.setTelephone(rs.getString("telephone"));
+				utilisateur.setRue(rs.getString("rue"));
+				utilisateur.setCode_postal(rs.getString("code_postal"));
+				utilisateur.setVille(rs.getString("ville"));
+				utilisateur.setCredit(rs.getInt("credit"));
+				utilisateur.setAdministrateur(rs.getBoolean("administrateur"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DALException(BundleUtil.getMessage("msg_pbgetConnection"));
+		}
+		return utilisateur;
+	}
 
 	@SuppressWarnings("null")
 	@Override
-	public Utilisateurs getById(Integer id) throws DALException {
+	public Utilisateurs getByPseudo(String pseudo) throws DALException {
 		Utilisateurs utilisateur = null;
 		try (Connection connection = ConnectionProvider.getConnection()) {
-			PreparedStatement stmt = connection.prepareStatement(SELECTBYID);
-			stmt.setInt(1, id);
+			PreparedStatement stmt = connection.prepareStatement(SELECTBYPSEUDO);
+			stmt.setString(1, pseudo);
 			ResultSet rs = stmt.executeQuery();
 			if (rs.next()) {
 				utilisateur = new Utilisateurs();
-				utilisateur.setId(rs.getInt("no_Utilisateur"));
 				utilisateur.setPseudo(rs.getString("pseudo"));
 				utilisateur.setNom(rs.getString("nom"));
 				utilisateur.setPrenom(rs.getString("prenom"));

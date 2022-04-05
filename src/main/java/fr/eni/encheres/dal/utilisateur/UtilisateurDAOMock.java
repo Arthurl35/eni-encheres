@@ -38,10 +38,16 @@ public class UtilisateurDAOMock implements UtilisateurDAO {
 	}
 
 	@Override
-	public Utilisateurs getById(Integer id) throws DALException {
+	public Utilisateurs getByPseudo(String pseudo) throws DALException {
 		return lstUtilisateus.stream()
-		.filter(u->u.getId()==id)
+		.filter(u->u.getPseudo().equals(pseudo))
 		.toList().get(0);
+	}
+
+	@Override
+	public Utilisateurs getConnection(String pseudo, String password) throws DALException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

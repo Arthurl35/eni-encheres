@@ -1,4 +1,4 @@
-package fr.eni.encheres.bll;
+package fr.eni.encheres.bll.utilisateurs;
 
 import java.util.List;
 
@@ -23,9 +23,6 @@ public class UtilisateursManagerImpl implements UtilisateursManager {
 				if (utilisateur.getPseudo().equals(u.getPseudo())) {
 					throw new UtilisateursException("Pseudo déjà existant");
 				}
-				if (!utilisateur.getMot_de_passe().equals(u.getMot_de_passe())) {
-					throw new UtilisateursException("Votre mot de passe n'est pas identique");
-				}
 			}
 
 			dao.insert(utilisateur);
@@ -45,27 +42,39 @@ public class UtilisateursManagerImpl implements UtilisateursManager {
 	}
 
 	@Override
-	public boolean connect(Utilisateurs utilisateur) throws UtilisateursException {
-		boolean res = false;
+	public Utilisateurs connect(String pseudo, String password) throws UtilisateursException {
+		Utilisateurs user = null;
 		try {
-			for (Utilisateurs u : dao.getAll()) {
-				if (utilisateur.getPseudo().equals(u.getPseudo())
-						&& utilisateur.getMot_de_passe().equals(u.getMot_de_passe())) {
-					res = true;
-				} else {
-					throw new UtilisateursException("Votre login et/ou mot de passe n'est pas bon.");
-				}
-			}
-			return res;
-		} catch (DALException e) {
-			throw new UtilisateursException("Problème à la selection");
+			user = dao.getConnection(pseudo, password);
+		} catch(DALException e) {
+			throw new UtilisateursException("Login et/ou password incorect !");
 		}
+		return user;
 	}
 
 	@Override
 	public void delUtilisateur(Utilisateurs utilisateur) throws UtilisateursException {
 		try {
 			dao.delete(utilisateur);
+		} catch(DALException e) {
+			throw new UtilisateursException("Problème à la selection");
+		}
+	}
+
+
+	@Override
+	public Utilisateurs getByPseudo(String pseudo) throws UtilisateursException {
+		try {
+			Utilisateurs res = null;
+			for (Utilisateurs u : dao.getAll()) {
+				if(u.getPseudo().equals(pseudo)) {
+					res = u;
+				}
+				else {
+					throw new UtilisateursException("Utilisateur non existant");
+				}
+			}
+			return res;
 		} catch(DALException e) {
 			throw new UtilisateursException("Problème à la selection");
 		}
