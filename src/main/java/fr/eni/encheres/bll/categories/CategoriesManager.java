@@ -6,6 +6,6 @@ import fr.eni.encheres.bo.Categories;
 
 public interface CategoriesManager {
 	
-	public List<Categories> getAllCategories();
-	public Categories getCategoriById();
+	public List<Categories> getAllCategories() throws CategoriesException;
+	public Categories getCategoriById(Integer id) throws CategoriesException;
 }
