@@ -1,13 +1,8 @@
-<jsp:include page="head.jsp" />
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="ISO-8859-1">
-		<title>Insert title here</title>
-	</head>
-	<body>
+<%@ include file="head.jsp" %>
 
-		
+<body>
+<%@ include file="nav.jsp" %>	
+<section>
 <form action="RegisterServlet" method="post">
  <div class="container py-5 h-100" >
     <div class="row d-flex  h-100 justify-content-center align-items-center" >
@@ -16,7 +11,9 @@
           <div class="card-body p-5 text-center">
             <div class="mb-md-5 mt-md-4 pb-5">
               <h2 class="fw-bold mb-2 text-uppercase mb-4">Inscription</h2>
-     
+     			<c:if test="${model.message != null}">
+					<p>${model.message}</p>
+				</c:if>
               <div class="form-outline form-white mb-4">
                <label class="form-label" for="pseudo">Pseudo</label>
                <input type="text" name="pseudo" class="form-control form-control-lg" value="${model.pseudo}"/>
@@ -73,6 +70,7 @@
       </div>
     </div>
   </div>
-</form>	
+</form>
+</section>		
 </body>
 </html>

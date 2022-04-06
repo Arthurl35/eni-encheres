@@ -40,7 +40,10 @@ public class RegisterServlet extends HttpServlet {
 		
 		//test si déjà connecté
 		HttpSession session = request.getSession();
-		if(session.getAttribute("user") != null) next = "HomeServlet";
+		if(session.getAttribute("user") != null) {
+			model.setUser((Utilisateurs)session.getAttribute("user"));
+			next = "HomeServlet";
+		}
 		
 		if(request.getParameter("BT_VALID")!= null) {
 			
