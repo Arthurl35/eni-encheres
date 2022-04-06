@@ -39,7 +39,7 @@ public class LoginServlet extends HttpServlet {
 		
 		//test si déjà connecté
 		HttpSession session = request.getSession();
-		if((String)session.getValue("user") != null) next = "HomeServlet";
+		if(session.getAttribute("user") != null) next = "HomeServlet";
 		
 		if(request.getParameter("BT_VALID")!=null) {
 			if(!request.getParameter("pseudo").equals("") && !request.getParameter("pass").equals("")) {
@@ -50,7 +50,7 @@ public class LoginServlet extends HttpServlet {
 					Utilisateurs user = manager.connect(model.getPseudo(), request.getParameter("pass"));
 					if(user != null) {
 						//connect user
-						request.getSession().setAttribute("user", user.getPseudo());
+						request.getSession().setAttribute("user", user);
 						//redirect home
 						next = "HomeServlet";
 					}
