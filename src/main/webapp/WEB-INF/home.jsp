@@ -1,5 +1,5 @@
 
-<jsp:include page="head.jsp" />
+<%@ include file="head.jsp" %>
 	<body>
 		<h1>ENCHÈRE</h1>
 		<c:if test="${model.pseudo == null}">

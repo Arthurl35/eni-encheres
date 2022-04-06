@@ -51,8 +51,8 @@
               </div>
               </div>
              <div class="form-outline form-white mb-4">
-               <label class="form-label" for="street">Ville</label>
-               <input type="text" name="street" class="form-control form-control-lg" value="${model.rue}"/>
+               <label class="form-label" for="city">Ville</label>
+               <input type="text" name="city" class="form-control form-control-lg" value="${model.ville}"/>
               </div>
              
 
