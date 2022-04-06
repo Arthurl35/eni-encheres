@@ -25,10 +25,17 @@ public class UtilisateurDAOMock implements UtilisateurDAO {
 	@Override
 	public void update(Utilisateurs utilisateur) throws DALException {
 		lstUtilisateus.stream()
-			.filter(u->u.getId()==utilisateur.getId())
+			.filter(u->u.getPseudo()== utilisateur.getPseudo())
 			.forEach(u->{
+				u.setPseudo(utilisateur.getPseudo());
 				u.setNom(utilisateur.getNom());
 				u.setPrenom(utilisateur.getPrenom());
+				u.setEmail(utilisateur.getEmail());
+				u.setTelephone(utilisateur.getTelephone());
+				u.setRue(utilisateur.getRue());
+				u.setCode_postal(utilisateur.getCode_postal());
+				u.setVille(utilisateur.getVille());
+				u.setMot_de_passe(utilisateur.getMot_de_passe());
 			});
 	}
 

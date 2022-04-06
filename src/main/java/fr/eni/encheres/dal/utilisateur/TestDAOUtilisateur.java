@@ -17,6 +17,7 @@ public class TestDAOUtilisateur {
 		
 		System.out.println("UPDATE");
 		v.setNom("Airienafaire");
+		v.setPrenom("arthur");
 		dao.update(v);
 		dao.getAll().forEach(System.out::println);
 		
