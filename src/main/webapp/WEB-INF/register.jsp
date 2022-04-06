@@ -60,6 +60,11 @@
                 <label class="form-label" for="pass">Mot de passe</label>
                <input type="password" name="pass" class="form-control form-control-lg" class="form-control form-control-lg" value="${model.mot_de_passe}"/>
               </div>
+              <div class="form-outline form-white mb-4">
+                <label class="form-label" for="pass-confirm">Mot de passe</label>
+               <input type="password" name="pass-confirm" class="form-control form-control-lg" class="form-control form-control-lg" value="${model.mot_de_passe_confirm}"/>
+              </div>
+              
               <button class="btn btn-outline-light btn-lg px-5" type="submit" name="BT_VALID">Créer</button>
                <button class="btn btn-outline-light btn-lg px-5" type="submit" name="BT_ANNUL">Annuler</button>
             </div>

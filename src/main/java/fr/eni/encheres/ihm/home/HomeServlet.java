@@ -32,7 +32,7 @@ public class HomeServlet extends HttpServlet {
 		
 		//récupère la session
 		HttpSession session = request.getSession();
-		model.setPseudo((String)session.getValue("user"));
+		if(session.getAttribute("user") != null)model.setPseudo(session.getAttribute("user").toString());
 		
 		//déconnection
 		if(request.getParameter("BT_LOGOUT")!= null && model.getPseudo() != null) {
