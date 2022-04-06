@@ -40,7 +40,7 @@ public class RegisterServlet extends HttpServlet {
 		
 		//test si déjà connecté
 		HttpSession session = request.getSession();
-		if((String)session.getValue("user") != null) next = "HomeServlet";
+		if(session.getAttribute("user") != null) next = "HomeServlet";
 		
 		if(request.getParameter("BT_VALID")!= null) {
 			
@@ -72,7 +72,7 @@ public class RegisterServlet extends HttpServlet {
 					try {
 						manager.addUtilisateur(user);
 						//connect user
-						request.getSession().setAttribute("user", request.getParameter("pseudo"));
+						request.getSession().setAttribute("user", user);
 						//redirect home
 						next = "HomeServlet";
 					} catch (UtilisateursException e) {
