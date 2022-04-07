@@ -52,7 +52,7 @@ public class Profil_modiflServlet extends HttpServlet {
 		if(request.getParameter("BT_ENREGISTRER")!=null) {
 			try {
 				//récuprération des données du formulaire
-				
+				u.setId(((Utilisateurs) session.getAttribute("user")).getId());
 				u.setPseudo(request.getParameter("pseudo"));
 				u.setNom(request.getParameter("name"));
 				u.setPrenom(request.getParameter("surname"));
@@ -92,6 +92,7 @@ public class Profil_modiflServlet extends HttpServlet {
 				if(request.getParameter("BT_SUPP")!=null) {
 	
 					try {
+						u.setId(((Utilisateurs) session.getAttribute("user")).getId());
 						manager.delUtilisateur(u);
 					
 						request.getSession().removeAttribute("user");
