@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.eni.encheres.bo.Utilisateurs;
+
 /**
  * Servlet implementation class VoteServlet
  */
@@ -34,12 +36,15 @@ public class HomeServlet extends HttpServlet {
 		
 		//récupère la session
 		HttpSession session = request.getSession();
-		if(session.getAttribute("user") != null)model.setPseudo(session.getAttribute("user").toString());
+		if(session.getAttribute("user") != null) {
+			model.setUser((Utilisateurs)session.getAttribute("user"));
+			model.setPseudo(model.getUser().getPseudo());
+		}
 		
 		//déconnection
-		if(request.getParameter("BT_LOGOUT")!= null && model.getPseudo() != null) {
+		if(request.getParameter("BT_LOGOUT")!= null && model.getUser() != null) {
 			session.invalidate();
-			model.setPseudo(null);
+			model.setUser(null);
 		}
 		
 		//mon profil

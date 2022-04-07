@@ -1,5 +1,7 @@
 package fr.eni.encheres.ihm.register;
 
+import fr.eni.encheres.bo.Utilisateurs;
+
 public class RegisterModel {
 	
 	private String pseudo;
@@ -13,6 +15,8 @@ public class RegisterModel {
 	private String mot_de_passe;
 	private String mot_de_passe_confirm;
 	private String mess;
+	
+	private Utilisateurs user;
 	
 	public RegisterModel() {
 		// TODO Auto-generated constructor stub
@@ -105,4 +109,22 @@ public class RegisterModel {
 	public void setMessage(String message) {
 		this.mess = message;
 	}
+
+	public String getMess() {
+		return mess;
+	}
+
+	public void setMess(String mess) {
+		this.mess = mess;
+	}
+
+	public Utilisateurs getUser() {
+		return user;
+	}
+
+	public void setUser(Utilisateurs user) {
+		this.user = user;
+	}
+	
+	
 }

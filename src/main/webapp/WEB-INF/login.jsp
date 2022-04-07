@@ -1,11 +1,7 @@
-<jsp:include page="head.jsp" />
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="ISO-8859-1">
-		<title>Insert title here</title>
-	</head>
-	<body>
+<%@ include file="head.jsp" %>
+<body>
+<%@ include file="nav.jsp" %>
+<section>
 <form action="LoginServlet" method="post">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -15,6 +11,9 @@
             <div class="mb-md-5 mt-md-4 pb-5">
               <h2 class="fw-bold mb-2 text-uppercase">Connexion</h2>
               <p class="text-white-50 mb-5">Entrez votre pseudo et votre mot de passe!</p>
+              <c:if test="${model.message != null}">
+				<p>${model.message}</p>
+				</c:if>
               <div class="form-outline form-white mb-4">
                <label class="form-label" for="typeEmailX">Pseudo</label>
                 <input type="text" id="typeEmailX" name="pseudo" class="form-control form-control-lg" /> 
@@ -27,7 +26,7 @@
               <button class="btn btn-outline-light btn-lg px-5" type="submit" name="BT_VALID">Se connecter</button>
             </div>
             <div>
-              <p class="mb-0">Avez-vous un compte ? <a href="#!" class="text-white-50 fw-bold">S'enregistrer</a>
+              <p class="mb-0">Avez-vous un compte ? <a href="RegisterServlet" class="text-white-50 fw-bold">S'enregistrer</a>
               </p>
             </div>
           </div>
@@ -36,5 +35,6 @@
     </div>
   </div>
   </form>
+  </section>
 	</body>
 </html>
