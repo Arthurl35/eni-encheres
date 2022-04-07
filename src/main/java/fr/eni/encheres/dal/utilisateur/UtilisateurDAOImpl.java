@@ -130,6 +130,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 			
 			if (rs.next()) {
 				utilisateur = new Utilisateurs();
+				utilisateur.setId(rs.getString("id"));
 				utilisateur.setPseudo(rs.getString("pseudo"));
 				utilisateur.setNom(rs.getString("nom"));
 				utilisateur.setPrenom(rs.getString("prenom"));

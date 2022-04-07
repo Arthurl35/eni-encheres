@@ -39,7 +39,10 @@ public class LoginServlet extends HttpServlet {
 		
 		//test si déjà connecté
 		HttpSession session = request.getSession();
-		if(session.getAttribute("user") != null) next = "HomeServlet";
+		if(session.getAttribute("user") != null) {
+			model.setUser((Utilisateurs)session.getAttribute("user"));
+			next = "HomeServlet";
+		}
 		
 		if(request.getParameter("BT_VALID")!=null) {
 			if(!request.getParameter("pseudo").equals("") && !request.getParameter("pass").equals("")) {
