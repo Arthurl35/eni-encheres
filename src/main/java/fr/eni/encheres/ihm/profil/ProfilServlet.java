@@ -1,4 +1,4 @@
-package fr.eni.encheres.ihm.home;
+package fr.eni.encheres.ihm.profil;
 
 import java.io.IOException;
 
@@ -9,20 +9,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import fr.eni.encheres.bo.Utilisateurs;
-
 /**
  * Servlet implementation class VoteServlet
  */
-@WebServlet("/")
-public class HomeServlet extends HttpServlet {
+@WebServlet("/ProfilServlet")
+public class ProfilServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
     
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HomeServlet() {
+    public ProfilServlet() {
         super();
     }
     
@@ -30,27 +28,22 @@ public class HomeServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HomeModel model = new HomeModel();
+		ProfilModel model = new ProfilModel();
 		
-		String next = "/WEB-INF/home.jsp";
+		String next = "/WEB-INF/profil.jsp";
 		
 		//récupère la session
 		HttpSession session = request.getSession();
-		if(session.getAttribute("user") != null) {
-			model.setUser((Utilisateurs)session.getAttribute("user"));
-			model.setPseudo(model.getUser().getPseudo());
+		if(session.getAttribute("user") != null)model.setPseudo(session.getAttribute("user").toString());
+		
+		//vers modifier
+		if(request.getParameter("BT_MODIFIER")!= null && session.getAttribute("user")!= null) {
+			next = "/WEB-INF/infoProfil.jsp";
 		}
 		
-		//déconnection
-		if(request.getParameter("BT_LOGOUT")!= null && model.getUser() != null) {
-			session.invalidate();
-			model.setUser(null);
-		}
-		
-		//mon profil
-		if(request.getParameter("BT_PROFIL") != null && session.getAttribute("user")!= null) {
-			//redirect profil
-			next = "/WEB-INF/profil.jsp";
+		//retour au home
+		if(request.getParameter("BT_ANNULER") != null) {
+		next = "/WEB-INF/home.jsp";
 		}
 		
 		request.setAttribute("model", model);

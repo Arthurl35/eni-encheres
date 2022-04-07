@@ -60,6 +60,17 @@ public class UtilisateursManagerImpl implements UtilisateursManager {
 			throw new UtilisateursException("Problème à la selection");
 		}
 	}
+	
+	@Override
+	public void updateUtilisateur(Utilisateurs utilisateur) throws UtilisateursException {
+		try {
+			dao.update(utilisateur);
+		} catch(DALException e) {
+			throw new UtilisateursException("Impossible de modifier votre utilisateur");
+		}
+	}
+	
+	
 
 
 	@Override

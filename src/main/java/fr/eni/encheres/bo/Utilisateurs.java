@@ -21,6 +21,19 @@ public class Utilisateurs {
 	public Utilisateurs() {
 		super();
 	}
+	
+	public Utilisateurs(String pseudo, String nom, String prenom, String email, String telephone,
+			String rue, String code_postal, String ville, String mot_de_passe) {
+		this.pseudo = pseudo;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.telephone = telephone;
+		this.rue = rue;
+		this.code_postal = code_postal;
+		this.ville = ville;
+		this.mot_de_passe = mot_de_passe;
+	}
 
 	public Utilisateurs(String pseudo, String nom, String prenom, String email, String telephone,
 			String rue, String code_postal, String ville, String mot_de_passe, Integer credit, boolean administrateur) {
