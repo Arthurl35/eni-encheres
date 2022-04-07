@@ -38,6 +38,9 @@ public class Profil_modiflServlet extends HttpServlet {
 		String next = "/WEB-INF/profil_modif.jsp";
 		Utilisateurs u = new Utilisateurs();
 		
+		//récupère la session
+		HttpSession session = request.getSession();
+
 		
 		
 		//vers modifier
@@ -49,7 +52,7 @@ public class Profil_modiflServlet extends HttpServlet {
 		if(request.getParameter("BT_ENREGISTRER")!=null) {
 			try {
 				//récuprération des données du formulaire
-				u.setId((Integer) request.getSession().getAttribute("id"));
+				
 				u.setPseudo(request.getParameter("pseudo"));
 				u.setNom(request.getParameter("name"));
 				u.setPrenom(request.getParameter("surname"));
@@ -71,6 +74,9 @@ public class Profil_modiflServlet extends HttpServlet {
 
 				System.out.println("toto " + u);
 				manager.updateUtilisateur(u);
+				
+				//modification de la session
+				request.getSession().setAttribute("user", u);
 				
 				next = "/WEB-INF/profil.jsp";
 

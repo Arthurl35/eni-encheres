@@ -17,7 +17,10 @@
 	  	</c:if>
 	  	<c:if test="${model.user != null}">
 	  		<li class="nav-item">
-	  			<a class="nav-link text-light" href="#">Bienvenue : ${model.pseudo}</a>
+	  			<a class="nav-link text-light" href="ProfilServlet">Bienvenue : ${model.pseudo}</a>
+	  		</li>
+	  		<li class="nav-item">
+	  			<a class="nav-link text-light" href="ProfilServlet">Mon profil</a>
 	  		</li>
 		</c:if>
       </ul>
