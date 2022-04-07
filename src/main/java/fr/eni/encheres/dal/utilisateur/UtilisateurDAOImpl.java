@@ -16,7 +16,7 @@ import fr.eni.encheres.messages.BundleUtil;
 public class UtilisateurDAOImpl implements UtilisateurDAO {
 	private final String INSERT = "INSERT INTO UTILISATEURS(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
 	private final String SELECT = "SELECT no_Utilisateur,pseudo,nom, prenom,email,telephone, rue, code_postal,ville, mot_de_passe, credit, administrateur FROM UTILISATEURS";
-	private final String UPDATE = "UPDATE UTILISATEURS SET pseudo = ?,nom = ?, prenom = ?,email = ?,telephone = ?, rue = ?, code_postal = ?,ville = ?, mot_de_passe = ? WHERE pseudo = ?";
+	private final String UPDATE = "UPDATE UTILISATEURS SET pseudo = ?,nom = ?, prenom = ?,email = ?,telephone = ?, rue = ?, code_postal = ?,ville = ?, mot_de_passe = ? WHERE no_Utilisateur=?";
 	private final String DELETE = "DELETE FROM UTILISATEURS WHERE no_Utilisateur=?";
 	private final String GETCONNECTION = "SELECT * FROM UTILISATEURS WHERE pseudo = ? AND mot_de_passe = ?";
 	private final String SELECTBYPSEUDO = "SELECT pseudo,nom, prenom,email,telephone, rue, code_postal,ville, mot_de_passe, credit, administrateur FROM UTILISATEURS WHERE pseudo=? ";
@@ -95,8 +95,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 			stmt.setString(7, utilisateur.getCode_postal());
 			stmt.setString(8, utilisateur.getVille());
 			stmt.setString(9, utilisateur.getMot_de_passe());
-			stmt.setString(10, utilisateur.getPseudo());
-			
+			stmt.setInt(10, utilisateur.getId());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -128,6 +127,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 			
 			if (rs.next()) {
 				utilisateur = new Utilisateurs();
+				utilisateur.setId(rs.getInt("id"));
 				utilisateur.setPseudo(rs.getString("pseudo"));
 				utilisateur.setNom(rs.getString("nom"));
 				utilisateur.setPrenom(rs.getString("prenom"));

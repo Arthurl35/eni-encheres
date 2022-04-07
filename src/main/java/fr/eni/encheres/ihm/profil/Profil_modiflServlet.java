@@ -36,7 +36,9 @@ public class Profil_modiflServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String next = "/WEB-INF/profil_modif.jsp";
-		Utilisateurs u = (Utilisateurs) request.getSession().getAttribute("user");
+		Utilisateurs u = new Utilisateurs();
+		
+		
 		
 		//vers modifier
 		if(request.getSession().getAttribute("user")!= null) {
@@ -46,11 +48,36 @@ public class Profil_modiflServlet extends HttpServlet {
 		//Form validation modif utilisateur
 		if(request.getParameter("BT_ENREGISTRER")!=null) {
 			try {
+				//récuprération des données du formulaire
+				u.setId((Integer) request.getSession().getAttribute("id"));
+				u.setPseudo(request.getParameter("pseudo"));
+				u.setNom(request.getParameter("name"));
+				u.setPrenom(request.getParameter("surname"));
+				u.setEmail(request.getParameter("mail"));
+				u.setTelephone(request.getParameter("tel"));
+				u.setRue(request.getParameter("street"));
+				u.setCode_postal(request.getParameter("cp"));
+				u.setVille(request.getParameter("city"));
+				
+				
+				String mot_de_passe_confirme1 = request.getParameter("pass_new");
+				String mot_de_passe_confirme2 = request.getParameter("pass-confirm");
+				
+				if(mot_de_passe_confirme1 == mot_de_passe_confirme2) {
+					u.setMot_de_passe(request.getParameter("pass_actuel"));
+				}else {
+					throw new Exception("Mot de passe non identique");
+				}
+
+				System.out.println("toto " + u);
 				manager.updateUtilisateur(u);
 				
 				next = "/WEB-INF/profil.jsp";
 
 			} catch (UtilisateursException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
