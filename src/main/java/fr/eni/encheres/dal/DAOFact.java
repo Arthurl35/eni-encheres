@@ -1,6 +1,8 @@
 package fr.eni.encheres.dal;
 
 
+import fr.eni.encheres.dal.articlesVendus.ArticlesVendusDAO;
+import fr.eni.encheres.dal.articlesVendus.ArticlesVendusDAOImpl;
 import fr.eni.encheres.dal.categories.CategoriesDAO;
 import fr.eni.encheres.dal.categories.CategoriesDAOImpl;
 import fr.eni.encheres.dal.utilisateur.UtilisateurDAO;
@@ -12,5 +14,8 @@ public class DAOFact {
 	}
 	public static CategoriesDAO getCategoriesDAO() {
 		return new CategoriesDAOImpl();
+	}
+	public static ArticlesVendusDAO getArticlesVendusDAO() {
+		return new ArticlesVendusDAOImpl();
 	}
 }	
