@@ -57,7 +57,7 @@
              
              <div class="form-outline form-white mb-4">
                 <label class="form-label" for="pass_actuel">Mot de passe actuel</label>
-               <input type="password" name="pass_actuel" class="form-control form-control-lg" class="form-control form-control-lg" value="${user.mot_de_passe} placeholder="mot de passe actuel"/>
+               <input type="password" name="pass_actuel" class="form-control form-control-lg" class="form-control form-control-lg"  placeholder="mot de passe actuel"/>
               </div>
 
               <div class="form-outline form-white mb-4">

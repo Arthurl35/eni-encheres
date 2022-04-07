@@ -38,6 +38,9 @@ public class Profil_modiflServlet extends HttpServlet {
 		String next = "/WEB-INF/profil_modif.jsp";
 		Utilisateurs u = new Utilisateurs();
 		
+		//récupère la session
+		HttpSession session = request.getSession();
+
 		
 		
 		//vers modifier
@@ -49,7 +52,7 @@ public class Profil_modiflServlet extends HttpServlet {
 		if(request.getParameter("BT_ENREGISTRER")!=null) {
 			try {
 				//récuprération des données du formulaire
-				u.setId((Integer) request.getSession().getAttribute("id"));
+				u.setId(((Utilisateurs) session.getAttribute("user")).getId());
 				u.setPseudo(request.getParameter("pseudo"));
 				u.setNom(request.getParameter("name"));
 				u.setPrenom(request.getParameter("surname"));
@@ -59,34 +62,37 @@ public class Profil_modiflServlet extends HttpServlet {
 				u.setCode_postal(request.getParameter("cp"));
 				u.setVille(request.getParameter("city"));
 				
-				
+				String mot_de_passe_actuel = request.getParameter("pass_actuel");
 				String mot_de_passe_confirme1 = request.getParameter("pass_new");
 				String mot_de_passe_confirme2 = request.getParameter("pass-confirm");
+					
 				
-				if(mot_de_passe_confirme1 == mot_de_passe_confirme2) {
-					u.setMot_de_passe(request.getParameter("pass_actuel"));
+				if(mot_de_passe_confirme1.equals(mot_de_passe_confirme2) && !mot_de_passe_confirme1.isEmpty() && !mot_de_passe_confirme2.isEmpty()){
+					u.setMot_de_passe(request.getParameter("pass_new"));
+					
+					System.out.println("passe");
+					System.out.println("toto " + u);
+					manager.updateUtilisateur(u);
+					
+					//modification de la session
+					request.getSession().setAttribute("user", u);
+					
+					next = "/WEB-INF/profil.jsp";
+					
 				}else {
-					throw new Exception("Mot de passe non identique");
+					throw new UtilisateursException("Mot de passe non identique");
 				}
-
-				System.out.println("toto " + u);
-				manager.updateUtilisateur(u);
-				
-				next = "/WEB-INF/profil.jsp";
-
 			} catch (UtilisateursException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			} 
 		}
 		
 		//Form supp utilisateur
 				if(request.getParameter("BT_SUPP")!=null) {
 	
 					try {
+						u.setId(((Utilisateurs) session.getAttribute("user")).getId());
 						manager.delUtilisateur(u);
 					
 						request.getSession().removeAttribute("user");

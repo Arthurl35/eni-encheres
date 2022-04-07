@@ -17,19 +17,25 @@
 	  	</c:if>
 	  	<c:if test="${model.user != null}">
 	  		<li class="nav-item">
-	  			<a class="nav-link text-light" href="#">Bienvenue : ${model.pseudo}</a>
+	  			<a class="nav-link text-light" href="ProfilServlet">Bienvenue : ${model.pseudo}</a>
 	  		</li>
 		</c:if>
       </ul>
 	  <c:if test="${model.user != null}">
+	   	<li class="nav-item">
+	  			<a class="btn btn-secondary me-3" href="ProfilServlet">Enchères</a>
+	  		</li>
+	   	<li class="nav-item">
+	  			<a class="btn btn-secondary me-3" href="ProfilServlet">Vendre un article</a>
+	  		</li>
+	  	<li class="nav-item">
+	  			<a class="btn btn-secondary me-3" href="ProfilServlet">Mon profil</a>
+	  		</li>
 		<form class="d-flex" action="" method="post">
 			<button type="submit" name="BT_LOGOUT" class="btn btn-secondary">Se déconnecter</button>
 	  	</form>
+	  
 	  </c:if>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-light" type="submit">Search</button>
-      </form>
     </div>
   </div>
 </nav>
