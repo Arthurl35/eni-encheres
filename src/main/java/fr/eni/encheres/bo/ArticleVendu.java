@@ -1,8 +1,6 @@
 package fr.eni.encheres.bo;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ArticleVendu {
 
@@ -14,14 +12,14 @@ public class ArticleVendu {
 	private Integer miseAPrix;
 	private Integer prixVente;
 	private Integer etatVente;
-	private List<Encheres> lstEncheres = new ArrayList<>();
+	private Categories noCategorie;
+	private Utilisateurs noUtilisateur;
 
 	public ArticleVendu() {
 	}
 
 	public ArticleVendu(Integer noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,
 			LocalDate dateFinEncheres, Integer miseAPrix, Integer prixVente, Integer etatVente) {
-		super();
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
 		this.description = description;
@@ -30,6 +28,14 @@ public class ArticleVendu {
 		this.miseAPrix = miseAPrix;
 		this.prixVente = prixVente;
 		this.etatVente = etatVente;
+	}
+
+	public Categories getNoCategorie() {
+		return noCategorie;
+	}
+
+	public void setNoCategorie(Categories noCategorie) {
+		this.noCategorie = noCategorie;
 	}
 
 	public Integer getNoArticle() {
@@ -96,19 +102,21 @@ public class ArticleVendu {
 		this.etatVente = etatVente;
 	}
 
-	public List<Encheres> getLstEncheres() {
-		return lstEncheres;
+	public Utilisateurs getNoUtilisateur() {
+		return noUtilisateur;
 	}
 
-	public void setLstEncheres(List<Encheres> lstEncheres) {
-		this.lstEncheres = lstEncheres;
+	public void setNoUtilisateur(Utilisateurs noUtilisateur) {
+		this.noUtilisateur = noUtilisateur;
 	}
 
 	@Override
 	public String toString() {
 		return "ArticleVendu [noArticle=" + noArticle + ", nomArticle=" + nomArticle + ", description=" + description
 				+ ", dateDebutEncheres=" + dateDebutEncheres + ", dateFinEncheres=" + dateFinEncheres + ", miseAPrix="
-				+ miseAPrix + ", prixVente=" + prixVente + ", etatVente=" + etatVente + "]";
+				+ miseAPrix + ", prixVente=" + prixVente + ", etatVente=" + etatVente + ", noCategorie=" + noCategorie
+				+ ", noUtilisateur=" + noUtilisateur + "]";
 	}
+
 
 }
