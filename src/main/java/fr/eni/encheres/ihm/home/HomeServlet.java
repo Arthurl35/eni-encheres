@@ -46,6 +46,14 @@ public class HomeServlet extends HttpServlet {
 			model.setPseudo(model.getUser().getPseudo());
 		}
 		
+		//Affichage de la liste des catégories
+		try {
+			model2.setLstCategories(manager.getAllCategories());
+		} catch (CategoriesException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		//déconnection
 		if(request.getParameter("BT_LOGOUT")!= null && model.getUser() != null) {
 			session.invalidate();
@@ -59,6 +67,7 @@ public class HomeServlet extends HttpServlet {
 		}
 		
 		request.setAttribute("model", model);
+		request.setAttribute("model2", model2);
 		request.getRequestDispatcher(next).forward(request, response);
 	}
 
