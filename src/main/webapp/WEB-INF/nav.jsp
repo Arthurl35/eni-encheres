@@ -18,7 +18,7 @@
 	  	</c:if>
 	  	<c:if test="${sessionScope.user != null}">
 	  		<li class="nav-item">
-	  			<a class="nav-link text-light" href="ProfilServlet">Bienvenue : ${sessionScope.pseudo}</a>
+	  			<a class="nav-link text-light" href="ProfilServlet">Bienvenue : ${model.pseudo}</a>
 	  		</li>
 		</c:if>
       </ul>
