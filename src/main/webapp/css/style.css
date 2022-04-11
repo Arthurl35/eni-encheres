@@ -1,0 +1,33 @@
+body{
+	margin:0px;
+	padding: 0px;
+}
+
+/*navigateur*/
+
+nav{
+	height: auto;
+}
+
+#navbarSupportedContent .nav-item{
+	text-align: center;
+	position: relative;
+	line-height: 70px;
+	}
+img{
+	height: 50px;
+	background-color: #fff;
+	border-radius: 50%;
+	margin-right: 20px;
+}
+
+
+
+@media screen and (max-width: 980px) { 
+	.nav-item{
+	margin-bottom: 10px;
+
+	}
+	}
+	
+/* Accueil*/

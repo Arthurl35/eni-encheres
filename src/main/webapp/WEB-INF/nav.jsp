@@ -1,6 +1,7 @@
 <header>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
+  <img src="<%=request.getContextPath()%>/img/enchere.png">
     <a class="navbar-brand" href="HomeServlet">ENI Enchère</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -31,7 +32,7 @@
 	  	<li class="nav-item">
 	  			<a class="btn btn-secondary me-3" href="ProfilServlet">Mon profil</a>
 	  		</li>
-		<form class="d-flex" action="" method="post">
+		<form class="nav-item" action="" method="post">
 			<button type="submit" name="BT_LOGOUT" class="btn btn-secondary">Se déconnecter</button>
 	  	</form>
 	  
