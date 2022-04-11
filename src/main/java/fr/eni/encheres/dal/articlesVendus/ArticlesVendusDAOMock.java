@@ -32,8 +32,8 @@ public class ArticlesVendusDAOMock implements ArticlesVendusDAO{
 				a.setDateFinEncheres(article.getDateFinEncheres());
 				a.setMiseAPrix(article.getMiseAPrix());
 				a.setPrixVente(article.getPrixVente());
-				a.setNoUtilisateur(article.getNoUtilisateur());
-				a.setNoCategorie(article.getNoCategorie());
+				a.setUtilisateur(article.getUtilisateur());
+				a.setCategorie(article.getCategorie());
 			});
 	}
 
