@@ -41,7 +41,7 @@ public class LoginServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		if(session.getAttribute("user") != null) {
 			model.setUser((Utilisateurs)session.getAttribute("user"));
-			next = "HomeServlet";
+			next = "";
 		}
 		
 		if(request.getParameter("BT_VALID")!=null) {
@@ -55,7 +55,7 @@ public class LoginServlet extends HttpServlet {
 						//connect user
 						request.getSession().setAttribute("user", user);
 						//redirect home
-						next = "HomeServlet";
+						next = "";
 					}
 					else model.setMessage("Pseudo et/ou Mot de passe incorect !");
 				}

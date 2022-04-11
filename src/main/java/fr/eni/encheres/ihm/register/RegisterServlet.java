@@ -42,7 +42,7 @@ public class RegisterServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		if(session.getAttribute("user") != null) {
 			model.setUser((Utilisateurs)session.getAttribute("user"));
-			next = "HomeServlet";
+			next = "";
 		}
 		
 		if(request.getParameter("BT_VALID")!= null) {
@@ -77,7 +77,7 @@ public class RegisterServlet extends HttpServlet {
 						//connect user
 						request.getSession().setAttribute("user", user);
 						//redirect home
-						next = "HomeServlet";
+						next = "";
 					} catch (UtilisateursException e) {
 						model.setMessage(e.getMessage());
 					}
@@ -89,7 +89,7 @@ public class RegisterServlet extends HttpServlet {
 			else model.setMessage("Champs manquant !");
 		}
 		else if(request.getParameter("BT_ANNUL")!= null) {
-			next = "HomeServlet";
+			next = "";
 		}
 		request.setAttribute("model", model);
 		request.getRequestDispatcher(next).forward(request, response);
