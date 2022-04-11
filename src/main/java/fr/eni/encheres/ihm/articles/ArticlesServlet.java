@@ -17,6 +17,7 @@ import fr.eni.encheres.bll.categories.CategoriesManager;
 import fr.eni.encheres.bll.categories.CategoriesManagerSing;
 import fr.eni.encheres.bo.Categories;
 import fr.eni.encheres.ihm.categories.CategoriesModel;
+import fr.eni.encheres.ihm.profil.ProfilModel;
 
 /**
  * Servlet implementation class ArticlesServlet
@@ -41,16 +42,17 @@ public class ArticlesServlet extends HttpServlet {
 	 *      response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArticlesModel model = new ArticlesModel();
-		CategoriesModel model2 = new CategoriesModel();
+		ArticlesModel model2 = new ArticlesModel();
+		ProfilModel model = new ProfilModel();
+		CategoriesModel model3 = new CategoriesModel();
 		String next = "/WEB-INF/article.jsp";
 
-		// récupère la session
+		//récupère la session
 		HttpSession session = request.getSession();
 
 		// Affichage de la liste des catégories
 		try {
-			model2.setLstCategories(manager2.getAllCategories());
+			model3.setLstCategories(manager2.getAllCategories());
 		} catch (CategoriesException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -58,13 +60,13 @@ public class ArticlesServlet extends HttpServlet {
 		
 		if(request.getParameter("BT_VALID")!=null) {
 			//récuprération des données du formulaire
-			model.setNomArticle(request.getParameter("article"));
-			model.setDescription(request.getParameter("description"));
-			model.setCategorie(((Categories) session.getAttribute("categories")));
-			model.setMiseAPrix(Integer.parseInt(request.getParameter("miseAPrix")));
-			model.setDateDebutEncheres(LocalDate.parse(request.getParameter("dateDebutEncheres")));
-			model.setDateFinEncheres(LocalDate.parse(request.getParameter("dateFinEncheres")));
-			model.setNomArticle(request.getParameter("article"));
+			model2.setNomArticle(request.getParameter("article"));
+			model2.setDescription(request.getParameter("description"));
+			model2.setCategorie(((Categories) session.getAttribute("categories")));
+			model2.setMiseAPrix(Integer.parseInt(request.getParameter("miseAPrix")));
+			model2.setDateDebutEncheres(LocalDate.parse(request.getParameter("dateDebutEncheres")));
+			model2.setDateFinEncheres(LocalDate.parse(request.getParameter("dateFinEncheres")));
+			model2.setNomArticle(request.getParameter("article"));
 			
 		}
 
