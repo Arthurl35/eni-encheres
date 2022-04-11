@@ -64,7 +64,6 @@ public class ArticlesServlet extends HttpServlet {
 			model.setMiseAPrix(Integer.parseInt(request.getParameter("miseAPrix")));
 			model.setDateDebutEncheres(LocalDate.parse(request.getParameter("dateDebutEncheres")));
 			model.setDateFinEncheres(LocalDate.parse(request.getParameter("dateFinEncheres")));
-			//u.setId(((Utilisateurs) session.getAttribute("user")).getId());
 			model.setNomArticle(request.getParameter("article"));
 			
 		}

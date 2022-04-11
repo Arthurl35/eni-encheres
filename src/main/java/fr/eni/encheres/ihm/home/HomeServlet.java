@@ -18,7 +18,7 @@ import fr.eni.encheres.ihm.categories.CategoriesModel;
 /**
  * Servlet implementation class VoteServlet
  */
-@WebServlet("/")
+@WebServlet("")
 public class HomeServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
