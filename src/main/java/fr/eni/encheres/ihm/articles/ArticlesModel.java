@@ -1,9 +1,14 @@
-package fr.eni.encheres.bo;
+package fr.eni.encheres.ihm.articles;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
-public class ArticleVendu {
+import fr.eni.encheres.bo.ArticleVendu;
+import fr.eni.encheres.bo.Categories;
+import fr.eni.encheres.bo.Utilisateurs;
 
+public class ArticlesModel {
 	private Integer noArticle;
 	private String nomArticle;
 	private String description;
@@ -14,28 +19,10 @@ public class ArticleVendu {
 	private Integer etatVente;
 	private Categories categorie;
 	private Utilisateurs utilisateur;
+	private List<ArticleVendu> lstArticle = new ArrayList<>();
 
-	public ArticleVendu() {
-	}
-
-	public ArticleVendu(Integer noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,
-			LocalDate dateFinEncheres, Integer miseAPrix, Integer prixVente, Integer etatVente) {
-		this.noArticle = noArticle;
-		this.nomArticle = nomArticle;
-		this.description = description;
-		this.dateDebutEncheres = dateDebutEncheres;
-		this.dateFinEncheres = dateFinEncheres;
-		this.miseAPrix = miseAPrix;
-		this.prixVente = prixVente;
-		this.etatVente = etatVente;
-	}
-
-	public Categories getCategorie() {
-		return categorie;
-	}
-
-	public void setCategorie(Categories noCategorie) {
-		this.categorie = noCategorie;
+	public ArticlesModel() {
+		super();
 	}
 
 	public Integer getNoArticle() {
@@ -102,6 +89,14 @@ public class ArticleVendu {
 		this.etatVente = etatVente;
 	}
 
+	public Categories getCategorie() {
+		return categorie;
+	}
+
+	public void setCategorie(Categories noCategorie) {
+		this.categorie = noCategorie;
+	}
+
 	public Utilisateurs getUtilisateur() {
 		return utilisateur;
 	}
@@ -110,13 +105,12 @@ public class ArticleVendu {
 		this.utilisateur = noUtilisateur;
 	}
 
-	@Override
-	public String toString() {
-		return "ArticleVendu [noArticle=" + noArticle + ", nomArticle=" + nomArticle + ", description=" + description
-				+ ", dateDebutEncheres=" + dateDebutEncheres + ", dateFinEncheres=" + dateFinEncheres + ", miseAPrix="
-				+ miseAPrix + ", prixVente=" + prixVente + ", etatVente=" + etatVente + ", noCategorie=" + categorie
-				+ ", noUtilisateur=" + utilisateur + "]";
+	public List<ArticleVendu> getLstArticle() {
+		return lstArticle;
 	}
 
+	public void setLstArticle(List<ArticleVendu> lstArticle) {
+		this.lstArticle = lstArticle;
+	}
 
 }

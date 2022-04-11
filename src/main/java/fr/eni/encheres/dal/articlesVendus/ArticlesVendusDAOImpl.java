@@ -23,8 +23,8 @@ public class ArticlesVendusDAOImpl implements ArticlesVendusDAO {
 	public void insert(ArticleVendu article) throws DALException {
 		try (Connection connection = ConnectionProvider.getConnection()) {
 			PreparedStatement stmt = connection.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
-			Integer noarticle = article.getNoUtilisateur().getId();
-			Integer noCategorie = article.getNoCategorie().getId();
+			Integer noarticle = article.getUtilisateur().getId();
+			Integer noCategorie = article.getCategorie().getId();
 			stmt.setString(1, article.getNomArticle());
 			stmt.setString(2, article.getDescription());
 			stmt.setDate(3, java.sql.Date.valueOf(article.getDateDebutEncheres()));
@@ -62,8 +62,8 @@ public class ArticlesVendusDAOImpl implements ArticlesVendusDAO {
 				article.setDateFinEncheres(rs.getDate("date_fin_encheres").toLocalDate());
 				article.setMiseAPrix(rs.getInt("prix_initial"));
 				article.setPrixVente(rs.getInt("prix_vente"));
-				article.getNoUtilisateur().setId(rs.getInt("no_article"));
-				article.getNoCategorie().setId(rs.getInt("no_categorie"));
+				article.getUtilisateur().setId(rs.getInt("no_article"));
+				article.getCategorie().setId(rs.getInt("no_categorie"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -87,8 +87,8 @@ public class ArticlesVendusDAOImpl implements ArticlesVendusDAO {
 				article.setDateFinEncheres(rs.getDate("date_fin_encheres").toLocalDate());
 				article.setMiseAPrix(rs.getInt("prix_initial"));
 				article.setPrixVente(rs.getInt("prix_vente"));
-				article.getNoUtilisateur().setId(rs.getInt("no_article"));
-				article.getNoCategorie().setId(rs.getInt("no_categorie"));
+				article.getUtilisateur().setId(rs.getInt("no_article"));
+				article.getCategorie().setId(rs.getInt("no_categorie"));
 			
 				result.add(article);
 			}
@@ -104,8 +104,8 @@ public class ArticlesVendusDAOImpl implements ArticlesVendusDAO {
 	public void update(ArticleVendu article) throws DALException {
 		try (Connection connection = ConnectionProvider.getConnection()) {
 			PreparedStatement stmt = connection.prepareStatement(UPDATE);
-			Integer noarticle = article.getNoUtilisateur().getId();
-			Integer noCategorie = article.getNoCategorie().getId();
+			Integer noarticle = article.getUtilisateur().getId();
+			Integer noCategorie = article.getCategorie().getId();
 			stmt.setString(1, article.getNomArticle());
 			stmt.setString(2, article.getDescription());
 			stmt.setDate(3, java.sql.Date.valueOf(article.getDateDebutEncheres()));

@@ -17,8 +17,8 @@
                                 <option>Toutes</option>
 
                                 <c:forEach items="${model2.lstCategories}" var="categorie">
-    <option>${categorie.libelle} </option>
-</c:forEach>
+    							<option>${categorie.libelle} </option>
+								</c:forEach>
                             </select>
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-12 p-0">
