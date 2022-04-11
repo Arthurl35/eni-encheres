@@ -38,19 +38,19 @@
   <div class="form-check">
 	  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
 	  <label class="form-check-label" for="defaultCheck1">
-	    enchéres ouvertes
+	    enchï¿½res ouvertes
 	  </label>
 	</div>
 	<div class="form-check">
 	  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
 	  <label class="form-check-label" for="defaultCheck1">
-	    mes enchères en cours
+	    mes enchï¿½res en cours
 	  </label>
 	</div>
 	<div class="form-check">
 	  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
 	  <label class="form-check-label" for="defaultCheck1">
-	    mes enchères remportées
+	    mes enchï¿½res remportï¿½es
 	  </label>
 	</div>
 </div>
@@ -70,23 +70,19 @@
 	<div class="form-check">
 	  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" name="myRadios">
 	  <label class="form-check-label" for="defaultCheck1">
-	    ventes non débutées
+	    ventes non dï¿½butï¿½es
 	  </label>
 	</div>
 	<div class="form-check">
 	  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" name="myRadios" value="achat">
 	  <label class="form-check-label" for="defaultCheck1">
-	    ventes terminées
+	    ventes terminï¿½es
 	  </label>
 	</div>
-	
 </div>
 			</form>
 
 	</section>
-
-
-
 </body>
  <script>
  var rad = document.myForm.myRadios;

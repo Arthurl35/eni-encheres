@@ -8,7 +8,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-      	<c:if test="${model.user == null}">
+      	<c:if test="${sessionScope.user == null}">
 	        <li class="nav-item">
 	          <a class="nav-link" aria-current="page" href="RegisterServlet">Inscription</a>
 	        </li>
@@ -16,18 +16,18 @@
 	          <a class="nav-link" href="LoginServlet">Connection</a>
 	        </li>
 	  	</c:if>
-	  	<c:if test="${model.user != null}">
+	  	<c:if test="${sessionScope.user != null}">
 	  		<li class="nav-item">
-	  			<a class="nav-link text-light" href="ProfilServlet">Bienvenue : ${model.pseudo}</a>
+	  			<a class="nav-link text-light" href="ProfilServlet">Bienvenue : ${sessionScope.pseudo}</a>
 	  		</li>
 		</c:if>
       </ul>
-	  <c:if test="${model.user != null}">
+	  <c:if test="${sessionScope.user != null}">
 	   	<li class="nav-item">
 	  			<a class="btn btn-secondary me-3" href="ProfilServlet">Enchères</a>
 	  		</li>
 	   	<li class="nav-item">
-	  			<a class="btn btn-secondary me-3" href="ProfilServlet">Vendre un article</a>
+	  			<a class="btn btn-secondary me-3" href="ArticlesServlet">Vendre un article</a>
 	  		</li>
 	  	<li class="nav-item">
 	  			<a class="btn btn-secondary me-3" href="ProfilServlet">Mon profil</a>
