@@ -30,6 +30,20 @@ public class ArticleVendu {
 		this.etatVente = etatVente;
 	}
 
+	
+	
+	public ArticleVendu(String nomArticle, String description, Categories categorie, Integer miseAPrix, LocalDate dateDebutEncheres,
+			LocalDate dateFinEncheres) {
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.categorie = categorie;
+		this.miseAPrix = miseAPrix;
+		this.dateDebutEncheres = dateDebutEncheres;
+		this.dateFinEncheres = dateFinEncheres;
+
+		
+	}
+
 	public Categories getCategorie() {
 		return categorie;
 	}

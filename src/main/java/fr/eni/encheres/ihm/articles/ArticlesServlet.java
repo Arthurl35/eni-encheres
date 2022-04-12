@@ -2,6 +2,7 @@ package fr.eni.encheres.ihm.articles;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,11 +11,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.eni.encheres.bll.articlesvendus.ArticlesVendusException;
 import fr.eni.encheres.bll.articlesvendus.ArticlesVendusManager;
 import fr.eni.encheres.bll.articlesvendus.ArticlesVendusManagerSing;
 import fr.eni.encheres.bll.categories.CategoriesException;
 import fr.eni.encheres.bll.categories.CategoriesManager;
 import fr.eni.encheres.bll.categories.CategoriesManagerSing;
+import fr.eni.encheres.bll.utilisateurs.UtilisateursException;
+import fr.eni.encheres.bo.ArticleVendu;
 import fr.eni.encheres.bo.Categories;
 import fr.eni.encheres.ihm.categories.CategoriesModel;
 import fr.eni.encheres.ihm.profil.ProfilModel;
@@ -62,16 +66,38 @@ public class ArticlesServlet extends HttpServlet {
 			//récuprération des données du formulaire
 			model2.setNomArticle(request.getParameter("article"));
 			model2.setDescription(request.getParameter("description"));
-			model2.setCategorie(((Categories) session.getAttribute("categories")));
+			model2.getCategorie().setLibelle(request.getParameter("categorie"));
 			model2.setMiseAPrix(Integer.parseInt(request.getParameter("miseAPrix")));
 			model2.setDateDebutEncheres(LocalDate.parse(request.getParameter("dateDebutEncheres")));
 			model2.setDateFinEncheres(LocalDate.parse(request.getParameter("dateFinEncheres")));
-			model2.setNomArticle(request.getParameter("article"));
 			
+			if(!model2.getNomArticle().equals("")
+					&& !model2.getDescription().equals("")
+					&& !model2.getCategorie().equals("")
+					&& !(model2.getMiseAPrix() == null)
+					&& !(model2.getDateDebutEncheres() == null)
+					&& !(model2.getDateFinEncheres() == null)) {
+				
+				ArticleVendu article = new ArticleVendu(model2.getNomArticle(), model2.getDescription(), model2.getCategorie(), model2.getMiseAPrix(), 
+										model2.getDateDebutEncheres(), model2.getDateFinEncheres());
+				try {
+					manager.addArticle(article);
+					next = "";
+				} catch (ArticlesVendusException e) {
+					model2.setMessage(e.getMessage());
+				}
+
+			}
+			else {
+				model2.setMessage("Champs manquant !");
+			}
+		
 		}
+		
 
 		request.setAttribute("model", model);
 		request.setAttribute("model2", model2);
+		request.setAttribute("model3", model3);
 		request.getRequestDispatcher(next).forward(request, response);
 
 	}

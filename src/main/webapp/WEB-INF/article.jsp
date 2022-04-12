@@ -2,6 +2,7 @@
 
 <body>
 	<%@ include file="nav.jsp"%>
+	<%@ page import="java.util.Date" %>
 	<section>
 		<form action="ArticlesServlet" method="post">
 			<div class="container py-5 h-100">
@@ -14,7 +15,9 @@
 								<div class="mb-md-5 mt-md-4 pb-5">
 									<h2 class="fw-bold mb-2 text-uppercase mb-4">Nouvelle
 										vente</h2>
-
+						     			<c:if test="${model2.message != null}">
+											<p>${model2.message}</p>
+										</c:if>
 									<div class="form-outline form-white mb-4">
 										<label class="form-label" for="article">Article :</label> <input
 											type="text" name="article"
@@ -34,11 +37,11 @@
 									<div class="form-outline form-white mb-4">
 									<label class="form-label">Catégories :</label>
 										<select class="form-control search-slt">
-											<option>--Choisissez votre catégorie--</option>
+											<option>Test</option>
 
-											<c:forEach items="${model3.lstCategories}" var="categorie">
-												<option value="${categorie.libelle}">${categorie.libelle}</option>
-											</c:forEach>
+									<c:forEach items="${model3.lstCategories}" var="categorie">
+										<option value="${categorie.libelle}">${categorie.libelle}</option>
+									</c:forEach>
 										</select>
 									</div>
 
@@ -54,7 +57,7 @@
 											<label class="form-label" for="dateDebutEncheres">Début
 												de l'enchère</label> <input type="date" name="dateDebutEncheres"
 												class="form-control form-control-lg"
-												value="${model2.dateDebutEncheres}" />
+												value="<%= new java.util.Date() %>" />
 										</div>
 										<div class="form-outline form-white mb-4 col">
 											<label class="form-label" for="dateFinEncheres">Fin
