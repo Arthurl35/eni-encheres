@@ -1,5 +1,5 @@
 <%@ include file="head.jsp"%>
-
+ <%@ page import="java.util.*" %>
 <body>
 	<%@ include file="nav.jsp"%>
 	<section>
@@ -54,7 +54,8 @@
 											<label class="form-label" for="dateDebutEncheres">Début
 												de l'enchère</label> <input type="date" name="dateDebutEncheres"
 												class="form-control form-control-lg"
-												value="${model2.dateDebutEncheres}" />
+												value="<%= (new java.util.Date()).toLocaleString()%>" />
+												<p><%= (new java.util.Date()).toLocaleString()%></p>
 										</div>
 										<div class="form-outline form-white mb-4 col">
 											<label class="form-label" for="dateFinEncheres">Fin
