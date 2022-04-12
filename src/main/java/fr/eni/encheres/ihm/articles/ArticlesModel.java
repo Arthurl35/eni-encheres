@@ -19,6 +19,7 @@ public class ArticlesModel {
 	private Integer etatVente;
 	private Categories categorie;
 	private Utilisateurs utilisateur;
+	private String message;
 	private List<ArticleVendu> lstArticle = new ArrayList<>();
 
 	public ArticlesModel() {
@@ -111,6 +112,14 @@ public class ArticlesModel {
 
 	public void setLstArticle(List<ArticleVendu> lstArticle) {
 		this.lstArticle = lstArticle;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
 }
