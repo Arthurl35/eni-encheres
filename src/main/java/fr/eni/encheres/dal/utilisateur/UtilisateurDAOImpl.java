@@ -157,6 +157,36 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 			ResultSet rs = stmt.executeQuery();
 			if (rs.next()) {
 				utilisateur = new Utilisateurs();
+				utilisateur.setId(rs.getInt("no_utilisateur"));
+				utilisateur.setPseudo(rs.getString("pseudo"));
+				utilisateur.setNom(rs.getString("nom"));
+				utilisateur.setPrenom(rs.getString("prenom"));
+				utilisateur.setEmail(rs.getString("email"));
+				utilisateur.setTelephone(rs.getString("telephone"));
+				utilisateur.setRue(rs.getString("rue"));
+				utilisateur.setCode_postal(rs.getString("code_postal"));
+				utilisateur.setVille(rs.getString("ville"));
+				utilisateur.setMot_de_passe(rs.getString("mot_de_passe"));
+				utilisateur.setCredit(rs.getInt("credit"));
+				utilisateur.setAdministrateur(rs.getBoolean("administrateur"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DALException(BundleUtil.getMessage("msg_pbselect"));
+		}
+		return utilisateur;
+	}
+	
+	@Override
+	public Utilisateurs getById(Integer id) throws DALException {
+		Utilisateurs utilisateur = null;
+		try (Connection connection = ConnectionProvider.getConnection()) {
+			PreparedStatement stmt = connection.prepareStatement(SELECTBYPSEUDO);
+			stmt.setInt(1, id);
+			ResultSet rs = stmt.executeQuery();
+			if (rs.next()) {
+				utilisateur = new Utilisateurs();
+				utilisateur.setId(rs.getInt("no_utilisateur"));
 				utilisateur.setPseudo(rs.getString("pseudo"));
 				utilisateur.setNom(rs.getString("nom"));
 				utilisateur.setPrenom(rs.getString("prenom"));
