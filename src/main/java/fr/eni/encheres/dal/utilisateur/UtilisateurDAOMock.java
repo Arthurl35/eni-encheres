@@ -57,4 +57,10 @@ public class UtilisateurDAOMock implements UtilisateurDAO {
 		return null;
 	}
 
+	@Override
+	public Utilisateurs getById(Integer id) throws DALException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

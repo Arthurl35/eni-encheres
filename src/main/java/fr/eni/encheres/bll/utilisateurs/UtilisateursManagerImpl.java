@@ -70,7 +70,14 @@ public class UtilisateursManagerImpl implements UtilisateursManager {
 		}
 	}
 	
-	
+	@Override
+	public Utilisateurs getById(Integer id) throws UtilisateursException {
+		try {
+			return dao.getById(id);
+		} catch(DALException e) {
+			throw new UtilisateursException("Impossible de modifier votre utilisateur");
+		}
+	}
 
 
 	@Override
