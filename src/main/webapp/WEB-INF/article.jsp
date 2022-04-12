@@ -1,5 +1,5 @@
 <%@ include file="head.jsp"%>
-
+ <%@ page import="java.util.*" %>
 <body>
 	<%@ include file="nav.jsp"%>
 	<%@ page import="java.util.Date" %>
@@ -35,7 +35,7 @@
 									</div>
 
 									<div class="form-outline form-white mb-4">
-									<label class="form-label">Catégories :</label>
+									<label class="form-label">CatÃ©gories :</label>
 										<select class="form-control search-slt">
 											<option>Test</option>
 
@@ -47,21 +47,21 @@
 
 
 									<div class="form-outline form-white mb-4">
-										<label class="form-label" for="miseAPrix">Mise à prix</label>
+										<label class="form-label" for="miseAPrix">Mise Ã  prix</label>
 										<input type="number" name="miseAPrix"
 											class="form-control form-control-lg"
 											value="${model2.miseAPrix}" />
 									</div>
 									<div class="row">
 										<div class="form-outline form-white mb-4 col">
-											<label class="form-label" for="dateDebutEncheres">Début
-												de l'enchère</label> <input type="date" name="dateDebutEncheres"
+											<label class="form-label" for="dateDebutEncheres">DÃ©but
+												de l'enchÃ¨re</label> <input type="date" name="dateDebutEncheres"
 												class="form-control form-control-lg"
 												value="<%= new java.util.Date() %>" />
 										</div>
 										<div class="form-outline form-white mb-4 col">
 											<label class="form-label" for="dateFinEncheres">Fin
-												de l'enchère :</label> <input type="date" name="dateFinEncheres"
+												de l'enchÃ¨re :</label> <input type="date" name="dateFinEncheres"
 												class="form-control form-control-lg"
 												value="${model2.dateFinEncheres}" />
 										</div>
@@ -84,7 +84,7 @@
 									</div>
 
 									<button class="btn btn-outline-light btn-lg px-5" type="submit"
-										name="BT_VALID">CrÃ©er</button>
+										name="BT_VALID">CrÃƒÂ©er</button>
 									<a href="HomeServlet" class="btn btn-outline-light btn-lg px-5">Annuler</a>
 								</div>
 							</div>
