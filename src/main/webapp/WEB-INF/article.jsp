@@ -35,7 +35,7 @@
 									</div>
 
 									<div class="form-outline form-white mb-4">
-									<label class="form-label">CatÃ©gories :</label>
+									<label class="form-label">Catégories :</label>
 										<select class="form-control search-slt">
 											<option>Test</option>
 
@@ -47,14 +47,14 @@
 
 
 									<div class="form-outline form-white mb-4">
-										<label class="form-label" for="miseAPrix">Mise Ã  prix</label>
+										<label class="form-label" for="miseAPrix">Mise à  prix</label>
 										<input type="number" name="miseAPrix"
 											class="form-control form-control-lg"
 											value="${model2.miseAPrix}" />
 									</div>
 									<div class="row">
 										<div class="form-outline form-white mb-4 col">
-											<label class="form-label" for="dateDebutEncheres">DÃ©but
+											<label class="form-label" for="dateDebutEncheres">Début
 												de l'enchÃ¨re</label> <input type="date" name="dateDebutEncheres"
 												class="form-control form-control-lg"
 												value="<%= new java.util.Date() %>" />
@@ -84,7 +84,7 @@
 									</div>
 
 									<button class="btn btn-outline-light btn-lg px-5" type="submit"
-										name="BT_VALID">CrÃƒÂ©er</button>
+										name="BT_VALID">Créer</button>
 									<a href="HomeServlet" class="btn btn-outline-light btn-lg px-5">Annuler</a>
 								</div>
 							</div>
