@@ -29,6 +29,7 @@
 						</div>
 					</div>
 				</div>
+<c:if test="${sessionScope.user != null}">
 				<!-- Achats -->		
 <div class="form-check mb-3" id="achat">
   <input class="form-check-input inputradio" type="radio" name="exampleRadios" onclick="ShowHideDiv1()" id="exampleRadios1" value="option1" checked>
@@ -38,19 +39,19 @@
   <div class="form-check checkachat">
 	  <input class="form-check-input check-achat" type="checkbox" value="" id="defaultCheck1" >
 	  <label class="form-check-label" for="defaultCheck1">
-	    enchï¿½res ouvertes
+	    enchères ouvertes
 	  </label>
 	</div>
 	<div class="form-check checkachat">
 	  <input class="form-check-input check-achat" type="checkbox" value="" id="defaultCheck2" >
 	  <label class="form-check-label" for="defaultCheck1">
-	    mes enchï¿½res en cours
+	    mes enchères en cours
 	  </label>
 	</div>
 	<div class="form-check checkachat">
 	  <input class="form-check-input check-achat" type="checkbox" value="" id="defaultCheck3" >
 	  <label class="form-check-label" for="defaultCheck1">
-	    mes enchï¿½res remportï¿½es
+	    mes enchères remportées
 	  </label>
 	</div>
 </div>
@@ -70,16 +71,17 @@
 	<div class="form-check checkvente">
 	  <input class="form-check-input check-vente" type="checkbox" value="" id="defaultCheck5" name="myRadios" disabled>
 	  <label class="form-check-label" for="defaultCheck1">
-	    ventes non dï¿½butï¿½es
+	    ventes non débutées
 	  </label>
 	</div>
 	<div class="form-check checkvente">
 	  <input class="form-check-input check-vente" type="checkbox" value="" id="defaultCheck6" name="myRadios" value="achat" disabled>
 	  <label class="form-check-label" for="defaultCheck1">
-	    ventes terminï¿½es
+	    ventes terminées
 	  </label>
 	</div>
 </div>
+</c:if>		
 			</form>
 
 	</section>
