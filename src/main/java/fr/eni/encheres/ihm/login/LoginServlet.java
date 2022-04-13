@@ -57,7 +57,6 @@ public class LoginServlet extends HttpServlet {
 			    //Add both the cookies in the response header.
 			      response.addCookie( userName );
 			      
-			      System.out.println();
 				
 				try {
 					//test login
