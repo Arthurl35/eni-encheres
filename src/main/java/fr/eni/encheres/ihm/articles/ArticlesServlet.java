@@ -97,21 +97,6 @@ public class ArticlesServlet extends HttpServlet {
 					&& !modelArticles.getMiseAPrix().equals(null)
 					&& !modelArticles.getDateDebutEncheres().equals(null)
 					&& !modelArticles.getDateFinEncheres().equals(null)) {
-
-			//rï¿½cuprï¿½ration des donnï¿½es du formulaire
-				modelArticles.setNomArticle(request.getParameter("article"));
-				modelArticles.setDescription(request.getParameter("description"));
-				modelArticles.getCategorie().setLibelle(request.getParameter("categorie"));
-				modelArticles.setMiseAPrix(Integer.parseInt(request.getParameter("miseAPrix")));
-				modelArticles.setDateDebutEncheres(LocalDate.parse(request.getParameter("dateDebutEncheres")));
-				modelArticles.setDateFinEncheres(LocalDate.parse(request.getParameter("dateFinEncheres")));
-			
-			if(!modelArticles.getNomArticle().equals("")
-					&& !modelArticles.getDescription().equals("")
-					&& !modelArticles.getCategorie().equals("")
-					&& !(modelArticles.getMiseAPrix() == null)
-					&& !(modelArticles.getDateDebutEncheres() == null)
-					&& !(modelArticles.getDateFinEncheres() == null)) {
 				
 				//création articles
 				ArticleVendu article = new ArticleVendu(modelArticles.getNomArticle(), modelArticles.getDescription(), modelArticles.getCategorie(), modelArticles.getMiseAPrix(), 
@@ -151,7 +136,6 @@ public class ArticlesServlet extends HttpServlet {
 		request.getRequestDispatcher(next).forward(request, response);
 
 	}
-}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)

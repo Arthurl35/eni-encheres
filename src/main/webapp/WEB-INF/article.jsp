@@ -35,15 +35,10 @@
 									</div>
 
 									<div class="form-outline form-white mb-4">
-<<<<<<< HEAD
+
 									<label class="form-label">CatÃ©gories :</label>
 										<select class="form-control search-slt" name="categories">
-=======
-									<label class="form-label">Catégories :</label>
-										<select class="form-control search-slt">
->>>>>>> branch 'Integration' of https://github.com/Arthurl35/eni-encheres/
-											<option>Test</option>
-
+		
 									<c:forEach items="${modelCategories.lstCategories}" var = "categorie">
 										<option value="${categorie.id}">${categorie.libelle}</option>
 									</c:forEach>
