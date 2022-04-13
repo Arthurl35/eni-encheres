@@ -2,7 +2,6 @@ package fr.eni.encheres.ihm.articles;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,9 +16,7 @@ import fr.eni.encheres.bll.articlesvendus.ArticlesVendusManagerSing;
 import fr.eni.encheres.bll.categories.CategoriesException;
 import fr.eni.encheres.bll.categories.CategoriesManager;
 import fr.eni.encheres.bll.categories.CategoriesManagerSing;
-import fr.eni.encheres.bll.utilisateurs.UtilisateursException;
 import fr.eni.encheres.bo.ArticleVendu;
-import fr.eni.encheres.bo.Categories;
 import fr.eni.encheres.ihm.categories.CategoriesModel;
 import fr.eni.encheres.ihm.profil.ProfilModel;
 
@@ -51,10 +48,10 @@ public class ArticlesServlet extends HttpServlet {
 		CategoriesModel model3 = new CategoriesModel();
 		String next = "/WEB-INF/article.jsp";
 
-		//récupère la session
+		//rï¿½cupï¿½re la session
 		HttpSession session = request.getSession();
 
-		// Affichage de la liste des catégories
+		// Affichage de la liste des catï¿½gories
 		try {
 			model3.setLstCategories(manager2.getAllCategories());
 		} catch (CategoriesException e) {
@@ -63,7 +60,7 @@ public class ArticlesServlet extends HttpServlet {
 		}
 		
 		if(request.getParameter("BT_VALID")!=null) {
-			//récuprération des données du formulaire
+			//rï¿½cuprï¿½ration des donnï¿½es du formulaire
 			model2.setNomArticle(request.getParameter("article"));
 			model2.setDescription(request.getParameter("description"));
 			model2.getCategorie().setLibelle(request.getParameter("categorie"));

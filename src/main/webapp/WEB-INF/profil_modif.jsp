@@ -28,7 +28,7 @@
                <input type="text" name="name" class="form-control form-control-lg" value="${user.nom}"/>
               </div>
               <div class="form-outline form-white mb-4 col">
-               <label class="form-label" for="surname">PrÃ©nom</label>
+               <label class="form-label" for="surname">Prénom</label>
                <input type="text" name="surname" class="form-control form-control-lg" value="${user.prenom}"/>
               </div>
               </div>
@@ -37,7 +37,7 @@
               	<input type="email" name="mail" class="form-control form-control-lg" value="${user.email}"/>
               </div>
                <div class="form-outline form-white mb-4">
-               <label class="form-label" for="tel">TÃ©lÃ©phone</label>
+               <label class="form-label" for="tel">Téléphone</label>
                <input type="tel" name="tel" class="form-control form-control-lg" value="${user.telephone}"/>
               </div>
               <div class="row">
