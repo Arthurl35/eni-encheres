@@ -1,5 +1,7 @@
 package fr.eni.encheres.ihm.login;
 
+import javax.servlet.http.Cookie;
+
 import fr.eni.encheres.bo.Utilisateurs;
 
 public class LoginModel {
@@ -7,7 +9,8 @@ public class LoginModel {
 	private String pseudo;
 	private String message;
 	private Utilisateurs user;
-	
+	private Cookie cookie;
+
 	public LoginModel() {
 	}
 
@@ -22,7 +25,7 @@ public class LoginModel {
 	public String getMessage() {
 		return message;
 	}
-	
+
 	public void setMessage(String message) {
 		this.message = message;
 	}
@@ -34,5 +37,15 @@ public class LoginModel {
 	public void setUser(Utilisateurs user) {
 		this.user = user;
 	}
+
+	public Cookie getCookie() {
+		return cookie;
+	}
+
+	public void setCookie(Cookie cookie) {
+		this.cookie = cookie;
+	}
+
+
 	
 }
