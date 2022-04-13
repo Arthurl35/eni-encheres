@@ -15,19 +15,19 @@ public class UtilisateursManagerImpl implements UtilisateursManager {
 		try {
 			for (Utilisateurs u : dao.getAll()) {
 				if (utilisateur.getEmail().equals(u.getEmail())) {
-					throw new UtilisateursException("Email déjà existant !");
+					throw new UtilisateursException("Email dï¿½jï¿½ existant !");
 				}
 				if (utilisateur.getTelephone().equals(u.getTelephone())) {
-					throw new UtilisateursException("Numéro de téléphone déjà existant !");
+					throw new UtilisateursException("Numï¿½ro de tï¿½lï¿½phone dï¿½jï¿½ existant !");
 				}
 				if (utilisateur.getPseudo().equals(u.getPseudo())) {
-					throw new UtilisateursException("Pseudo déjà existant");
+					throw new UtilisateursException("Pseudo dï¿½jï¿½ existant");
 				}
 			}
 
 			dao.insert(utilisateur);
 		} catch (DALException e) {
-			throw new UtilisateursException("Problème à l'insertion");
+			throw new UtilisateursException("Problï¿½me ï¿½ l'insertion");
 		}
 
 	}
@@ -37,7 +37,16 @@ public class UtilisateursManagerImpl implements UtilisateursManager {
 		try {
 			return dao.getAll();
 		} catch (DALException e) {
-			throw new UtilisateursException("Problème à la selection");
+			throw new UtilisateursException("Problï¿½me ï¿½ la selection");
+		}
+	}
+	
+	@Override
+	public List<Utilisateurs> getAllUtilisateurs_sansAdmin() throws UtilisateursException {
+		try {
+			return dao.getAll_sansAdmin();
+		} catch (DALException e) {
+			throw new UtilisateursException("Problï¿½me ï¿½ la selection");
 		}
 	}
 
@@ -57,7 +66,7 @@ public class UtilisateursManagerImpl implements UtilisateursManager {
 		try {
 			dao.delete(utilisateur);
 		} catch(DALException e) {
-			throw new UtilisateursException("Problème à la selection");
+			throw new UtilisateursException("Problï¿½me ï¿½ la selection");
 		}
 	}
 	
@@ -94,7 +103,7 @@ public class UtilisateursManagerImpl implements UtilisateursManager {
 			}
 			return res;
 		} catch(DALException e) {
-			throw new UtilisateursException("Problème à la selection");
+			throw new UtilisateursException("Problï¿½me ï¿½ la selection");
 		}
 	}
 }

@@ -20,7 +20,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 	private final String DELETE = "DELETE FROM UTILISATEURS WHERE no_utilisateur=?";
 	private final String GETCONNECTION = "SELECT * FROM UTILISATEURS WHERE pseudo = ? AND mot_de_passe = ?";
 	private final String SELECTBYPSEUDO = "SELECT pseudo,nom, prenom,email,telephone, rue, code_postal,ville, mot_de_passe, credit, administrateur FROM UTILISATEURS WHERE pseudo=? ";
-
+	private final String SELECT_sansAdmin = "SELECT no_Utilisateur,pseudo,nom, prenom,email,telephone, rue, code_postal,ville, mot_de_passe, credit, administrateur FROM UTILISATEURS WHERE administrateur = 0";
 	@Override
 	public void insert(Utilisateurs utilisateur) throws DALException {
 		try (Connection connection = ConnectionProvider.getConnection()) {
@@ -82,6 +82,38 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 		return result;
 	}
 
+	@Override
+	public List<Utilisateurs> getAll_sansAdmin() throws DALException {
+		List<Utilisateurs> result = new ArrayList<>();
+		try (Connection connection = ConnectionProvider.getConnection()) {
+			PreparedStatement stmt = connection.prepareStatement(SELECT_sansAdmin);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				Utilisateurs utilisateur = new Utilisateurs();
+				utilisateur.setId(rs.getInt("no_Utilisateur"));
+				utilisateur.setPseudo(rs.getString("pseudo"));
+				utilisateur.setNom(rs.getString("nom"));
+				utilisateur.setPrenom(rs.getString("prenom"));
+				utilisateur.setEmail(rs.getString("email"));
+				utilisateur.setTelephone(rs.getString("telephone"));
+				utilisateur.setRue(rs.getString("rue"));
+				utilisateur.setCode_postal(rs.getString("code_postal"));
+				utilisateur.setVille(rs.getString("ville"));
+				utilisateur.setMot_de_passe(rs.getString("mot_de_passe"));
+				utilisateur.setCredit(rs.getInt("credit"));
+				utilisateur.setAdministrateur(rs.getBoolean("administrateur"));
+				
+				result.add(utilisateur);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DALException(BundleUtil.getMessage("msg_pbselect"));
+		}
+
+		return result;
+	}
+
+	
 	@Override
 	public void update(Utilisateurs utilisateur) throws DALException {
 		try (Connection connection = ConnectionProvider.getConnection()) {

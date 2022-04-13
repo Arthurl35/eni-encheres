@@ -38,8 +38,9 @@ public class RegisterServlet extends HttpServlet {
 		String next = "/WEB-INF/register.jsp";
 		RegisterModel model = new RegisterModel();
 		
-		//test si déjà connecté
+		//test si dï¿½jï¿½ connectï¿½
 		HttpSession session = request.getSession();
+		
 		if(session.getAttribute("user") != null) {
 			model.setUser((Utilisateurs)session.getAttribute("user"));
 			next = "";
@@ -83,7 +84,7 @@ public class RegisterServlet extends HttpServlet {
 					}
 				}
 				else {
-					model.setMessage("Les mots de passe différent !");
+					model.setMessage("Les mots de passe diffï¿½rent !");
 				}
 			}
 			else model.setMessage("Champs manquant !");
