@@ -15,14 +15,14 @@
 								<div class="mb-md-5 mt-md-4 pb-5">
 									<h2 class="fw-bold mb-2 text-uppercase mb-4">Nouvelle
 										vente</h2>
-						     			<c:if test="${model2.message != null}">
-											<p>${model2.message}</p>
+						     			<c:if test="${modelArticles.message != null}">
+											<p>${modelArticles.message}</p>
 										</c:if>
 									<div class="form-outline form-white mb-4">
 										<label class="form-label" for="article">Article :</label> <input
 											type="text" name="article"
 											class="form-control form-control-lg"
-											value="${model2.nomArticle}" />
+											value="${modelArticles.nomArticle}" />
 									</div>
 
 									<div class="row justify-content-md-center">
@@ -30,17 +30,17 @@
 											<label class="form-label" for="description">Description
 												:</label> <input type="text" name="description"
 												class="form-control form-control-lg"
-												value="${model2.description}" />
+												value="${modelArticles.description}" />
 										</div>
 									</div>
 
 									<div class="form-outline form-white mb-4">
 									<label class="form-label">Catégories :</label>
-										<select class="form-control search-slt">
+										<select class="form-control search-slt" name="categories">
 											<option>Test</option>
 
-									<c:forEach items="${model3.lstCategories}" var="categorie">
-										<option value="${categorie.libelle}">${categorie.libelle}</option>
+									<c:forEach items="${modelCategories.lstCategories}" var = "categorie">
+										<option value="${categorie.id}">${categorie.libelle}</option>
 									</c:forEach>
 										</select>
 									</div>
@@ -50,20 +50,20 @@
 										<label class="form-label" for="miseAPrix">Mise à prix</label>
 										<input type="number" name="miseAPrix"
 											class="form-control form-control-lg"
-											value="${model2.miseAPrix}" />
+											value="${modelArticles.miseAPrix}" />
 									</div>
 									<div class="row">
 										<div class="form-outline form-white mb-4 col">
 											<label class="form-label" for="dateDebutEncheres">Début
 												de l'enchère</label> <input type="date" name="dateDebutEncheres"
 												class="form-control form-control-lg"
-												value="<%= new java.util.Date() %>" />
+												value="${modelArticles.dateDebutEncheres}" />
 										</div>
 										<div class="form-outline form-white mb-4 col">
 											<label class="form-label" for="dateFinEncheres">Fin
 												de l'enchère :</label> <input type="date" name="dateFinEncheres"
 												class="form-control form-control-lg"
-												value="${model2.dateFinEncheres}" />
+												value="${modelArticles.dateFinEncheres}" />
 										</div>
 									</div>
 									<div class="form-outline form-white mb-4">

@@ -7,6 +7,8 @@ import fr.eni.encheres.dal.categories.CategoriesDAO;
 import fr.eni.encheres.dal.categories.CategoriesDAOImpl;
 import fr.eni.encheres.dal.encheres.EncheresDAO;
 import fr.eni.encheres.dal.encheres.EncheresDAOImpl;
+import fr.eni.encheres.dal.retraits.RetraitsDAO;
+import fr.eni.encheres.dal.retraits.RetraitsDAOImpl;
 import fr.eni.encheres.dal.utilisateur.UtilisateurDAO;
 import fr.eni.encheres.dal.utilisateur.UtilisateurDAOImpl;
 
@@ -22,5 +24,8 @@ public class DAOFact {
 	}
 	public static EncheresDAO getEncheresDAO() {
 		return new EncheresDAOImpl();
+	}
+	public static RetraitsDAO getRetraitsDAO() {
+		return new RetraitsDAOImpl();
 	}
 }	
