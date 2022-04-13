@@ -63,4 +63,9 @@ public class UtilisateurDAOMock implements UtilisateurDAO {
 		return null;
 	}
 
+	@Override
+	public List<Utilisateurs> getAll_sansAdmin() throws DALException {
+		return lstUtilisateus;
+	}
+
 }

@@ -100,18 +100,18 @@ for (var i = 0; i < elts.length; i++) {
 }
 console.log('value => '+elts[i].value);
 function ShowHideDiv1(){
-		check1.setAttribute('actived', '');
-		check2.setAttribute('actived', '');
-		check3.setAttribute('actived', '');
+		check1.setAttribute("id", 'flexRadioDisabled');
+		check2.setAttribute("id", 'flexRadioDisabled');
+		check3.setAttribute("id", 'flexRadioDisabled');
 		
 
 	
 		console.log('je passe par la');
 	}
 function ShowHideDiv2(){	
-	check1.setAttribute('actived', '');
-	check2.setAttribute('actived', '');
-	check3.setAttribute('actived', '');
+	check1.setAttribute("id", 'flexRadioDisabled');
+	check2.setAttribute("id", 'flexRadioDisabled');
+	check3.setAttribute("id", 'flexRadioDisabled');
 	
 		console.log('je passe ici');
 	}

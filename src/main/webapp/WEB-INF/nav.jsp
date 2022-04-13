@@ -22,6 +22,12 @@
 	  		</li>
 		</c:if>
       </ul>
+      <c:if test="${sessionScope.user.administrateur == true}">
+	  	<li class="nav-item">
+	  			<a class="btn btn-secondary me-3" href="AdminServlet">Configuration</a>
+	  		</li>
+	   </c:if>
+	   
 	  <c:if test="${sessionScope.user != null}">
 	   	<li class="nav-item">
 	  			<a class="btn btn-secondary me-3" href="ProfilServlet">Enchères</a>
@@ -37,6 +43,7 @@
 	  	</form>
 	  
 	  </c:if>
+	  
     </div>
   </div>
 </nav>
