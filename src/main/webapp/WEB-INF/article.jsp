@@ -36,7 +36,7 @@
 
 									<div class="form-outline form-white mb-4">
 
-									<label class="form-label">Cat√©gories :</label>
+									<label class="form-label">CatÈgories :</label>
 										<select class="form-control search-slt" name="categories">
 		
 									<c:forEach items="${modelCategories.lstCategories}" var = "categorie">
@@ -55,13 +55,13 @@
 									<div class="row">
 										<div class="form-outline form-white mb-4 col">
 											<label class="form-label" for="dateDebutEncheres">DÈbut
-												de l'ench√®re</label> <input type="date" name="dateDebutEncheres"
+												de l'enchËre</label> <input type="date" name="dateDebutEncheres"
 												class="form-control form-control-lg"
 												value="${modelArticles.dateDebutEncheres}" />
 										</div>
 										<div class="form-outline form-white mb-4 col">
 											<label class="form-label" for="dateFinEncheres">Fin
-												de l'ench√®re :</label> <input type="date" name="dateFinEncheres"
+												de l'enchËre :</label> <input type="date" name="dateFinEncheres"
 												class="form-control form-control-lg"
 												value="${modelArticles.dateFinEncheres}" />
 										</div>
