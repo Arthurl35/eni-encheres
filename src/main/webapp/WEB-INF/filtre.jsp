@@ -84,7 +84,6 @@
 
 	</section>
 	
-	<%@ include file="getArticle.jsp"%>
 </body>
  <script>
 
