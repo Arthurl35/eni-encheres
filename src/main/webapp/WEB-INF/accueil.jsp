@@ -30,7 +30,7 @@
 					</div>
 				</div>
 				<!-- Achats -->		
-<div class="form-check mb-3">
+<div class="form-check mb-3" id="achat">
   <input class="form-check-input inputradio" type="radio" name="exampleRadios" onclick="ShowHideDiv1()" id="exampleRadios1" value="option1" checked>
   <label class="form-check-label" for="exampleRadios1">
     Achats
@@ -56,25 +56,25 @@
 </div>
 
 <!-- Mes ventes -->
-<div class="form-check check">
+<div class="form-check check" id="vente">
   <input class="form-check-input inputradio" type="radio" name="exampleRadios" onclick="ShowHideDiv2()" id="exampleRadios2" value="option2">
   <label class="form-check-label" for="exampleRadios2">
     Mes ventes
   </label>
 	  <div class="form-check checkvente">
-	  <input class="form-check-input check-vente" type="checkbox" value="" id="defaultCheck4" >
+	  <input class="form-check-input check-vente" type="checkbox" value="" id="defaultCheck4" disabled>
 	  <label class="form-check-label" for="defaultCheck1">
 	    mes ventes en cours
 	  </label>
 	</div>
 	<div class="form-check checkvente">
-	  <input class="form-check-input check-vente" type="checkbox" value="" id="defaultCheck5" name="myRadios" >
+	  <input class="form-check-input check-vente" type="checkbox" value="" id="defaultCheck5" name="myRadios" disabled>
 	  <label class="form-check-label" for="defaultCheck1">
 	    ventes non d�but�es
 	  </label>
 	</div>
 	<div class="form-check checkvente">
-	  <input class="form-check-input check-vente" type="checkbox" value="" id="defaultCheck6" name="myRadios" value="achat">
+	  <input class="form-check-input check-vente" type="checkbox" value="" id="defaultCheck6" name="myRadios" value="achat" disabled>
 	  <label class="form-check-label" for="defaultCheck1">
 	    ventes termin�es
 	  </label>
@@ -85,7 +85,7 @@
 	</section>
 </body>
  <script>
-var elts = document.querySelectorAll('.inputradio');
+
 const check1 = document.getElementById('defaultCheck1');
 const check2 = document.getElementById('defaultCheck2');
 const check3 = document.getElementById('defaultCheck3');
@@ -93,27 +93,26 @@ const check4 = document.getElementById('defaultCheck4');
 const check5 = document.getElementById('defaultCheck5');
 const check6 = document.getElementById('defaultCheck6');
 
-for (var i = 0; i < elts.length; i++) {
-	if ( elts[i].checked === true )
-		
-	break;
-}
-console.log('value => '+elts[i].value);
 function ShowHideDiv1(){
-		check1.setAttribute("id", 'flexRadioDisabled');
-		check2.setAttribute("id", 'flexRadioDisabled');
-		check3.setAttribute("id", 'flexRadioDisabled');
-		
+
+	check4.setAttribute('disabled', '');
+	check5.setAttribute('disabled', '');
+	check6.setAttribute('disabled', '');
 
 	
-		console.log('je passe par la');
+	check1.removeAttribute('disabled');
+	check2.removeAttribute('disabled');
+	check3.removeAttribute('disabled');
 	}
 function ShowHideDiv2(){	
-	check1.setAttribute("id", 'flexRadioDisabled');
-	check2.setAttribute("id", 'flexRadioDisabled');
-	check3.setAttribute("id", 'flexRadioDisabled');
-	
-		console.log('je passe ici');
+
+	check1.setAttribute('disabled', '');
+	check2.setAttribute('disabled', '');
+	check3.setAttribute('disabled', '');
+
+	check4.removeAttribute('disabled');
+	check5.removeAttribute('disabled');
+	check6.removeAttribute('disabled');
 	}
 
 
