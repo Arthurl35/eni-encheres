@@ -2,7 +2,7 @@
 	<h2>Les Articles</h2>
 	<c:forEach items="${model.lstArticles}" var="articleVendu">
 		<article class="article d-flex flex-column align-items-center col-lg-4 col-md-6 col-sm-12 m-5">
-			<header>
+			<header class="d-flex flex-column align-items-center">
 				<h3>${articleVendu.nomArticle}</h3>
 			</header>
 			<div class="w-100 d-flex flex-column align-items-start">
@@ -21,6 +21,7 @@
 					<li><span>date fin : </span>${articleVendu.dateFinEncheres}</li>
 				</ul>
 			</div>
+			<button>Enchérir</button>
 		</article>
 	</c:forEach>
 </section>
