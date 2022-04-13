@@ -9,9 +9,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.eni.encheres.bll.articlesvendus.ArticlesVendusException;
+import fr.eni.encheres.bll.articlesvendus.ArticlesVendusManager;
+import fr.eni.encheres.bll.articlesvendus.ArticlesVendusManagerSing;
 import fr.eni.encheres.bll.categories.CategoriesException;
 import fr.eni.encheres.bll.categories.CategoriesManager;
 import fr.eni.encheres.bll.categories.CategoriesManagerSing;
+import fr.eni.encheres.bll.utilisateurs.UtilisateursException;
 import fr.eni.encheres.bo.Utilisateurs;
 import fr.eni.encheres.ihm.categories.CategoriesModel;
 
@@ -23,6 +27,7 @@ public class HomeServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 	private CategoriesManager manager = CategoriesManagerSing.getInstance();
+	private ArticlesVendusManager managerArticles = ArticlesVendusManagerSing.getInstance();
     
     /**
      * @see HttpServlet#HttpServlet()
@@ -66,6 +71,20 @@ public class HomeServlet extends HttpServlet {
 			//redirect profil
 			next = "/WEB-INF/profil.jsp";
 		}
+		
+		//Les articles 
+		try {
+			model.setLstArticles(managerArticles.getAllArticles());
+		} catch (ArticlesVendusException | UtilisateursException | CategoriesException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		
+		
+		
 		
 		request.setAttribute("model", model);
 		request.setAttribute("model2", model2);

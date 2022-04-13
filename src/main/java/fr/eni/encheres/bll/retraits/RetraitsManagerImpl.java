@@ -1,6 +1,8 @@
 package fr.eni.encheres.bll.retraits;
 
 import fr.eni.encheres.bll.articlesvendus.ArticlesVendusException;
+import fr.eni.encheres.bll.categories.CategoriesException;
+import fr.eni.encheres.bll.utilisateurs.UtilisateursException;
 import fr.eni.encheres.bo.Retraits;
 import fr.eni.encheres.dal.DALException;
 import fr.eni.encheres.dal.DAOFact;
@@ -28,7 +30,7 @@ public class RetraitsManagerImpl implements RetraitsManager {
 	}
 
 	@Override
-	public Retraits getByIdArticle(Integer id) throws RetraitsException, ArticlesVendusException {
+	public Retraits getByIdArticle(Integer id) throws RetraitsException, ArticlesVendusException, UtilisateursException, CategoriesException {
 		try {
 			return dao.getByIdArticle(id);
 		} catch(DALException e) {

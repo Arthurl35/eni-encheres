@@ -1,12 +1,26 @@
 package fr.eni.encheres.ihm.home;
 
+
+import java.util.List;
+
+import fr.eni.encheres.bo.ArticleVendu;
 import fr.eni.encheres.bo.Utilisateurs;
+import fr.eni.encheres.ihm.articles.ArticlesModel;
 
 public class HomeModel {
 	
 	private Utilisateurs user;
 	private String pseudo;
+	private List<ArticleVendu> lstArticles;
 	
+	public List<ArticleVendu> getLstArticles() {
+		return lstArticles;
+	}
+
+	public void setLstArticles(List<ArticleVendu> lstArticles) {
+		this.lstArticles = lstArticles;
+	}
+
 	public HomeModel() {
 		// TODO Auto-generated constructor stub
 	}

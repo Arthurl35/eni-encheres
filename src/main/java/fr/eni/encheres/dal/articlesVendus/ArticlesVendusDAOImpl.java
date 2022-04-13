@@ -7,6 +7,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.eni.encheres.bll.categories.CategoriesException;
+import fr.eni.encheres.bll.categories.CategoriesManager;
+import fr.eni.encheres.bll.categories.CategoriesManagerSing;
+import fr.eni.encheres.bll.utilisateurs.UtilisateursException;
+import fr.eni.encheres.bll.utilisateurs.UtilisateursManager;
+import fr.eni.encheres.bll.utilisateurs.UtilisateursManagerSing;
 import fr.eni.encheres.bo.ArticleVendu;
 import fr.eni.encheres.dal.DALException;
 import fr.eni.encheres.dal.util.ConnectionProvider;
@@ -14,10 +20,13 @@ import fr.eni.encheres.messages.BundleUtil;
 
 public class ArticlesVendusDAOImpl implements ArticlesVendusDAO {
 	private String INSERT = "INSERT INTO ARTICLES_VENDUS(nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie, etat) VALUES(?,?,?,?,?,?,?,?,?);";
-	private String SELECT = "SELECT (no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie, etat) FROM ARTICLES_VENDUS;";
+	private String SELECT = "SELECT * FROM ARTICLES_VENDUS;";
 	private String SELECTBYID = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie, etat) FROM ARTICLES_VENDUS WHERE no_article=?;";
 	private String UPDATE = "UPDATE ARTICLES_VENDUS SET nom_article=?, description=?, date_debut_encheres=?, date_fin_encheres=?, prix_initial=?, prix_vente=?, no_utilisateur=?, no_categorie=?, etat=? WHERE no_article=?;";
 	private String DELETE = "DELETE FROM ARTICLES_VENDUS WHERE no_article=?";
+	
+	private UtilisateursManager userManager = UtilisateursManagerSing.getInstance();
+	private CategoriesManager categManager = CategoriesManagerSing.getInstance();
 	
 	@Override
 	public void insert(ArticleVendu article) throws DALException {
@@ -47,7 +56,7 @@ public class ArticlesVendusDAOImpl implements ArticlesVendusDAO {
 		}
 	}
 	
-	public ArticleVendu getById(Integer idArticle) throws DALException {
+	public ArticleVendu getById(Integer idArticle) throws DALException, UtilisateursException, CategoriesException {
 		ArticleVendu article = null;
 		try (Connection connection = ConnectionProvider.getConnection()) {
 			PreparedStatement stmt = connection.prepareStatement(SELECTBYID);
@@ -62,8 +71,8 @@ public class ArticlesVendusDAOImpl implements ArticlesVendusDAO {
 				article.setDateFinEncheres(rs.getDate("date_fin_encheres").toLocalDate());
 				article.setMiseAPrix(rs.getInt("prix_initial"));
 				article.setPrixVente(rs.getInt("prix_vente"));
-				article.getUtilisateur().setId(rs.getInt("no_utilisateur"));
-				article.getCategorie().setId(rs.getInt("no_categorie"));
+				article.setUtilisateur(userManager.getById(rs.getInt("no_utilisateur")));
+				article.setCategorie(categManager.getCategoriById(rs.getInt("no_categorie")));
 				article.setEtatVente(rs.getInt("etat"));
 			}
 		} catch (SQLException e) {
@@ -74,7 +83,7 @@ public class ArticlesVendusDAOImpl implements ArticlesVendusDAO {
 	}
 
 	@Override
-	public List<ArticleVendu> getAll() throws DALException {
+	public List<ArticleVendu> getAll() throws DALException, UtilisateursException, CategoriesException {
 		List<ArticleVendu> result = new ArrayList<>();
 		try (Connection connection = ConnectionProvider.getConnection()) {
 			PreparedStatement stmt = connection.prepareStatement(SELECT);
@@ -88,8 +97,8 @@ public class ArticlesVendusDAOImpl implements ArticlesVendusDAO {
 				article.setDateFinEncheres(rs.getDate("date_fin_encheres").toLocalDate());
 				article.setMiseAPrix(rs.getInt("prix_initial"));
 				article.setPrixVente(rs.getInt("prix_vente"));
-				article.getUtilisateur().setId(rs.getInt("no_utilisateur"));
-				article.getCategorie().setId(rs.getInt("no_categorie"));
+				article.setUtilisateur(userManager.getById(rs.getInt("no_utilisateur")));
+				article.setCategorie(categManager.getCategoriById(rs.getInt("no_categorie")));
 				article.setEtatVente(rs.getInt("etat"));
 			
 				result.add(article);

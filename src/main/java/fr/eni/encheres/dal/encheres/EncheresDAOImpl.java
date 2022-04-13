@@ -10,6 +10,7 @@ import java.util.List;
 import fr.eni.encheres.bll.articlesvendus.ArticlesVendusException;
 import fr.eni.encheres.bll.articlesvendus.ArticlesVendusManager;
 import fr.eni.encheres.bll.articlesvendus.ArticlesVendusManagerSing;
+import fr.eni.encheres.bll.categories.CategoriesException;
 import fr.eni.encheres.bll.utilisateurs.UtilisateursException;
 import fr.eni.encheres.bll.utilisateurs.UtilisateursManager;
 import fr.eni.encheres.bll.utilisateurs.UtilisateursManagerSing;
@@ -46,7 +47,7 @@ public class EncheresDAOImpl implements EncheresDAO {
 		}
 	}
 	
-	public List<Encheres> getById(Integer idArticle) throws DALException, ArticlesVendusException, UtilisateursException {
+	public List<Encheres> getById(Integer idArticle) throws DALException, ArticlesVendusException, UtilisateursException, CategoriesException {
 		Encheres enchere = null;
 		List<Encheres> result = new ArrayList<>();
 		try (Connection connection = ConnectionProvider.getConnection()) {
@@ -70,7 +71,7 @@ public class EncheresDAOImpl implements EncheresDAO {
 	}
 
 	@Override
-	public List<Encheres> getAll() throws DALException, ArticlesVendusException, UtilisateursException {
+	public List<Encheres> getAll() throws DALException, ArticlesVendusException, UtilisateursException, CategoriesException {
 		Encheres enchere = null;
 		List<Encheres> result = new ArrayList<>();
 		try (Connection connection = ConnectionProvider.getConnection()) {

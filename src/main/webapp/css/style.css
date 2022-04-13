@@ -31,3 +31,13 @@ img{
 	}
 	
 /* Accueil*/
+
+.article{
+	border : 0.5em solid black;	
+	padding : 0 !important;
+}
+.article header{
+	background-color : black;
+	width : 100%;
+	color: #fafafa;
+}

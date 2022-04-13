@@ -10,6 +10,8 @@ import java.util.List;
 import fr.eni.encheres.bll.articlesvendus.ArticlesVendusException;
 import fr.eni.encheres.bll.articlesvendus.ArticlesVendusManager;
 import fr.eni.encheres.bll.articlesvendus.ArticlesVendusManagerSing;
+import fr.eni.encheres.bll.categories.CategoriesException;
+import fr.eni.encheres.bll.utilisateurs.UtilisateursException;
 import fr.eni.encheres.bo.ArticleVendu;
 import fr.eni.encheres.bo.Retraits;
 import fr.eni.encheres.dal.DALException;
@@ -42,7 +44,7 @@ public class RetraitsDAOImpl implements RetraitsDAO {
 		}
 	}
 	
-	public Retraits getByIdArticle(Integer idArticle) throws DALException, ArticlesVendusException {
+	public Retraits getByIdArticle(Integer idArticle) throws DALException, ArticlesVendusException, UtilisateursException, CategoriesException {
 		Retraits retrait = null;
 		try (Connection connection = ConnectionProvider.getConnection()) {
 			PreparedStatement stmt = connection.prepareStatement(SELECTBYIDARTICLE);
