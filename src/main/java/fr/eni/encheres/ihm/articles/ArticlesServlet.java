@@ -16,9 +16,17 @@ import fr.eni.encheres.bll.articlesvendus.ArticlesVendusManagerSing;
 import fr.eni.encheres.bll.categories.CategoriesException;
 import fr.eni.encheres.bll.categories.CategoriesManager;
 import fr.eni.encheres.bll.categories.CategoriesManagerSing;
+
+import fr.eni.encheres.bll.retraits.RetraitsException;
+import fr.eni.encheres.bll.retraits.RetraitsManager;
+import fr.eni.encheres.bll.retraits.RetraitsManagerSing;
 import fr.eni.encheres.bo.ArticleVendu;
+import fr.eni.encheres.bo.Retraits;
+import fr.eni.encheres.bo.Utilisateurs;
 import fr.eni.encheres.ihm.categories.CategoriesModel;
 import fr.eni.encheres.ihm.profil.ProfilModel;
+
+
 
 /**
  * Servlet implementation class ArticlesServlet
@@ -28,7 +36,8 @@ public class ArticlesServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private ArticlesVendusManager manager = ArticlesVendusManagerSing.getInstance();
-	private CategoriesManager manager2 = CategoriesManagerSing.getInstance();
+	private CategoriesManager managerCategorie = CategoriesManagerSing.getInstance();
+	private RetraitsManager managerRetrait = RetraitsManagerSing.getInstance();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -43,62 +52,90 @@ public class ArticlesServlet extends HttpServlet {
 	 *      response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArticlesModel model2 = new ArticlesModel();
-		ProfilModel model = new ProfilModel();
-		CategoriesModel model3 = new CategoriesModel();
+		ProfilModel modelProfil = new ProfilModel();
+		ArticlesModel modelArticles = new ArticlesModel();
+		CategoriesModel modelCategories = new CategoriesModel();
+		
 		String next = "/WEB-INF/article.jsp";
 
-		//rï¿½cupï¿½re la session
+		
+		//test si bien connecté
 		HttpSession session = request.getSession();
+		if(session.getAttribute("user") == null) {
+			next = "";
+		}
+		else{modelArticles.setUtilisateur((Utilisateurs)session.getAttribute("user"));}
 
 		// Affichage de la liste des catï¿½gories
 		try {
-			model3.setLstCategories(manager2.getAllCategories());
+			modelCategories.setLstCategories(managerCategorie.getAllCategories());
 		} catch (CategoriesException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		if(request.getParameter("BT_VALID")!=null) {
-			//rï¿½cuprï¿½ration des donnï¿½es du formulaire
-			model2.setNomArticle(request.getParameter("article"));
-			model2.setDescription(request.getParameter("description"));
-			model2.getCategorie().setLibelle(request.getParameter("categorie"));
-			model2.setMiseAPrix(Integer.parseInt(request.getParameter("miseAPrix")));
-			model2.setDateDebutEncheres(LocalDate.parse(request.getParameter("dateDebutEncheres")));
-			model2.setDateFinEncheres(LocalDate.parse(request.getParameter("dateFinEncheres")));
-			
-			if(!model2.getNomArticle().equals("")
-					&& !model2.getDescription().equals("")
-					&& !model2.getCategorie().equals("")
-					&& !(model2.getMiseAPrix() == null)
-					&& !(model2.getDateDebutEncheres() == null)
-					&& !(model2.getDateFinEncheres() == null)) {
+			//récuprération des données du formulaire
+			modelArticles.setNomArticle(request.getParameter("article"));
+			modelArticles.setDescription(request.getParameter("description"));
+			try {
+				modelArticles.setCategorie(managerCategorie.getCategoriById(Integer.parseInt(request.getParameter("categories"))));
+			} catch (NumberFormatException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (CategoriesException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			modelArticles.setMiseAPrix(Integer.parseInt(request.getParameter("miseAPrix")));
+			modelArticles.setDateDebutEncheres(LocalDate.parse(request.getParameter("dateDebutEncheres")));
+			modelArticles.setDateFinEncheres(LocalDate.parse(request.getParameter("dateFinEncheres")));
+
+			if(!modelArticles.getNomArticle().equals("")
+					&& !modelArticles.getDescription().equals("")
+					&& !modelArticles.getCategorie().equals(null)
+					&& !modelArticles.getMiseAPrix().equals(null)
+					&& !modelArticles.getDateDebutEncheres().equals(null)
+					&& !modelArticles.getDateFinEncheres().equals(null)) {
 				
-				ArticleVendu article = new ArticleVendu(model2.getNomArticle(), model2.getDescription(), model2.getCategorie(), model2.getMiseAPrix(), 
-										model2.getDateDebutEncheres(), model2.getDateFinEncheres());
+				//création articles
+				ArticleVendu article = new ArticleVendu(modelArticles.getNomArticle(), modelArticles.getDescription(), modelArticles.getCategorie(), modelArticles.getMiseAPrix(), 
+										modelArticles.getDateDebutEncheres(), modelArticles.getDateFinEncheres());
+				article.setUtilisateur(modelArticles.getUtilisateur());
+				article.setPrixVente(0);
+				article.setEtatVente(0);
 				try {
 					manager.addArticle(article);
 					next = "";
 				} catch (ArticlesVendusException e) {
-					model2.setMessage(e.getMessage());
+					modelArticles.setMessage(e.getMessage());
+				}
+				
+				Retraits retrait = new Retraits(article, request.getParameter("street"), request.getParameter("cp"), request.getParameter("city"));
+				
+				try {
+					managerRetrait.addRetrait(retrait);
+					next = "";
+				}
+				catch (RetraitsException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 
 			}
 			else {
-				model2.setMessage("Champs manquant !");
+				modelArticles.setMessage("Champs manquant !");
 			}
 		
 		}
 		
 
-		request.setAttribute("model", model);
-		request.setAttribute("model2", model2);
-		request.setAttribute("model3", model3);
+		request.setAttribute("modelProfil", modelProfil);
+		request.setAttribute("modelArticles", modelArticles);
+		request.setAttribute("modelCategories", modelCategories);
 		request.getRequestDispatcher(next).forward(request, response);
 
 	}
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
