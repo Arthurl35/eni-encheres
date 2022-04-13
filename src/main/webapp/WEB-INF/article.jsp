@@ -35,8 +35,13 @@
 									</div>
 
 									<div class="form-outline form-white mb-4">
+<<<<<<< HEAD
 									<label class="form-label">CatÃ©gories :</label>
 										<select class="form-control search-slt" name="categories">
+=======
+									<label class="form-label">Catégories :</label>
+										<select class="form-control search-slt">
+>>>>>>> branch 'Integration' of https://github.com/Arthurl35/eni-encheres/
 											<option>Test</option>
 
 									<c:forEach items="${modelCategories.lstCategories}" var = "categorie">
@@ -47,14 +52,14 @@
 
 
 									<div class="form-outline form-white mb-4">
-										<label class="form-label" for="miseAPrix">Mise Ã  prix</label>
+										<label class="form-label" for="miseAPrix">Mise à  prix</label>
 										<input type="number" name="miseAPrix"
 											class="form-control form-control-lg"
 											value="${modelArticles.miseAPrix}" />
 									</div>
 									<div class="row">
 										<div class="form-outline form-white mb-4 col">
-											<label class="form-label" for="dateDebutEncheres">DÃ©but
+											<label class="form-label" for="dateDebutEncheres">Début
 												de l'enchÃ¨re</label> <input type="date" name="dateDebutEncheres"
 												class="form-control form-control-lg"
 												value="${modelArticles.dateDebutEncheres}" />
@@ -84,7 +89,7 @@
 									</div>
 
 									<button class="btn btn-outline-light btn-lg px-5" type="submit"
-										name="BT_VALID">CrÃƒÂ©er</button>
+										name="BT_VALID">Créer</button>
 									<a href="HomeServlet" class="btn btn-outline-light btn-lg px-5">Annuler</a>
 								</div>
 							</div>

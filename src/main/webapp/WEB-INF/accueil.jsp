@@ -94,19 +94,22 @@ const check5 = document.getElementById('defaultCheck5');
 const check6 = document.getElementById('defaultCheck6');
 
 function ShowHideDiv1(){
+
 	check4.setAttribute('disabled', '');
 	check5.setAttribute('disabled', '');
 	check6.setAttribute('disabled', '');
+
 	
 	check1.removeAttribute('disabled');
 	check2.removeAttribute('disabled');
 	check3.removeAttribute('disabled');
 	}
 function ShowHideDiv2(){	
+
 	check1.setAttribute('disabled', '');
 	check2.setAttribute('disabled', '');
 	check3.setAttribute('disabled', '');
-	
+
 	check4.removeAttribute('disabled');
 	check5.removeAttribute('disabled');
 	check6.removeAttribute('disabled');

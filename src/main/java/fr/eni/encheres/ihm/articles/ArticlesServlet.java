@@ -16,6 +16,7 @@ import fr.eni.encheres.bll.articlesvendus.ArticlesVendusManagerSing;
 import fr.eni.encheres.bll.categories.CategoriesException;
 import fr.eni.encheres.bll.categories.CategoriesManager;
 import fr.eni.encheres.bll.categories.CategoriesManagerSing;
+
 import fr.eni.encheres.bll.retraits.RetraitsException;
 import fr.eni.encheres.bll.retraits.RetraitsManager;
 import fr.eni.encheres.bll.retraits.RetraitsManagerSing;
@@ -24,6 +25,8 @@ import fr.eni.encheres.bo.Retraits;
 import fr.eni.encheres.bo.Utilisateurs;
 import fr.eni.encheres.ihm.categories.CategoriesModel;
 import fr.eni.encheres.ihm.profil.ProfilModel;
+
+
 
 /**
  * Servlet implementation class ArticlesServlet
@@ -54,6 +57,7 @@ public class ArticlesServlet extends HttpServlet {
 		CategoriesModel modelCategories = new CategoriesModel();
 		
 		String next = "/WEB-INF/article.jsp";
+
 		
 		//test si bien connecté
 		HttpSession session = request.getSession();
@@ -62,7 +66,7 @@ public class ArticlesServlet extends HttpServlet {
 		}
 		else{modelArticles.setUtilisateur((Utilisateurs)session.getAttribute("user"));}
 
-		// Affichage de la liste des catégories
+		// Affichage de la liste des catï¿½gories
 		try {
 			modelCategories.setLstCategories(managerCategorie.getAllCategories());
 		} catch (CategoriesException e) {
@@ -93,6 +97,21 @@ public class ArticlesServlet extends HttpServlet {
 					&& !modelArticles.getMiseAPrix().equals(null)
 					&& !modelArticles.getDateDebutEncheres().equals(null)
 					&& !modelArticles.getDateFinEncheres().equals(null)) {
+
+			//rï¿½cuprï¿½ration des donnï¿½es du formulaire
+				modelArticles.setNomArticle(request.getParameter("article"));
+				modelArticles.setDescription(request.getParameter("description"));
+				modelArticles.getCategorie().setLibelle(request.getParameter("categorie"));
+				modelArticles.setMiseAPrix(Integer.parseInt(request.getParameter("miseAPrix")));
+				modelArticles.setDateDebutEncheres(LocalDate.parse(request.getParameter("dateDebutEncheres")));
+				modelArticles.setDateFinEncheres(LocalDate.parse(request.getParameter("dateFinEncheres")));
+			
+			if(!modelArticles.getNomArticle().equals("")
+					&& !modelArticles.getDescription().equals("")
+					&& !modelArticles.getCategorie().equals("")
+					&& !(modelArticles.getMiseAPrix() == null)
+					&& !(modelArticles.getDateDebutEncheres() == null)
+					&& !(modelArticles.getDateFinEncheres() == null)) {
 				
 				//création articles
 				ArticleVendu article = new ArticleVendu(modelArticles.getNomArticle(), modelArticles.getDescription(), modelArticles.getCategorie(), modelArticles.getMiseAPrix(), 
@@ -132,7 +151,7 @@ public class ArticlesServlet extends HttpServlet {
 		request.getRequestDispatcher(next).forward(request, response);
 
 	}
-
+}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)

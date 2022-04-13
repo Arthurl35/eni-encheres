@@ -25,7 +25,7 @@
                <input type="text" name="name" class="form-control form-control-lg" value="${model.nom}"/>
               </div>
               <div class="form-outline form-white mb-4 col">
-               <label class="form-label" for="surname">PrÃ©nom</label>
+               <label class="form-label" for="surname">Prénom</label>
                <input type="text" name="surname" class="form-control form-control-lg" value="${model.prenom}"/>
               </div>
               </div>
@@ -34,7 +34,7 @@
               	<input type="email" name="mail" class="form-control form-control-lg" value="${model.email}"/>
               </div>
                <div class="form-outline form-white mb-4">
-               <label class="form-label" for="tel">TÃ©lÃ©phone</label>
+               <label class="form-label" for="tel">Téléphone</label>
                <input type="tel" name="tel" class="form-control form-control-lg" value="${model.telephone}"/>
               </div>
               <div class="row">
@@ -64,7 +64,7 @@
                <input type="password" name="pass-confirm" class="form-control form-control-lg" class="form-control form-control-lg" value="${model.mot_de_passe_confirm}"/>
               </div>
               
-              <button class="btn btn-outline-light btn-lg px-5" type="submit" name="BT_VALID">CrÃ©er</button>
+              <button class="btn btn-outline-light btn-lg px-5" type="submit" name="BT_VALID">Créer</button>
                <button class="btn btn-outline-light btn-lg px-5" type="submit" name="BT_ANNUL">Annuler</button>
             </div>
           </div>
