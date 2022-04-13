@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -37,7 +38,7 @@ public class LoginServlet extends HttpServlet {
 		String next = "/WEB-INF/login.jsp";
 		LoginModel model = new LoginModel();
 		
-		//test si déjà connecté
+		//test si dï¿½jï¿½ connectï¿½
 		HttpSession session = request.getSession();
 		if(session.getAttribute("user") != null) {
 			model.setUser((Utilisateurs)session.getAttribute("user"));
@@ -47,6 +48,16 @@ public class LoginServlet extends HttpServlet {
 		if(request.getParameter("BT_VALID")!=null) {
 			if(!request.getParameter("pseudo").equals("") && !request.getParameter("pass").equals("")) {
 				model.setPseudo(request.getParameter("pseudo"));
+				
+				Cookie userName = new Cookie("userName",
+	                      request.getParameter("pseudo"));
+				 //Set expiry date after 24 Hrs for both the cookies.
+			      userName.setMaxAge(60*60*24); 
+			      
+			    //Add both the cookies in the response header.
+			      response.addCookie( userName );
+			      
+			      System.out.println();
 				
 				try {
 					//test login

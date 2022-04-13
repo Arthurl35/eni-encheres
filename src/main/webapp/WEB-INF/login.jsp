@@ -36,5 +36,11 @@
   </div>
   </form>
   </section>
+  Coockie[] coockies = null;
+  coockies = request.getCoockies();
+  for(int i = 0; i < coockies.length; i++){
+  coockie = coockies[i];
+  out.print(coockie)
+  }
 	</body>
 </html>
