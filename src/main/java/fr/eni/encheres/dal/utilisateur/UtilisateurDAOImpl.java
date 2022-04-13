@@ -20,6 +20,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 	private final String DELETE = "DELETE FROM UTILISATEURS WHERE no_utilisateur=?";
 	private final String GETCONNECTION = "SELECT * FROM UTILISATEURS WHERE pseudo = ? AND mot_de_passe = ?";
 	private final String SELECTBYPSEUDO = "SELECT pseudo,nom, prenom,email,telephone, rue, code_postal,ville, mot_de_passe, credit, administrateur FROM UTILISATEURS WHERE pseudo=? ";
+	private final String SELECTBYID = "SELECT * FROM UTILISATEURS WHERE no_utilisateur=? ";
 	private final String SELECT_sansAdmin = "SELECT no_Utilisateur,pseudo,nom, prenom,email,telephone, rue, code_postal,ville, mot_de_passe, credit, administrateur FROM UTILISATEURS WHERE administrateur = 0";
 	@Override
 	public void insert(Utilisateurs utilisateur) throws DALException {
@@ -213,7 +214,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 	public Utilisateurs getById(Integer id) throws DALException {
 		Utilisateurs utilisateur = null;
 		try (Connection connection = ConnectionProvider.getConnection()) {
-			PreparedStatement stmt = connection.prepareStatement(SELECTBYPSEUDO);
+			PreparedStatement stmt = connection.prepareStatement(SELECTBYID);
 			stmt.setInt(1, id);
 			ResultSet rs = stmt.executeQuery();
 			if (rs.next()) {

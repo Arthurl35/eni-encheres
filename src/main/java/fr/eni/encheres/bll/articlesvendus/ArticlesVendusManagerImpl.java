@@ -2,6 +2,8 @@ package fr.eni.encheres.bll.articlesvendus;
 
 import java.util.List;
 
+import fr.eni.encheres.bll.categories.CategoriesException;
+import fr.eni.encheres.bll.utilisateurs.UtilisateursException;
 import fr.eni.encheres.bo.ArticleVendu;
 import fr.eni.encheres.dal.DALException;
 import fr.eni.encheres.dal.DAOFact;
@@ -17,12 +19,10 @@ public class ArticlesVendusManagerImpl implements ArticlesVendusManager {
 		} catch (DALException e) {
 			throw new ArticlesVendusException("Problème à l'insertion");
 		}
-		
-		
 	}
 
 	@Override
-	public List<ArticleVendu> getAllArticles() throws ArticlesVendusException {
+	public List<ArticleVendu> getAllArticles() throws ArticlesVendusException, UtilisateursException, CategoriesException {
 		try {
 			return dao.getAll();
 		} catch (DALException e) {
@@ -40,7 +40,7 @@ public class ArticlesVendusManagerImpl implements ArticlesVendusManager {
 	}
 
 	@Override
-	public ArticleVendu getById(Integer id) throws ArticlesVendusException {
+	public ArticleVendu getById(Integer id) throws ArticlesVendusException, UtilisateursException, CategoriesException {
 		try {
 			return dao.getById(id);
 		} catch(DALException e) {

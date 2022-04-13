@@ -3,6 +3,7 @@ package fr.eni.encheres.bll.encheres;
 import java.util.List;
 
 import fr.eni.encheres.bll.articlesvendus.ArticlesVendusException;
+import fr.eni.encheres.bll.categories.CategoriesException;
 import fr.eni.encheres.bll.utilisateurs.UtilisateursException;
 import fr.eni.encheres.bo.ArticleVendu;
 import fr.eni.encheres.bo.Encheres;
@@ -23,7 +24,7 @@ public class EncheresManagerImpl implements EncheresManager {
 	}
 
 	@Override
-	public List<Encheres> getAllEncheres() throws EncheresException, ArticlesVendusException, UtilisateursException {
+	public List<Encheres> getAllEncheres() throws EncheresException, ArticlesVendusException, UtilisateursException, CategoriesException {
 		try {
 			return dao.getAll();
 		} catch (DALException e) {
@@ -41,7 +42,7 @@ public class EncheresManagerImpl implements EncheresManager {
 	}
 
 	@Override
-	public List<Encheres> getById(Integer id) throws EncheresException, ArticlesVendusException, UtilisateursException {
+	public List<Encheres> getById(Integer id) throws EncheresException, ArticlesVendusException, UtilisateursException, CategoriesException {
 		try {
 			return dao.getById(id);
 		} catch(DALException e) {
