@@ -39,14 +39,15 @@ public class HomeServlet extends HttpServlet {
 		CategoriesModel model2 = new CategoriesModel();
 		String next = "/WEB-INF/home.jsp";
 		
-		//récupère la session
+		//rï¿½cupï¿½re la session
 		HttpSession session = request.getSession();
+		  session.setMaxInactiveInterval(300);    // session timeout dans 5 minutes
 		if(session.getAttribute("user") != null) {
 			model.setUser((Utilisateurs)session.getAttribute("user"));
 			model.setPseudo(model.getUser().getPseudo());
 		}
 		
-		//Affichage de la liste des catégories
+		//Affichage de la liste des catï¿½gories
 		try {
 			model2.setLstCategories(manager.getAllCategories());
 		} catch (CategoriesException e) {
@@ -54,7 +55,7 @@ public class HomeServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		//déconnection
+		//dï¿½connection
 		if(request.getParameter("BT_LOGOUT")!= null && model.getUser() != null) {
 			session.invalidate();
 			model.setUser(null);
