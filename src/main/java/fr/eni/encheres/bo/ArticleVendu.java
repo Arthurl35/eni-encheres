@@ -39,9 +39,7 @@ public class ArticleVendu {
 		this.categorie = categorie;
 		this.miseAPrix = miseAPrix;
 		this.dateDebutEncheres = dateDebutEncheres;
-		this.dateFinEncheres = dateFinEncheres;
-
-		
+		this.dateFinEncheres = dateFinEncheres;	
 	}
 
 	public Categories getCategorie() {

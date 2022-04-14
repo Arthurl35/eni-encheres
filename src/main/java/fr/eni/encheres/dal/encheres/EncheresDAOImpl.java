@@ -21,10 +21,10 @@ import fr.eni.encheres.dal.util.ConnectionProvider;
 import fr.eni.encheres.messages.BundleUtil;
 
 public class EncheresDAOImpl implements EncheresDAO {
-	private String INSERT = "INSERT INTO ENCHERES(no_utilisateur, no_article, date_encheres, montant_encheres) VALUES(?,?,?,?);";
+	private String INSERT = "INSERT INTO ENCHERES(no_utilisateur, no_article, date_enchere, montant_enchere) VALUES(?,?,?,?);";
 	private String SELECT = "SELECT * FROM ENCHERES;";
-	private String SELECTBYID = "SELECT * FROM ENCHERES WHERE no_article=?;";
-	private String UPDATE = "UPDATE ENCHERES SET no_utilisateur=?, no_article=?, date_encheres=?, montant_encheres=?;";
+	private String SELECTBYID = "SELECT * FROM ENCHERES WHERE no_article=? ORDER  BY montant_enchere DESC;";
+	private String UPDATE = "UPDATE ENCHERES SET no_utilisateur=?, no_article=?, date_enchere=?, montant_enchere=?;";
 	private String DELETE = "DELETE FROM ENCHERES WHERE no_article=?";
 	
 	private UtilisateursManager userManager = UtilisateursManagerSing.getInstance();
@@ -58,8 +58,8 @@ public class EncheresDAOImpl implements EncheresDAO {
 				enchere = new Encheres();
 				enchere.setArticle(articleManager.getById(idArticle));
 				enchere.setUtilisateur(userManager.getById(rs.getInt("no_utilisateur")));
-				enchere.setDate_enchere(rs.getDate("date_encheres").toLocalDate());
-				enchere.setMontant_enchere(rs.getInt("montant_encheres"));
+				enchere.setDate_enchere(rs.getDate("date_enchere").toLocalDate());
+				enchere.setMontant_enchere(rs.getInt("montant_enchere"));
 			
 				result.add(enchere);
 			}
@@ -81,8 +81,8 @@ public class EncheresDAOImpl implements EncheresDAO {
 				enchere = new Encheres();
 				enchere.setArticle(articleManager.getById(rs.getInt("no_article")));
 				enchere.setUtilisateur(userManager.getById(rs.getInt("no_utilisateur")));
-				enchere.setDate_enchere(rs.getDate("date_encheres").toLocalDate());
-				enchere.setMontant_enchere(rs.getInt("montant_encheres"));
+				enchere.setDate_enchere(rs.getDate("date_enchere").toLocalDate());
+				enchere.setMontant_enchere(rs.getInt("montant_enchere"));
 			
 				result.add(enchere);
 			}

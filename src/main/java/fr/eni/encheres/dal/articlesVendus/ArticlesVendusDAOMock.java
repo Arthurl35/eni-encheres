@@ -3,7 +3,10 @@ package fr.eni.encheres.dal.articlesVendus;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.eni.encheres.bll.categories.CategoriesException;
+import fr.eni.encheres.bll.utilisateurs.UtilisateursException;
 import fr.eni.encheres.bo.ArticleVendu;
+import fr.eni.encheres.bo.Utilisateurs;
 import fr.eni.encheres.dal.DALException;
 
 public class ArticlesVendusDAOMock implements ArticlesVendusDAO{
@@ -47,6 +50,27 @@ public class ArticlesVendusDAOMock implements ArticlesVendusDAO{
 		return lstArticles.stream()
 		.filter(u->u.getNoArticle() == idArticle)
 		.toList().get(0);
+	}
+
+	@Override
+	public List<ArticleVendu> getAllByEtatAndUser(Integer etat, Utilisateurs user)
+			throws DALException, UtilisateursException, CategoriesException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ArticleVendu> getAllByUser(Utilisateurs user)
+			throws DALException, UtilisateursException, CategoriesException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ArticleVendu> getAllByEtat(Integer etat)
+			throws DALException, UtilisateursException, CategoriesException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
