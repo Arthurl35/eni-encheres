@@ -110,7 +110,7 @@ public class UtilisateursManagerImpl implements UtilisateursManager {
 	@Override
 	public void updateEtat(Utilisateurs utilisateur) throws UtilisateursException {
 		try {
-			dao.update(utilisateur);
+			dao.updateEtat(utilisateur);
 		} catch(DALException e) {
 			throw new UtilisateursException("Impossible de modifier votre utilisateur");
 		}		
