@@ -71,7 +71,7 @@ public class RegisterServlet extends HttpServlet {
 					&& !model.getMot_de_passe_confirm().equals("")) {
 				
 				if(model.getMot_de_passe().equals(model.getMot_de_passe_confirm())){
-					Utilisateurs user = new Utilisateurs(model.getPseudo(), model.getNom(), model.getPrenom(), model.getEmail(), model.getTelephone(), model.getRue(), model.getCode_postal(), model.getVille(), model.getMot_de_passe(), 500, false);
+					Utilisateurs user = new Utilisateurs(model.getPseudo(), model.getNom(), model.getPrenom(), model.getEmail(), model.getTelephone(), model.getRue(), model.getCode_postal(), model.getVille(), model.getMot_de_passe(), 500, false, true);
 					//inscription
 					try {
 						manager.addUtilisateur(user);
@@ -84,7 +84,7 @@ public class RegisterServlet extends HttpServlet {
 					}
 				}
 				else {
-					model.setMessage("Les mots de passe diff�rent !");
+					model.setMessage("Les mots de passe sont différent !");
 				}
 			}
 			else model.setMessage("Champs manquant !");

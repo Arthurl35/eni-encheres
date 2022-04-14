@@ -12,7 +12,7 @@
             <div class="mb-md-5 mt-md-4 pb-5">
               <h2 class="fw-bold mb-2 text-uppercase mb-4">Inscription</h2>
      			<c:if test="${model.message != null}">
-					<p>${model.message}</p>
+					<p style="color:red;">${model.message}</p>
 				</c:if>
               <div class="form-outline form-white mb-4">
                <label class="form-label" for="pseudo">Pseudo</label>

@@ -13,7 +13,7 @@
 	          <a class="nav-link" aria-current="page" href="RegisterServlet">Inscription</a>
 	        </li>
 	        <li class="nav-item">
-	          <a class="nav-link" href="LoginServlet">Connection</a>
+	          <a class="nav-link" href="LoginServlet">Connexion</a>
 	        </li>
 	  	</c:if>
 	  	<c:if test="${sessionScope.user != null}">
