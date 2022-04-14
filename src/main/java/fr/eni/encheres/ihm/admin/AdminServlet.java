@@ -83,24 +83,9 @@ public class AdminServlet extends HttpServlet {
 						}
 
 					}
-					if (request.getParameter("BT_STATUS_valid") != null) {
+					
 					System.out.println(request.getParameter("pricing")); 
-						
-//					
-//					if(request.getParameter("pricing").toLowerCase().equals("on")) {
-//						Integer idSelected = Integer.parseInt(request.getParameter("id_utilisateur"));
-//						u.setId(idSelected);
-//						u.setEtat(true);
-//					}else {
-//				
-//						Integer idSelected = Integer.parseInt(request.getParameter("id_utilisateur"));
-//						u.setId(idSelected);
-//						u.setEtat(false);
-//					}
-//						
-//					manager.updateEtat(u);
-
-					}
+				
 	
 				} catch (UtilisateursException e) {
 					// TODO Auto-generated catch block

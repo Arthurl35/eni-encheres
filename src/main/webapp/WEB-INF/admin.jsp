@@ -106,6 +106,7 @@
 // 		});
 
 // 		console.log("test");
+		 document.formSaisie.submit();
 		}
 	</script>
 
