@@ -106,4 +106,13 @@ public class UtilisateursManagerImpl implements UtilisateursManager {
 			throw new UtilisateursException("Problème à la selection");
 		}
 	}
+
+	@Override
+	public void updateEtat(Utilisateurs utilisateur) throws UtilisateursException {
+		try {
+			dao.update(utilisateur);
+		} catch(DALException e) {
+			throw new UtilisateursException("Impossible de modifier votre utilisateur");
+		}		
+	}
 }

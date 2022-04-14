@@ -68,4 +68,10 @@ public class UtilisateurDAOMock implements UtilisateurDAO {
 		return lstUtilisateus;
 	}
 
+	@Override
+	public void updateEtat(Utilisateurs utilisateur) throws DALException {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
