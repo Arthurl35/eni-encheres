@@ -40,7 +40,7 @@ public class LoginServlet extends HttpServlet {
 		String next = "/WEB-INF/login.jsp";
 		LoginModel model = new LoginModel();
 
-		// test si d�j� connect�
+		// test si déjà connecté
 		HttpSession session = request.getSession();
 		if (session.getAttribute("user") != null) {
 			model.setUser((Utilisateurs) session.getAttribute("user"));
