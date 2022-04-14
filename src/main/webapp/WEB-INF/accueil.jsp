@@ -6,7 +6,7 @@
 	<section class="search-sec mt-4">
 		<div class="container ">
 			<h1>Filtres :</h1>
-			<form action="#" method="post" novalidate="novalidate" name="myForm">
+			<form action="" method="post" novalidate="novalidate">
 				<div class="row mb-5">
 					<div>
 						<div class="row">
@@ -32,24 +32,24 @@
 <c:if test="${sessionScope.user != null}">
 				<!-- Achats -->		
 <div class="form-check mb-3" id="achat">
-  <input class="form-check-input inputradio" type="radio" name="exampleRadios" onclick="ShowHideDiv1()" id="exampleRadios1" value="option1" checked>
+  <input class="form-check-input inputradio" type="radio" name="radiosAchat" onclick="ShowHideDiv1()" id="exampleRadios1" value="option1" checked>
   <label class="form-check-label" for="exampleRadios1">
     Achats
   </label>
   <div class="form-check checkachat">
-	  <input class="form-check-input check-achat" type="checkbox" value="" id="defaultCheck1" >
+	  <input class="form-check-input check-achat" type="checkbox" name="boxAchat" value="ouvert" id="boxOuvert" >
 	  <label class="form-check-label" for="defaultCheck1">
 	    enchères ouvertes
 	  </label>
 	</div>
 	<div class="form-check checkachat">
-	  <input class="form-check-input check-achat" type="checkbox" value="" id="defaultCheck2" >
+	  <input class="form-check-input check-achat" type="checkbox" name="boxAchat" value="encours" id="boxEncours" >
 	  <label class="form-check-label" for="defaultCheck1">
 	    mes enchères en cours
 	  </label>
 	</div>
 	<div class="form-check checkachat">
-	  <input class="form-check-input check-achat" type="checkbox" value="" id="defaultCheck3" >
+	  <input class="form-check-input check-achat" type="checkbox" name="boxAchat" value="remporte" id="boxRemporte" >
 	  <label class="form-check-label" for="defaultCheck1">
 	    mes enchères remportées
 	  </label>
@@ -58,31 +58,33 @@
 
 <!-- Mes ventes -->
 <div class="form-check check" id="vente">
-  <input class="form-check-input inputradio" type="radio" name="exampleRadios" onclick="ShowHideDiv2()" id="exampleRadios2" value="option2">
+  <input class="form-check-input inputradio" type="radio" name="radiosVente" onclick="ShowHideDiv2()" id="exampleRadios2" value="option2">
   <label class="form-check-label" for="exampleRadios2">
     Mes ventes
   </label>
 	  <div class="form-check checkvente">
-	  <input class="form-check-input check-vente" type="checkbox" value="" id="defaultCheck4" disabled>
+	  <input class="form-check-input check-vente" type="checkbox" name="boxVente" value="encours" id="boxEncours" disabled>
 	  <label class="form-check-label" for="defaultCheck1">
 	    mes ventes en cours
 	  </label>
 	</div>
 	<div class="form-check checkvente">
-	  <input class="form-check-input check-vente" type="checkbox" value="" id="defaultCheck5" name="myRadios" disabled>
+	  <input class="form-check-input check-vente" type="checkbox" name="boxVente" value="nondebute" id="boxNondebute" name="myRadios" disabled>
 	  <label class="form-check-label" for="defaultCheck1">
 	    ventes non débutées
 	  </label>
 	</div>
 	<div class="form-check checkvente">
-	  <input class="form-check-input check-vente" type="checkbox" value="" id="defaultCheck6" name="myRadios" value="achat" disabled>
+	  <input class="form-check-input check-vente" type="checkbox" name="boxVente" value="termine" id="boxTermine" name="myRadios" value="achat" disabled>
 	  <label class="form-check-label" for="defaultCheck1">
 	    ventes terminées
 	  </label>
 	</div>
 </div>
-</c:if>		
-			</form>
+<button type="submit" name="filtrer" class="btn btn-primary">Filtrer</button>	
+</c:if>
+	
+</form>
 
 	</section>
 	

@@ -14,6 +14,7 @@ import fr.eni.encheres.bll.utilisateurs.UtilisateursException;
 import fr.eni.encheres.bll.utilisateurs.UtilisateursManager;
 import fr.eni.encheres.bll.utilisateurs.UtilisateursManagerSing;
 import fr.eni.encheres.bo.ArticleVendu;
+import fr.eni.encheres.bo.Utilisateurs;
 import fr.eni.encheres.dal.DALException;
 import fr.eni.encheres.dal.util.ConnectionProvider;
 import fr.eni.encheres.messages.BundleUtil;
@@ -21,7 +22,10 @@ import fr.eni.encheres.messages.BundleUtil;
 public class ArticlesVendusDAOImpl implements ArticlesVendusDAO {
 	private String INSERT = "INSERT INTO ARTICLES_VENDUS(nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie, etat) VALUES(?,?,?,?,?,?,?,?,?);";
 	private String SELECT = "SELECT * FROM ARTICLES_VENDUS;";
-	private String SELECTBYID = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie, etat) FROM ARTICLES_VENDUS WHERE no_article=?;";
+	private String SELECTBYID = "SELECT * FROM ARTICLES_VENDUS WHERE no_article=?;";
+	private String SELECTBYETAT = "SELECT * FROM ARTICLES_VENDUS WHERE etat=?;";
+	private String SELECTBYUSER = "SELECT * FROM ARTICLES_VENDUS WHERE no_utilisateur=?;";
+	private String SELECTBYETATANDUSER = "SELECT * FROM ARTICLES_VENDUS WHERE etat=? AND no_utilisateur=?;";
 	private String UPDATE = "UPDATE ARTICLES_VENDUS SET nom_article=?, description=?, date_debut_encheres=?, date_fin_encheres=?, prix_initial=?, prix_vente=?, no_utilisateur=?, no_categorie=?, etat=? WHERE no_article=?;";
 	private String DELETE = "DELETE FROM ARTICLES_VENDUS WHERE no_article=?";
 	
@@ -87,6 +91,93 @@ public class ArticlesVendusDAOImpl implements ArticlesVendusDAO {
 		List<ArticleVendu> result = new ArrayList<>();
 		try (Connection connection = ConnectionProvider.getConnection()) {
 			PreparedStatement stmt = connection.prepareStatement(SELECT);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				ArticleVendu article = new ArticleVendu();
+				article.setNoArticle(rs.getInt("no_article"));
+				article.setNomArticle(rs.getString("nom_article"));
+				article.setDescription(rs.getString("description"));
+				article.setDateDebutEncheres(rs.getDate("date_debut_encheres").toLocalDate());
+				article.setDateFinEncheres(rs.getDate("date_fin_encheres").toLocalDate());
+				article.setMiseAPrix(rs.getInt("prix_initial"));
+				article.setPrixVente(rs.getInt("prix_vente"));
+				article.setUtilisateur(userManager.getById(rs.getInt("no_utilisateur")));
+				article.setCategorie(categManager.getCategoriById(rs.getInt("no_categorie")));
+				article.setEtatVente(rs.getInt("etat"));
+			
+				result.add(article);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DALException(BundleUtil.getMessage("msg_pbselect"));
+		}
+
+		return result;
+	}
+	
+	@Override
+	public List<ArticleVendu> getAllByEtat(Integer etat) throws DALException, UtilisateursException, CategoriesException {
+		List<ArticleVendu> result = new ArrayList<>();
+		try (Connection connection = ConnectionProvider.getConnection()) {
+			PreparedStatement stmt = connection.prepareStatement(SELECTBYETAT);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				ArticleVendu article = new ArticleVendu();
+				article.setNoArticle(rs.getInt("no_article"));
+				article.setNomArticle(rs.getString("nom_article"));
+				article.setDescription(rs.getString("description"));
+				article.setDateDebutEncheres(rs.getDate("date_debut_encheres").toLocalDate());
+				article.setDateFinEncheres(rs.getDate("date_fin_encheres").toLocalDate());
+				article.setMiseAPrix(rs.getInt("prix_initial"));
+				article.setPrixVente(rs.getInt("prix_vente"));
+				article.setUtilisateur(userManager.getById(rs.getInt("no_utilisateur")));
+				article.setCategorie(categManager.getCategoriById(rs.getInt("no_categorie")));
+				article.setEtatVente(rs.getInt("etat"));
+			
+				result.add(article);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DALException(BundleUtil.getMessage("msg_pbselect"));
+		}
+
+		return result;
+	}
+	
+	@Override
+	public List<ArticleVendu> getAllByUser(Utilisateurs user) throws DALException, UtilisateursException, CategoriesException {
+		List<ArticleVendu> result = new ArrayList<>();
+		try (Connection connection = ConnectionProvider.getConnection()) {
+			PreparedStatement stmt = connection.prepareStatement(SELECTBYUSER);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				ArticleVendu article = new ArticleVendu();
+				article.setNoArticle(rs.getInt("no_article"));
+				article.setNomArticle(rs.getString("nom_article"));
+				article.setDescription(rs.getString("description"));
+				article.setDateDebutEncheres(rs.getDate("date_debut_encheres").toLocalDate());
+				article.setDateFinEncheres(rs.getDate("date_fin_encheres").toLocalDate());
+				article.setMiseAPrix(rs.getInt("prix_initial"));
+				article.setPrixVente(rs.getInt("prix_vente"));
+				article.setUtilisateur(userManager.getById(rs.getInt("no_utilisateur")));
+				article.setCategorie(categManager.getCategoriById(rs.getInt("no_categorie")));
+				article.setEtatVente(rs.getInt("etat"));
+			
+				result.add(article);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DALException(BundleUtil.getMessage("msg_pbselect"));
+		}
+
+		return result;
+	}
+	
+	@Override
+	public List<ArticleVendu> getAllByEtatAndUser(Integer etat, Utilisateurs user) throws DALException, UtilisateursException, CategoriesException {
+		List<ArticleVendu> result = new ArrayList<>();
+		try (Connection connection = ConnectionProvider.getConnection()) {
+			PreparedStatement stmt = connection.prepareStatement(SELECTBYETATANDUSER);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				ArticleVendu article = new ArticleVendu();

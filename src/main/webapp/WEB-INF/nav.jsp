@@ -30,7 +30,7 @@
 	   
 	  <c:if test="${sessionScope.user != null}">
 	   	<li class="nav-item">
-	  			<a class="btn btn-secondary me-3" href="ProfilServlet">Enchères</a>
+	  			<a class="btn btn-secondary me-3" href="<%=request.getContextPath()%>/">Enchères</a>
 	  		</li>
 	   	<li class="nav-item">
 	  			<a class="btn btn-secondary me-3" href="ArticlesServlet">Vendre un article</a>
@@ -38,7 +38,7 @@
 	  	<li class="nav-item">
 	  			<a class="btn btn-secondary me-3" href="ProfilServlet">Mon profil</a>
 	  		</li>
-		<form class="nav-item" action="" method="post">
+		<form class="nav-item" action="<%=request.getContextPath()%>/" method="post">
 			<button type="submit" name="BT_LOGOUT" class="btn btn-secondary">Se déconnecter</button>
 	  	</form>
 	  
