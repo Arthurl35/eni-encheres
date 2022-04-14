@@ -3,43 +3,58 @@
 		<%@ include file="nav.jsp" %>
 		
 		<section>
-			<article class="article d-flex flex-column align-items-center m-5">
-			<header>
-				<h3>${model.article.nomArticle}</h3>
-			</header>
-			<div class="w-100 d-flex flex-column align-items-start">
-				
-				<p><span>catégorie : </span>${model.article.categorie.libelle}</p>
-				<p><span>Vendeur : </span>${model.article.utilisateur.pseudo}</p>
+				<div class="card text-white bg-dark m-5" style="max-width: 35rem;">
+  				<div class="card-header m-auto">${model.article.nomArticle}</div>
+  				<div class="card-body">
+    			<h5 class="card-title"><span>Catégorie : </span>${model.article.categorie.libelle}</h5>
+    			<p class="card-text"><p><span>Vendeur : </span>${model.article.utilisateur.pseudo}</p>
 				<ul>
 					<li><span>descripton : </span>${model.article.description}</li>
 					<li><span>Mise à prix : </span>${model.article.miseAPrix}</li>
 					<li><span>date début : </span>${model.article.dateDebutEncheres}</li>
 					<li><span>date fin : </span>${model.article.dateFinEncheres}</li>
-				</ul>
-			</div>
-			</article>
+				</ul></p>
+  				</div>
+				</div>
 		</section>
 		<section>
 		<form method="POST">
-			<h4>Proposer une offre :</h4>
+			<section class="search-sec">
+		<div class="container ms-5">
+			<h1>Proposer une offre :</h1>
 			<c:if test="${model.message != true}">
 				<p>${model.message}</p>
 			</c:if>
-			<label for="montant">Montant :</label> <input type="number"
-				name="montant" />
-			<button type="submit" name="BT_OFFRE">Enchérir</button>
+			<form action="" method="post" novalidate="novalidate">
+				<div class="row mb-5">
+					<div>
+						<div class="row ms-auto">
+							<div class="col-lg-1 col-md-3 col-sm-12 p-0">
+								<input type="number" name="montant" class="form-control search-slt"
+									placeholder="Montant">
+							</div>
+									<div class="col-lg-1 col-md-3 col-sm-12 p-0">
+								<button type="submit" class="btn btn-dark bg-dark" name ="BT_OFFRE">Enchérir</button>
+							</div>
+						</div>
+					</div>
+				</div>
 		</form>
 	</section>
 		<section>
-			<h4>Historique Enchère</h4>
+			<h4 class="ms-5 ">Historique Enchère</h4>
+			<div class="row">
 			<c:forEach items="${model.lstEncheres}" var="enchere">
-				<div>
-					<h5>${enchere.utilisateur.pseudo }</h5>
-					<p><span>Date : </span>${enchere.date_enchere}</p>
+				<div class="card text-white bg-dark m-5 col" style="max-width: 18rem;">
+  				<div class="card-header m-auto">Enchères</div>
+  				<div class="card-body">
+    			<h5 class="card-title">${enchere.utilisateur.pseudo}</h5>
+    			<p class="card-text"><p><span>Date : </span>${enchere.date_enchere}</p>
 					<p><span>Montant : </span>${enchere.montant_enchere}</p>
-				</div>
+  				</div>
+				</div>				
 			</c:forEach>
+			</div>
 		</section>
 	</body>
 </html>
