@@ -94,7 +94,7 @@ public class ArticlesServlet extends HttpServlet {
 					&& !(modelArticles.getMiseAPrix() != null)
 					&& !(modelArticles.getDateDebutEncheres() != null)
 					&& !(modelArticles.getDateFinEncheres() != null)) {
-				
+
 				modelArticles.setMiseAPrix(Integer.parseInt(request.getParameter("miseAPrix")));
 				modelArticles.setDateDebutEncheres(LocalDate.parse(request.getParameter("dateDebutEncheres")));
 				modelArticles.setDateFinEncheres(LocalDate.parse(request.getParameter("dateFinEncheres")));
