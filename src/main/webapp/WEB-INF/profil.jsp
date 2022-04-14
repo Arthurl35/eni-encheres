@@ -1,4 +1,5 @@
 <%@ include file="head.jsp" %>
+<%@ include file="nav.jsp"%>
 	<body>
 <c:if test="${sessionScope.user == null}">
 			<a href="LoginServlet">Connection</a>

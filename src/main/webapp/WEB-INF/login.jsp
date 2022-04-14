@@ -34,7 +34,7 @@
 									<p class="text-white-50 mb-5">Entrez votre pseudo et votre
 										mot de passe!</p>
 									<c:if test="${model.message != null}">
-										<p>${model.message}</p>
+										<p style="color:red;">${model.message}</p>
 									</c:if>
 									<div class="form-outline form-white mb-4">
 										<label class="form-label" for="typeEmailX">Pseudo</label> <input

@@ -18,10 +18,12 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 	private final String SELECT = "SELECT no_Utilisateur,pseudo,nom, prenom,email,telephone, rue, code_postal,ville, mot_de_passe, credit, administrateur FROM UTILISATEURS";
 	private final String UPDATE = "UPDATE UTILISATEURS SET pseudo = ?,nom = ?, prenom = ?,email = ?,telephone = ?, rue = ?, code_postal = ?,ville = ?, mot_de_passe = ? WHERE no_utilisateur=?";
 	private final String DELETE = "DELETE FROM UTILISATEURS WHERE no_utilisateur=?";
-	private final String GETCONNECTION = "SELECT * FROM UTILISATEURS WHERE pseudo = ? AND mot_de_passe = ?";
+	private final String GETCONNECTION = "SELECT * FROM UTILISATEURS WHERE pseudo = ? AND mot_de_passe = ? AND etat=1";
 	private final String SELECTBYPSEUDO = "SELECT pseudo,nom, prenom,email,telephone, rue, code_postal,ville, mot_de_passe, credit, administrateur FROM UTILISATEURS WHERE pseudo=? ";
 	private final String SELECTBYID = "SELECT * FROM UTILISATEURS WHERE no_utilisateur=? ";
 	private final String SELECT_sansAdmin = "SELECT no_Utilisateur,pseudo,nom, prenom,email,telephone, rue, code_postal,ville, mot_de_passe, credit, administrateur FROM UTILISATEURS WHERE administrateur = 0";
+	private final String UPDATEETAT = "UPDATE UTILSATEURS SET etat=? WHERE no_utilisateur=?";
+	
 	@Override
 	public void insert(Utilisateurs utilisateur) throws DALException {
 		try (Connection connection = ConnectionProvider.getConnection()) {
@@ -171,6 +173,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 				utilisateur.setVille(rs.getString("ville"));
 				utilisateur.setCredit(rs.getInt("credit"));
 				utilisateur.setAdministrateur(rs.getBoolean("administrateur"));
+				utilisateur.setEtat(rs.getBoolean("etat"));
 			}
 			
 		} catch (SQLException e) {
@@ -239,4 +242,20 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 		return utilisateur;
 	}
 
+	@Override
+	public void updateEtat(Utilisateurs utilisateur) throws DALException {
+		try (Connection connection = ConnectionProvider.getConnection()) {
+			PreparedStatement stmt = connection.prepareStatement(UPDATE);
+			stmt.setBoolean(1, utilisateur.getEtat());
+			stmt.setInt(2, utilisateur.getId());
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DALException(BundleUtil.getMessage("msg_pbupdate"));
+		}
+		
+	}
+
+	
+	
 }
