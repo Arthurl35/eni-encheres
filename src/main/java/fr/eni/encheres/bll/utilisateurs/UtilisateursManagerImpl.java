@@ -15,19 +15,19 @@ public class UtilisateursManagerImpl implements UtilisateursManager {
 		try {
 			for (Utilisateurs u : dao.getAll()) {
 				if (utilisateur.getEmail().equals(u.getEmail())) {
-					throw new UtilisateursException("Email d�j� existant !");
+					throw new UtilisateursException("Email déjà existant !");
 				}
 				if (utilisateur.getTelephone().equals(u.getTelephone())) {
-					throw new UtilisateursException("Num�ro de t�l�phone d�j� existant !");
+					throw new UtilisateursException("Numéro de téléphone déjà existant !");
 				}
 				if (utilisateur.getPseudo().equals(u.getPseudo())) {
-					throw new UtilisateursException("Pseudo d�j� existant");
+					throw new UtilisateursException("Pseudo déjà existant");
 				}
 			}
 
 			dao.insert(utilisateur);
 		} catch (DALException e) {
-			throw new UtilisateursException("Probl�me � l'insertion");
+			throw new UtilisateursException("Problème à l'insertion");
 		}
 
 	}
@@ -37,7 +37,7 @@ public class UtilisateursManagerImpl implements UtilisateursManager {
 		try {
 			return dao.getAll();
 		} catch (DALException e) {
-			throw new UtilisateursException("Probl�me � la selection");
+			throw new UtilisateursException("Problème à la selection");
 		}
 	}
 	
@@ -46,7 +46,7 @@ public class UtilisateursManagerImpl implements UtilisateursManager {
 		try {
 			return dao.getAll_sansAdmin();
 		} catch (DALException e) {
-			throw new UtilisateursException("Probl�me � la selection");
+			throw new UtilisateursException("Problème à la selection");
 		}
 	}
 
@@ -56,7 +56,7 @@ public class UtilisateursManagerImpl implements UtilisateursManager {
 		try {
 			user = dao.getConnection(pseudo, password);
 		} catch(DALException e) {
-			throw new UtilisateursException("Login et/ou password incorect !");
+			throw new UtilisateursException("Login et/ou mot de passe incorect !");
 		}
 		return user;
 	}
@@ -66,7 +66,7 @@ public class UtilisateursManagerImpl implements UtilisateursManager {
 		try {
 			dao.delete(utilisateur);
 		} catch(DALException e) {
-			throw new UtilisateursException("Probl�me � la selection");
+			throw new UtilisateursException("Problème à la selection");
 		}
 	}
 	
@@ -103,7 +103,7 @@ public class UtilisateursManagerImpl implements UtilisateursManager {
 			}
 			return res;
 		} catch(DALException e) {
-			throw new UtilisateursException("Probl�me � la selection");
+			throw new UtilisateursException("Problème à la selection");
 		}
 	}
 }

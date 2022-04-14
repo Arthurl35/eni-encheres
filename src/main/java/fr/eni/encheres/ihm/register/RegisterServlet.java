@@ -84,7 +84,7 @@ public class RegisterServlet extends HttpServlet {
 					}
 				}
 				else {
-					model.setMessage("Les mots de passe diff�rent !");
+					model.setMessage("Les mots de passe sont différent !");
 				}
 			}
 			else model.setMessage("Champs manquant !");

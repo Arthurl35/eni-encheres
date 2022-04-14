@@ -67,7 +67,7 @@ public class LoginServlet extends HttpServlet {
 						//redirect home
 						next = "";
 					}
-					else model.setMessage("Pseudo et/ou Mot de passe incorect !");
+					else model.setMessage("Pseudo et/ou mot de passe incorrect !");
 				}
 				catch (Exception e) {
 					model.setMessage(e.getMessage());
