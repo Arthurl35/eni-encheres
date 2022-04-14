@@ -81,7 +81,22 @@ public class HomeServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		
+		//filtres
+		if(request.getParameter("filtrer") != null) {
+			if(request.getParameter("radiosAchat") != null) {
+				if(request.getParameter("boxOuvert") != null)System.out.println("ouvert");
+				if(request.getParameter("boxEncours") != null)System.out.println("encours");
+				if(request.getParameter("boxRemporte") != null)System.out.println("remporte");
+			}
+			else if(request.getParameter("radiosVente") != null) {
+				if(request.getParameter("boxEncours") != null)System.out.println("ouvert");
+				if(request.getParameter("boxNondebute") != null)System.out.println("encours");
+				if(request.getParameter("boxTermine") != null)System.out.println("remporte");
+			}
+		}
+		
+		
 		request.setAttribute("model", model);
 		request.setAttribute("model2", model2);
 		request.getRequestDispatcher(next).forward(request, response);
