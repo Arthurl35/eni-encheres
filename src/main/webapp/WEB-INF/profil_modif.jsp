@@ -1,6 +1,7 @@
 <%@ include file="head.jsp" %>
 <%@ page import="java.util.List"%>
 <%@ page import="java.util.ArrayList"%>
+<%@ include file="nav.jsp"%>
 	<body>
 
 <c:if test="${sessionScope.user == null}">
@@ -16,7 +17,9 @@
           <div class="card-body p-5 text-center">
             <div class="mb-md-5 mt-md-4 pb-5">
               <h2 class="fw-bold mb-2 text-uppercase mb-4">Modifier mon profil</h2>
-     
+              <c:if test="${model.message != null}">
+				<p style="color:red;">${model.message}</p>
+			  </c:if>
               <div class="form-outline form-white mb-4">
                <label class="form-label" for="pseudo">Pseudo</label>
                <input type="text" name="pseudo" class="form-control form-control-lg" value="${user.pseudo}"/>
@@ -68,6 +71,7 @@
                 <label class="form-label" for="pass-confirm">Confirmation</label>
                <input type="password" name="pass-confirm" class="form-control form-control-lg" class="form-control form-control-lg" placeholder="confirmation"/>
               </div>
+
               
               <button class="btn btn-outline-light btn-lg px-5" type="submit" name="BT_ENREGISTRER">Enregistrer</button>
                <button class="btn btn-outline-light btn-lg px-5" type="submit" name="BT_SUPP">Supprimer le compte</button>

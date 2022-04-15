@@ -79,9 +79,14 @@ public class AdminServlet extends HttpServlet {
 							manager.delUtilisateur(u);
 
 							model.setLstUtilisateurs(manager.getAllUtilisateurs_sansAdmin());
+
 						}
 
 					}
+					
+					System.out.println(request.getParameter("pricing")); 
+				
+	
 				} catch (UtilisateursException e) {
 					// TODO Auto-generated catch block
 					model.setMessage(e.getMessage());

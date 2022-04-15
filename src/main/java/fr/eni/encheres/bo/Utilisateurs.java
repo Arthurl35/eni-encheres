@@ -17,13 +17,14 @@ public class Utilisateurs {
 	private Integer credit;
 	private boolean administrateur;
 	private List<Encheres> lstEncheres = new ArrayList<>();
+	private Boolean etat;
 
 	public Utilisateurs() {
 		super();
 	}
-	
-	public Utilisateurs(String pseudo, String nom, String prenom, String email, String telephone,
-			String rue, String code_postal, String ville, String mot_de_passe) {
+
+	public Utilisateurs(String pseudo, String nom, String prenom, String email, String telephone, String rue,
+			String code_postal, String ville, String mot_de_passe) {
 		this.pseudo = pseudo;
 		this.nom = nom;
 		this.prenom = prenom;
@@ -35,8 +36,9 @@ public class Utilisateurs {
 		this.mot_de_passe = mot_de_passe;
 	}
 
-	public Utilisateurs(Integer id,String pseudo, String nom, String prenom, String email, String telephone,
-			String rue, String code_postal, String ville, String mot_de_passe, Integer credit, boolean administrateur) {
+	public Utilisateurs(Integer id, String pseudo, String nom, String prenom, String email, String telephone,
+			String rue, String code_postal, String ville, String mot_de_passe, Integer credit, boolean administrateur,
+			boolean etat) {
 		this.pseudo = pseudo;
 		this.nom = nom;
 		this.prenom = prenom;
@@ -48,10 +50,12 @@ public class Utilisateurs {
 		this.mot_de_passe = mot_de_passe;
 		this.credit = credit;
 		this.administrateur = administrateur;
+		this.etat = etat;
 	}
-	
-	public Utilisateurs(String pseudo, String nom, String prenom, String email, String telephone,
-			String rue, String code_postal, String ville, String mot_de_passe, Integer credit, boolean administrateur) {
+
+	public Utilisateurs(String pseudo, String nom, String prenom, String email, String telephone, String rue,
+			String code_postal, String ville, String mot_de_passe, Integer credit, boolean administrateur,
+			boolean etat) {
 		this.pseudo = pseudo;
 		this.nom = nom;
 		this.prenom = prenom;
@@ -63,6 +67,7 @@ public class Utilisateurs {
 		this.mot_de_passe = mot_de_passe;
 		this.credit = credit;
 		this.administrateur = administrateur;
+		this.etat = etat;
 	}
 
 	public Integer getId() {
@@ -167,6 +172,14 @@ public class Utilisateurs {
 
 	public void setLstEncheres(List<Encheres> lstEncheres) {
 		this.lstEncheres = lstEncheres;
+	}
+
+	public Boolean getEtat() {
+		return etat;
+	}
+
+	public void setEtat(Boolean etat) {
+		this.etat = etat;
 	}
 
 	@Override

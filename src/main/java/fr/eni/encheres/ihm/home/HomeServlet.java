@@ -32,7 +32,7 @@ import fr.eni.encheres.ihm.categories.CategoriesModel;
  */
 @WebServlet("")
 public class HomeServlet extends HttpServlet {
-	
+
 	private static final long serialVersionUID = 1L;
 	private CategoriesManager managerCategories = CategoriesManagerSing.getInstance();
 	private ArticlesVendusManager managerArticles = ArticlesVendusManagerSing.getInstance();
@@ -45,21 +45,27 @@ public class HomeServlet extends HttpServlet {
         super();
     }
     
-    /**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		HomeModel model = new HomeModel();
 		CategoriesModel model2 = new CategoriesModel();
 		String next = "/WEB-INF/home.jsp";
+
 		
 		//récupère la session
+
+
 		HttpSession session = request.getSession();
-		  session.setMaxInactiveInterval(300);    // session timeout dans 5 minutes
-		if(session.getAttribute("user") != null) {
-			model.setUser((Utilisateurs)session.getAttribute("user"));
+		session.setMaxInactiveInterval(300); // session timeout dans 5 minutes
+		if (session.getAttribute("user") != null) {
+			model.setUser((Utilisateurs) session.getAttribute("user"));
 			model.setPseudo(model.getUser().getPseudo());
 		}
+
 		
 		
 		//MAJ ETAT ARTICLE
@@ -115,27 +121,30 @@ public class HomeServlet extends HttpServlet {
 		}
 		
 		
-		//Affichage de la liste des catï¿½gories
+
+
+
+		// Affichage de la liste des catï¿½gories
 		try {
 			model2.setLstCategories(managerCategories.getAllCategories());
 		} catch (CategoriesException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		//dï¿½connection
-		if(request.getParameter("BT_LOGOUT")!= null && model.getUser() != null) {
+
+		// dï¿½connection
+		if (request.getParameter("BT_LOGOUT") != null && model.getUser() != null) {
 			session.invalidate();
 			model.setUser(null);
 		}
-		
-		//mon profil
-		if(request.getParameter("BT_PROFIL") != null && session.getAttribute("user")!= null) {
-			//redirect profil
+
+		// mon profil
+		if (request.getParameter("BT_PROFIL") != null && session.getAttribute("user") != null) {
+			// redirect profil
 			next = "/WEB-INF/profil.jsp";
 		}
-		
-		//Les articles 
+
+		// Les articles
 		try {
 			model.setLstArticles(managerArticles.getAllArticles());
 		} catch (ArticlesVendusException | UtilisateursException | CategoriesException e) {
@@ -249,16 +258,17 @@ public class HomeServlet extends HttpServlet {
 		
 		
 		
-		
 		request.setAttribute("model", model);
 		request.setAttribute("model2", model2);
 		request.getRequestDispatcher(next).forward(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doGet(request, response);
 	}
 }

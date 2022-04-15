@@ -59,7 +59,7 @@ public class ArticlesServlet extends HttpServlet {
 		String next = "/WEB-INF/article.jsp";
 
 		
-		//test si bien connecté
+		//test si bien connectï¿½
 		HttpSession session = request.getSession();
 		if(session.getAttribute("user") == null) {
 			next = request.getContextPath();
@@ -75,7 +75,7 @@ public class ArticlesServlet extends HttpServlet {
 		}
 		
 		if(request.getParameter("BT_VALID")!=null) {
-			//récuprération des données du formulaire
+			//rï¿½cuprï¿½ration des donnï¿½es du formulaire
 			modelArticles.setNomArticle(request.getParameter("article"));
 			modelArticles.setDescription(request.getParameter("description"));
 			try {
@@ -96,12 +96,19 @@ public class ArticlesServlet extends HttpServlet {
 			if(!modelArticles.getNomArticle().equals("")
 					&& !modelArticles.getDescription().equals("")
 					&& !modelArticles.getCategorie().equals(null)
+
 					&& !(modelArticles.getMiseAPrix() == null)
 					&& !(modelArticles.getDateDebutEncheres() == null)
 					&& !(modelArticles.getDateFinEncheres() == null)) {
 				
+		
+
+				modelArticles.setMiseAPrix(Integer.parseInt(request.getParameter("miseAPrix")));
+				modelArticles.setDateDebutEncheres(LocalDate.parse(request.getParameter("dateDebutEncheres")));
+				modelArticles.setDateFinEncheres(LocalDate.parse(request.getParameter("dateFinEncheres")));
+
 				
-				//création articles
+				//crï¿½ation articles
 				ArticleVendu article = new ArticleVendu(modelArticles.getNomArticle(), modelArticles.getDescription(), modelArticles.getCategorie(), modelArticles.getMiseAPrix(), 
 										modelArticles.getDateDebutEncheres(), modelArticles.getDateFinEncheres());
 				article.setUtilisateur(modelArticles.getUtilisateur());

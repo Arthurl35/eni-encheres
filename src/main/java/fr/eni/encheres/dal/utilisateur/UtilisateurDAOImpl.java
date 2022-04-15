@@ -12,16 +12,17 @@ import fr.eni.encheres.dal.DALException;
 import fr.eni.encheres.dal.util.ConnectionProvider;
 import fr.eni.encheres.messages.BundleUtil;
 
-
 public class UtilisateurDAOImpl implements UtilisateurDAO {
 	private final String INSERT = "INSERT INTO UTILISATEURS(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
 	private final String SELECT = "SELECT no_Utilisateur,pseudo,nom, prenom,email,telephone, rue, code_postal,ville, mot_de_passe, credit, administrateur FROM UTILISATEURS";
 	private final String UPDATE = "UPDATE UTILISATEURS SET pseudo = ?,nom = ?, prenom = ?,email = ?,telephone = ?, rue = ?, code_postal = ?,ville = ?, mot_de_passe = ? WHERE no_utilisateur=?";
 	private final String DELETE = "DELETE FROM UTILISATEURS WHERE no_utilisateur=?";
-	private final String GETCONNECTION = "SELECT * FROM UTILISATEURS WHERE pseudo = ? AND mot_de_passe = ?";
+	private final String GETCONNECTION = "SELECT * FROM UTILISATEURS WHERE pseudo = ? AND mot_de_passe = ? AND etat=1";
 	private final String SELECTBYPSEUDO = "SELECT pseudo,nom, prenom,email,telephone, rue, code_postal,ville, mot_de_passe, credit, administrateur FROM UTILISATEURS WHERE pseudo=? ";
 	private final String SELECTBYID = "SELECT * FROM UTILISATEURS WHERE no_utilisateur=? ";
 	private final String SELECT_sansAdmin = "SELECT no_Utilisateur,pseudo,nom, prenom,email,telephone, rue, code_postal,ville, mot_de_passe, credit, administrateur FROM UTILISATEURS WHERE administrateur = 0";
+	private final String UPDATEETAT = "UPDATE UTILSATEURS SET etat=? WHERE no_utilisateur=?";
+
 	@Override
 	public void insert(Utilisateurs utilisateur) throws DALException {
 		try (Connection connection = ConnectionProvider.getConnection()) {
@@ -37,7 +38,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 			stmt.setString(9, utilisateur.getMot_de_passe());
 			stmt.setInt(10, utilisateur.getCredit());
 			stmt.setBoolean(11, utilisateur.isAdministrateur());
-			
+
 			int nb = stmt.executeUpdate();
 			if (nb > 0) {
 				ResultSet rs = stmt.getGeneratedKeys();
@@ -72,7 +73,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 				utilisateur.setMot_de_passe(rs.getString("mot_de_passe"));
 				utilisateur.setCredit(rs.getInt("credit"));
 				utilisateur.setAdministrateur(rs.getBoolean("administrateur"));
-				
+
 				result.add(utilisateur);
 			}
 		} catch (SQLException e) {
@@ -103,7 +104,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 				utilisateur.setMot_de_passe(rs.getString("mot_de_passe"));
 				utilisateur.setCredit(rs.getInt("credit"));
 				utilisateur.setAdministrateur(rs.getBoolean("administrateur"));
-				
+
 				result.add(utilisateur);
 			}
 		} catch (SQLException e) {
@@ -114,7 +115,6 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 		return result;
 	}
 
-	
 	@Override
 	public void update(Utilisateurs utilisateur) throws DALException {
 		try (Connection connection = ConnectionProvider.getConnection()) {
@@ -147,17 +147,17 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 			throw new DALException(BundleUtil.getMessage("msg_pbdelete"));
 		}
 	}
-	
+
 	@Override
 	public Utilisateurs getConnection(String pseudo, String password) throws DALException {
 		Utilisateurs utilisateur = null;
-		
+
 		try (Connection connection = ConnectionProvider.getConnection()) {
 			PreparedStatement stmt = connection.prepareStatement(GETCONNECTION);
 			stmt.setString(1, pseudo);
 			stmt.setString(2, password);
 			ResultSet rs = stmt.executeQuery();
-			
+
 			if (rs.next()) {
 				utilisateur = new Utilisateurs();
 				utilisateur.setId(rs.getInt("no_utilisateur"));
@@ -171,8 +171,9 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 				utilisateur.setVille(rs.getString("ville"));
 				utilisateur.setCredit(rs.getInt("credit"));
 				utilisateur.setAdministrateur(rs.getBoolean("administrateur"));
+				utilisateur.setEtat(rs.getBoolean("etat"));
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new DALException(BundleUtil.getMessage("msg_pbgetConnection"));
@@ -209,7 +210,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 		}
 		return utilisateur;
 	}
-	
+
 	@Override
 	public Utilisateurs getById(Integer id) throws DALException {
 		Utilisateurs utilisateur = null;
@@ -237,6 +238,20 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 			throw new DALException(BundleUtil.getMessage("msg_pbselect"));
 		}
 		return utilisateur;
+	}
+
+	@Override
+	public void updateEtat(Utilisateurs utilisateur) throws DALException {
+		try (Connection connection = ConnectionProvider.getConnection()) {
+			PreparedStatement stmt = connection.prepareStatement(UPDATEETAT);
+			stmt.setBoolean(1, utilisateur.getEtat());
+			stmt.setInt(2, utilisateur.getId());
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DALException(BundleUtil.getMessage("msg_pbupdate"));
+		}
+
 	}
 
 }
