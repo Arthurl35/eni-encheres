@@ -6,6 +6,7 @@ import java.util.List;
 import fr.eni.encheres.bll.categories.CategoriesException;
 import fr.eni.encheres.bll.utilisateurs.UtilisateursException;
 import fr.eni.encheres.bo.ArticleVendu;
+import fr.eni.encheres.bo.Categories;
 import fr.eni.encheres.bo.Utilisateurs;
 import fr.eni.encheres.dal.DALException;
 
@@ -68,6 +69,33 @@ public class ArticlesVendusDAOMock implements ArticlesVendusDAO{
 
 	@Override
 	public List<ArticleVendu> getAllByEtat(Integer etat)
+			throws DALException, UtilisateursException, CategoriesException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ArticleVendu> getAllWinByUser(Utilisateurs user)
+			throws DALException, UtilisateursException, CategoriesException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ArticleVendu> getAllByEnchereUser(Utilisateurs user)
+			throws DALException, UtilisateursException, CategoriesException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void updateWin(ArticleVendu article) throws DALException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<ArticleVendu> getAllByCategorie(Categories categorie)
 			throws DALException, UtilisateursException, CategoriesException {
 		// TODO Auto-generated method stub
 		return null;

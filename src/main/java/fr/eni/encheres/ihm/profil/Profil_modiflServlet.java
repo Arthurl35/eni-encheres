@@ -34,19 +34,16 @@ public class Profil_modiflServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		
+		//TODO test si mot de passe actuel exact avant de modifier
+		
 		String next = "/WEB-INF/profil_modif.jsp";
 		Utilisateurs u = new Utilisateurs();
 		
 		//récupère la session
 		HttpSession session = request.getSession();
-
-		
-		
-		//vers modifier
-		if(request.getSession().getAttribute("user")!= null) {
-			next = "/WEB-INF/profil_modif.jsp";
-		}
+		if(session.getAttribute("user") != null)next = "/WEB-INF/profil_modif.jsp";
+		else next = request.getContextPath();
 		
 		//Form validation modif utilisateur
 		if(request.getParameter("BT_ENREGISTRER")!=null) {
@@ -98,7 +95,7 @@ public class Profil_modiflServlet extends HttpServlet {
 						request.getSession().removeAttribute("user");
 					
 						if(u == null) {
-							next = "/WEB-INF/home.jsp";
+							next = request.getContextPath();
 						}
 				
 
