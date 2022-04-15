@@ -11,20 +11,20 @@
 					<div>
 						<div class="row">
 							<div class="col-lg-3 col-md-3 col-sm-12 p-0">
-								<input type="text" class="form-control search-slt"
+								<input name="search" type="text" class="form-control search-slt"
 									placeholder="Rechercher">
 							</div>
 							<div class="col-lg-3 col-md-3 col-sm-12 p-0">
-								<select class="form-control search-slt">
-									<option>Toutes</option>
+								<select class="form-control search-slt" name="choixCategorie">
+									<option value="0" selected>Toutes</option>
 
 									<c:forEach items="${model2.lstCategories}" var="categorie">
-										<option>${categorie.libelle}</option>
+										<option value="${categorie.id}">${categorie.libelle}</option>
 									</c:forEach>
 								</select>
 							</div>
 							<div class="col-lg-3 col-md-3 col-sm-12 p-0">
-								<button type="button" class="btn btn-dark bg-dark">Rechercher</button>
+								<button type="submit" name="BTN_SEARCH" class="btn btn-dark bg-dark">Rechercher</button>
 							</div>
 						</div>
 					</div>
@@ -32,24 +32,24 @@
 <c:if test="${sessionScope.user != null}">
 				<!-- Achats -->		
 <div class="form-check mb-3" id="achat">
-  <input class="form-check-input inputradio" type="radio" name="radiosAchat" onclick="ShowHideDiv1()" id="exampleRadios1" value="option1" checked>
+  <input class="form-check-input inputradio" type="radio" name="radios" onclick="ShowHideDiv1()" id="radiosAchat" value="achat" checked>
   <label class="form-check-label" for="exampleRadios1">
     Achats
   </label>
   <div class="form-check checkachat">
-	  <input class="form-check-input check-achat" type="checkbox" name="boxAchat" value="ouvert" id="boxOuvert" >
+	  <input class="form-check-input check-achat" type="checkbox" name="boxAchatOuvert" value="ouvert" id="boxAchatOuvert" >
 	  <label class="form-check-label" for="defaultCheck1">
 	    enchères ouvertes
 	  </label>
 	</div>
 	<div class="form-check checkachat">
-	  <input class="form-check-input check-achat" type="checkbox" name="boxAchat" value="encours" id="boxEncours" >
+	  <input class="form-check-input check-achat" type="checkbox" name="boxAchatEncours" value="encours" id="boxAchatEncours" >
 	  <label class="form-check-label" for="defaultCheck1">
 	    mes enchères en cours
 	  </label>
 	</div>
 	<div class="form-check checkachat">
-	  <input class="form-check-input check-achat" type="checkbox" name="boxAchat" value="remporte" id="boxRemporte" >
+	  <input class="form-check-input check-achat" type="checkbox" name="boxAchatRemporte" value="remporte" id="boxAchatRemporte" >
 	  <label class="form-check-label" for="defaultCheck1">
 	    mes enchères remportées
 	  </label>
@@ -58,24 +58,24 @@
 
 <!-- Mes ventes -->
 <div class="form-check check" id="vente">
-  <input class="form-check-input inputradio" type="radio" name="radiosVente" onclick="ShowHideDiv2()" id="exampleRadios2" value="option2">
+  <input class="form-check-input inputradio" type="radio" name="radios" onclick="ShowHideDiv2()" id="radiosVente" value="vente">
   <label class="form-check-label" for="exampleRadios2">
     Mes ventes
   </label>
 	  <div class="form-check checkvente">
-	  <input class="form-check-input check-vente" type="checkbox" name="boxVente" value="encours" id="boxEncours" disabled>
+	  <input class="form-check-input check-vente" type="checkbox" name="boxVenteEncours" value="encours" id="boxVenteEncours" disabled>
 	  <label class="form-check-label" for="defaultCheck1">
 	    mes ventes en cours
 	  </label>
 	</div>
 	<div class="form-check checkvente">
-	  <input class="form-check-input check-vente" type="checkbox" name="boxVente" value="nondebute" id="boxNondebute" name="myRadios" disabled>
+	  <input class="form-check-input check-vente" type="checkbox" name="boxVenteNondebute" value="nondebute" id="boxVenteNondebute" name="myRadios" disabled>
 	  <label class="form-check-label" for="defaultCheck1">
 	    ventes non débutées
 	  </label>
 	</div>
 	<div class="form-check checkvente">
-	  <input class="form-check-input check-vente" type="checkbox" name="boxVente" value="termine" id="boxTermine" name="myRadios" value="achat" disabled>
+	  <input class="form-check-input check-vente" type="checkbox" name="boxVenteTermine" value="termine" id="boxVenteTermine" name="myRadios" value="achat" disabled>
 	  <label class="form-check-label" for="defaultCheck1">
 	    ventes terminées
 	  </label>
@@ -91,12 +91,12 @@
 </body>
  <script>
 
-const check1 = document.getElementById('defaultCheck1');
-const check2 = document.getElementById('defaultCheck2');
-const check3 = document.getElementById('defaultCheck3');
-const check4 = document.getElementById('defaultCheck4');
-const check5 = document.getElementById('defaultCheck5');
-const check6 = document.getElementById('defaultCheck6');
+const check1 = document.getElementById('boxAchatOuvert');
+const check2 = document.getElementById('boxAchatEncours');
+const check3 = document.getElementById('boxAchatRemporte');
+const check4 = document.getElementById('boxVenteEncours');
+const check5 = document.getElementById('boxVenteNondebute');
+const check6 = document.getElementById('boxVenteTermine');
 
 function ShowHideDiv1(){
 

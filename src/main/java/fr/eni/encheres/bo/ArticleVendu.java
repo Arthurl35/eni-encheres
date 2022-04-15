@@ -14,6 +14,7 @@ public class ArticleVendu {
 	private Integer etatVente;
 	private Categories categorie;
 	private Utilisateurs utilisateur;
+	private Utilisateurs utilisateurWin;
 
 	public ArticleVendu() {
 	}
@@ -120,6 +121,15 @@ public class ArticleVendu {
 
 	public void setUtilisateur(Utilisateurs noUtilisateur) {
 		this.utilisateur = noUtilisateur;
+	}
+	
+
+	public Utilisateurs getUtilisateurWin() {
+		return utilisateurWin;
+	}
+
+	public void setUtilisateurWin(Utilisateurs utilisateurWin) {
+		this.utilisateurWin = utilisateurWin;
 	}
 
 	@Override

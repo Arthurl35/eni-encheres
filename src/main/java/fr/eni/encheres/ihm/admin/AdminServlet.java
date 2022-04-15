@@ -43,7 +43,7 @@ public class AdminServlet extends HttpServlet {
 		
 		// retour au home
 		if (request.getParameter("BT_LOGOUT") != null) {
-			next = "";
+			next = request.getContextPath();
 		}
 				
 
@@ -95,7 +95,7 @@ public class AdminServlet extends HttpServlet {
 			}
 
 		} else {
-			next = "";
+			next = request.getContextPath();
 		}
 
 		request.setAttribute("model", model);

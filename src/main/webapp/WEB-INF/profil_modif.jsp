@@ -75,6 +75,7 @@
               
               <button class="btn btn-outline-light btn-lg px-5" type="submit" name="BT_ENREGISTRER">Enregistrer</button>
                <button class="btn btn-outline-light btn-lg px-5" type="submit" name="BT_SUPP">Supprimer le compte</button>
+               <a class="btn btn-outline-light btn-lg px-5" href="<%=request.getContextPath()%>">Annuler</a>
             </div>
           </div>
         </div>

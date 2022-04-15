@@ -57,7 +57,8 @@
 					<a href="EncheresServlet?idArticle=${articleVendu.noArticle}" class="btn btn-primary">Enchérir</a>
 				</c:if>
 				<c:if test="${articleVendu.etatVente == 2}">
-					<p>VENDU pour : ${articleVendu.prixVente == 2}</p>
+					<p>VENDU pour : ${articleVendu.prixVente}</p>
+					<p>A : ${articleVendu.utilisateurWin.pseudo}</p>
 				</c:if>
 					</div>
 </div>

@@ -1,6 +1,7 @@
 package fr.eni.encheres.ihm.home;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.encheres.bo.ArticleVendu;
@@ -11,7 +12,7 @@ public class HomeModel {
 	
 	private Utilisateurs user;
 	private String pseudo;
-	private List<ArticleVendu> lstArticles;
+	private List<ArticleVendu> lstArticles = new ArrayList<ArticleVendu>();
 	
 	public List<ArticleVendu> getLstArticles() {
 		return lstArticles;

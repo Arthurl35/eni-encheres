@@ -62,7 +62,7 @@ public class ArticlesServlet extends HttpServlet {
 		//test si bien connect�
 		HttpSession session = request.getSession();
 		if(session.getAttribute("user") == null) {
-			next = "";
+			next = request.getContextPath();
 		}
 		else{modelArticles.setUtilisateur((Utilisateurs)session.getAttribute("user"));}
 
@@ -87,17 +87,26 @@ public class ArticlesServlet extends HttpServlet {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+			
+			modelArticles.setMiseAPrix(Integer.parseInt(request.getParameter("miseAPrix")));
+			modelArticles.setDateDebutEncheres(LocalDate.parse(request.getParameter("dateDebutEncheres")));
+			modelArticles.setDateFinEncheres(LocalDate.parse(request.getParameter("dateFinEncheres")));
+			
 
 			if(!modelArticles.getNomArticle().equals("")
 					&& !modelArticles.getDescription().equals("")
 					&& !modelArticles.getCategorie().equals(null)
-					&& !(modelArticles.getMiseAPrix() != null)
-					&& !(modelArticles.getDateDebutEncheres() != null)
-					&& !(modelArticles.getDateFinEncheres() != null)) {
+
+					&& !(modelArticles.getMiseAPrix() == null)
+					&& !(modelArticles.getDateDebutEncheres() == null)
+					&& !(modelArticles.getDateFinEncheres() == null)) {
+				
+		
 
 				modelArticles.setMiseAPrix(Integer.parseInt(request.getParameter("miseAPrix")));
 				modelArticles.setDateDebutEncheres(LocalDate.parse(request.getParameter("dateDebutEncheres")));
 				modelArticles.setDateFinEncheres(LocalDate.parse(request.getParameter("dateFinEncheres")));
+
 				
 				//cr�ation articles
 				ArticleVendu article = new ArticleVendu(modelArticles.getNomArticle(), modelArticles.getDescription(), modelArticles.getCategorie(), modelArticles.getMiseAPrix(), 
@@ -107,7 +116,7 @@ public class ArticlesServlet extends HttpServlet {
 				article.setEtatVente(0);
 				try {
 					manager.addArticle(article);
-					next = "";
+					next = request.getContextPath();
 				} catch (ArticlesVendusException e) {
 					modelArticles.setMessage(e.getMessage());
 				}
@@ -116,7 +125,7 @@ public class ArticlesServlet extends HttpServlet {
 				
 				try {
 					managerRetrait.addRetrait(retrait);
-					next = "";
+					next = request.getContextPath();
 				}
 				catch (RetraitsException e) {
 					// TODO Auto-generated catch block

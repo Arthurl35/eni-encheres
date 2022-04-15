@@ -27,6 +27,7 @@ public class Profil_modiflServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
+
 	public Profil_modiflServlet() {
 		super();
 	}
@@ -38,20 +39,20 @@ public class Profil_modiflServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+
 		String next = "/WEB-INF/profil_modif.jsp";
 		Utilisateurs u = new Utilisateurs();
 		ProfilModel model = new ProfilModel();
 
 		// r�cup�re la session
 		HttpSession session = request.getSession();
-
-		// vers modifier
-		if (request.getSession().getAttribute("user") != null) {
-			next = "/WEB-INF/profil_modif.jsp";
-		}
+		if(session.getAttribute("user") != null)next = "/WEB-INF/profil_modif.jsp";
+		else next = request.getContextPath();
+		
 
 		// Form validation modif utilisateur
 		if (request.getParameter("BT_ENREGISTRER") != null) {
+
 			try {
 				// r�cupr�ration des donn�es du formulaire
 				u.setId(((Utilisateurs) session.getAttribute("user")).getId());
@@ -98,10 +99,7 @@ public class Profil_modiflServlet extends HttpServlet {
 				manager.delUtilisateur(u);
 
 				request.getSession().removeAttribute("user");
-
-				if (u == null) {
-					next = "/WEB-INF/home.jsp";
-				}
+				next = request.getContextPath();
 
 			} catch (UtilisateursException e) {
 				// TODO Auto-generated catch block
