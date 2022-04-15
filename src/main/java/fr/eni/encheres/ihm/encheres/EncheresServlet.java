@@ -59,7 +59,7 @@ public class EncheresServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			
-			if(model.getArticle() == null)next = "";
+			if(model.getArticle() == null || model.getArticle().getEtatVente() != 1)next = "";
 			else {
 				//récup les enchères d'un article
 				try {

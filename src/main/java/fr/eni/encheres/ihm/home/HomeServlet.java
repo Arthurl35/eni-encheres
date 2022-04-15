@@ -108,7 +108,7 @@ public class HomeServlet extends HttpServlet {
 					article.setPrixVente(lstEncheres.get(0).getMontant_enchere());
 				}
 				else {
-					article.setUtilisateurWin(model.getUser());
+					article.setUtilisateurWin(article.getUtilisateur());
 				}
 				
 				try {
@@ -159,6 +159,7 @@ public class HomeServlet extends HttpServlet {
 				//getAllArticles
 				}
 				else {
+					List<ArticleVendu> lstArt = new ArrayList<ArticleVendu>();
 					model.setLstArticles(null);
 					if(request.getParameter("boxAchatOuvert") != null) {
 						//Les articles ouvert
@@ -253,7 +254,6 @@ public class HomeServlet extends HttpServlet {
 				}
 				model.setLstArticles(lstArticlesSearch);
 			}
-			else System.out.println("pas recherche");
 		}
 		
 		

@@ -47,7 +47,7 @@ public class Profil_modiflServlet extends HttpServlet {
 		// r�cup�re la session
 		HttpSession session = request.getSession();
 		if(session.getAttribute("user") != null)next = "/WEB-INF/profil_modif.jsp";
-		else next = request.getContextPath();
+		else next = "";
 		
 
 		// Form validation modif utilisateur
@@ -99,7 +99,7 @@ public class Profil_modiflServlet extends HttpServlet {
 				manager.delUtilisateur(u);
 
 				request.getSession().removeAttribute("user");
-				next = request.getContextPath();
+				next = "";
 
 			} catch (UtilisateursException e) {
 				// TODO Auto-generated catch block

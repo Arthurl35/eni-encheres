@@ -62,7 +62,7 @@ public class ArticlesServlet extends HttpServlet {
 		//test si bien connect�
 		HttpSession session = request.getSession();
 		if(session.getAttribute("user") == null) {
-			next = request.getContextPath();
+			next = "";
 		}
 		else{modelArticles.setUtilisateur((Utilisateurs)session.getAttribute("user"));}
 
@@ -125,7 +125,7 @@ public class ArticlesServlet extends HttpServlet {
 				
 				try {
 					managerRetrait.addRetrait(retrait);
-					next = request.getContextPath();
+					next = "";
 				}
 				catch (RetraitsException e) {
 					// TODO Auto-generated catch block

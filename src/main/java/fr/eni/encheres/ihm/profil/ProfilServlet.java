@@ -35,7 +35,7 @@ public class ProfilServlet extends HttpServlet {
 		//test bien connecté
 		HttpSession session = request.getSession();
 		if(session.getAttribute("user") != null)model.setPseudo(session.getAttribute("user").toString());
-		else next = request.getContextPath();
+		else next = "";
 		
 		//vers modifier
 		if(request.getParameter("BT_MODIFIER")!= null && session.getAttribute("user")!= null) {
@@ -44,7 +44,7 @@ public class ProfilServlet extends HttpServlet {
 		
 		//retour au home
 		if(request.getParameter("BT_ANNULER") != null) {
-		next = request.getContextPath();
+		next = "";
 		}
 		
 		request.setAttribute("model", model);
