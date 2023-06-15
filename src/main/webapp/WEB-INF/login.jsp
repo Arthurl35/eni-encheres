@@ -2,25 +2,6 @@
 <body>
 	<%@ include file="nav.jsp"%>
 
-	<%
-	String userNameString = null;
-	Cookie cookie = null;
-	Cookie[] cookies = null;
-	cookies = request.getCookies();
-
-	if (cookies != null) {
-		for (int i = 0; i < cookies.length; i++) {
-			cookie = cookies[i];
-			if (cookie.getName().equals("userName")) {
-		userNameString = cookie.getValue();
-			}
-		}
-	} else {
-		out.println("<h2>Aucun coockie trouvé</h2>");
-	}
-	%>
-
-
 	<section>
 		<form action="LoginServlet" method="post">
 			<div class="container py-5 h-100">
