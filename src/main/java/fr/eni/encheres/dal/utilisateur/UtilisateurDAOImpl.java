@@ -14,11 +14,15 @@ import fr.eni.encheres.messages.BundleUtil;
 
 
 public class UtilisateurDAOImpl implements UtilisateurDAO {
-	private final String INSERT = "INSERT INTO UTILISATEURS(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
-	private final String SELECT = "SELECT no_Utilisateur,pseudo,nom, prenom,email,telephone, rue, code_postal,ville, mot_de_passe, credit, administrateur FROM UTILISATEURS";
-	private final String UPDATE = "UPDATE UTILISATEURS SET pseudo = ?,nom = ?, prenom = ?,email = ?,telephone = ?, rue = ?, code_postal = ?,ville = ?, mot_de_passe = ?, credit = ?, administrateur = ? WHERE no_Utilisateur = ?";
+	private final String INSERT = "INSERT INTO UTILISATEURS(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit," +
+	"administrateur) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+	private final String SELECT = "SELECT no_Utilisateur,pseudo,nom, prenom,email,telephone, rue, code_postal,ville, mot_de_passe, credit, administrateur" + 
+	"FROM UTILISATEURS";
+	private final String UPDATE = "UPDATE UTILISATEURS SET pseudo = ?,nom = ?, prenom = ?,email = ?,telephone = ?, rue = ?, code_postal = ?,ville = ?," + 
+	"mot_de_passe = ?, credit = ?, administrateur = ? WHERE no_Utilisateur = ?";
 	private final String DELETE = "DELETE FROM UTILISATEURS WHERE no_Utilisateur=?";
-	private final String SELECTBYID = "SELECT no_Utilisateur, pseudo,nom, prenom,email,telephone, rue, code_postal,ville, mot_de_passe, credit, administrateur FROM UTILISATEURS WHERE no_Utilisateur=? ";
+	private final String SELECTBYID = "SELECT no_Utilisateur, pseudo,nom, prenom,email,telephone, rue, code_postal,ville, mot_de_passe," +
+	"credit, administrateur FROM UTILISATEURS WHERE no_Utilisateur=? ";
 
 	@Override
 	public void insert(Utilisateurs utilisateur) throws DALException {
